@@ -176,6 +176,16 @@ div.figure p.caption, figure p.caption { /* margin provided by figure */
     align-items: center;
     background-color: #222;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    flex-wrap: wrap;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    font-size: 1.5em;
+    color: #fff;
+    cursor: pointer;
+	margin-right: 1em;
 }
 
 /* Banner */
@@ -208,6 +218,9 @@ div.figure p.caption, figure p.caption { /* margin provided by figure */
     padding: 0;
     display: flex;
     margin-right: 1em;
+    transition: max-height 0.3s;
+    max-height: 500px;
+    overflow: hidden;
 }
 
 #banner nav ul {
@@ -256,7 +269,11 @@ a.site-title:active {
 /* Responsive */
 @media (max-width: 768px) {
     #banner {
-        flex-direction: column;
+        flex-direction: row;
+    }
+
+    .hamburger-menu {
+        display: block;
     }
 
     #banner h1 {
@@ -264,10 +281,27 @@ a.site-title:active {
     }
 
     #banner nav {
-        margin: 0.5em;
+        max-height: 0;
+    }
+
+    #banner nav.open {
+        max-height: 500px;
+    }
+
+    #banner nav ul {
+        display: block;
+    }
+
+    #banner nav li {
+        float: none;
+        width: 100%;
+    }
+
+    #banner nav a {
+        width: 100%;
+        text-align: left;
     }
 }
-
 /*
 	Featured
 *****************/

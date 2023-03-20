@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="english">
 
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+                var hamburgerMenu = document.querySelector(".hamburger-menu");
+                var bannerNav = document.querySelector("#banner nav");
+
+                hamburgerMenu.addEventListener("click", function () {
+                        bannerNav.classList.toggle("open");
+                });
+        });
+</script>
+
 <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,16 +20,18 @@
         <link rel="stylesheet" href="/theme/css/main.css" />
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <meta name="description" content="WinterFresh2020 Unity Projection Mapping project for WinterFresh" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
                 <div><a class="site-title" href="/">Psyfer.io</a></div>
+                <div class="hamburger-menu">
+                        <i class="fas fa-bars"></i>
+                </div>
                 <nav>
                         <ul>
-                                <!--  -->
-
                                 <li class="active" ><a
                                                 href="/category/c.html">C#</a></li>
                                 <li><a
