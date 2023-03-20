@@ -1,1 +1,1 @@
-pelican markdown
+pelican markdown requests PyGithub python-dotenv

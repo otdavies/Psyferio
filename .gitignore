@@ -163,3 +163,4 @@ cython_debug/
 /Include
 /Lib
 pyvenv.cfg
+/Src/.env
