@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>contrastive-unpaired-translation</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+<meta name="description" content="Contrastive Unpaired Translation (CUT) video (1m) | video (10m) | website | paper We provide our PyTorch implementation of unpaired image-to-image..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <div><a class="site-title" href="/">Psyfer.io</a></div>
+                <nav>
+                        <ul>
+                                <!--  -->
+
+                                <li><a
+                                                href="/category/c.html">C#</a></li>
+                                <li><a
+                                                href="/category/dockerfile.html">Dockerfile</a></li>
+                                <li class="active" ><a
+                                                href="/category/other.html">Other</a></li>
+                                <li><a
+                                                href="/category/python.html">Python</a></li>
+                                <li><a
+                                                href="/category/rust.html">Rust</a></li>
+                                <li><a
+                                                href="/category/shaderlab.html">ShaderLab</a></li>
+                                <li><a
+                                                href="/category/svelte.html">Svelte</a></li>
+                        </ul>
+                </nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <!-- <h1 class="entry-title">
+        <a href="/contrastive-unpaired-translation.html" rel="bookmark" title="Permalink to contrastive-unpaired-translation">contrastive-unpaired-translation</a>
+      </h1>
+ -->
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2022-03-05T10:51:58-08:00">
+                Published: Sat 05 March 2022
+        </abbr>
+		<br />
+        <abbr class="modified" title="2022-03-05T10:40:10-08:00">
+                Updated: Sat 05 March 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/oliver-davies.html">Oliver Davies</a>
+        </address>
+<p>In <a href="/category/other.html">Other</a>.</p>
+<p>tags: <a href="/tag/python.html">Python</a> <a href="/tag/shell.html">Shell</a> <a href="/tag/tex.html">TeX</a> </p>
+</footer><!-- /.post-info -->      <h1>Contrastive Unpaired Translation (CUT)</h1>
+<h3><a href="https://youtu.be/Llg0vE_MVgk">video (1m)</a> |  <a href="https://youtu.be/jSGOzjmN8q0">video (10m)</a> | <a href="http://taesung.me/ContrastiveUnpairedTranslation/">website</a> |   <a href="https://arxiv.org/pdf/2007.15651">paper</a></h3>
+<p><br></p>
+<p><img src='imgs/gif_cut.gif' align="right" width=960></p>
+<p><br><br><br></p>
+<p>We provide our PyTorch implementation of unpaired image-to-image translation based on patchwise contrastive learning and adversarial learning.  No hand-crafted loss and inverse network is used. Compared to <a href="https://github.com/junyanz/CycleGAN">CycleGAN</a>, our model training is faster and less memory-intensive. In addition, our method can be extended to single image training, where each “domain” is only a <em>single</em> image.</p>
+<p><a href="http://taesung.me/ContrastiveUnpairedTranslation/">Contrastive Learning for Unpaired Image-to-Image Translation</a><br>
+<a href="https://taesung.me/">Taesung Park</a>, <a href="https://people.eecs.berkeley.edu/~efros/">Alexei A. Efros</a>, <a href="https://richzhang.github.io/">Richard Zhang</a>, <a href="https://www.cs.cmu.edu/~junyanz/">Jun-Yan Zhu</a><br>
+UC Berkeley and Adobe Research<br>
+ In ECCV 2020</p>
+<p><img src='imgs/patchnce.gif' align="right" width=960></p>
+<p><br><br><br></p>
+<h3>Pseudo code</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="n">cross_entropy_loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+
+<span class="c1"># Input: f_q (BxCxS) and sampled features from H(G_enc(x))</span>
+<span class="c1"># Input: f_k (BxCxS) are sampled features from H(G_enc(G(x))</span>
+<span class="c1"># Input: tau is the temperature used in PatchNCE loss.</span>
+<span class="c1"># Output: PatchNCE loss</span>
+<span class="k">def</span> <span class="nf">PatchNCELoss</span><span class="p">(</span><span class="n">f_q</span><span class="p">,</span> <span class="n">f_k</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mf">0.07</span><span class="p">):</span>
+    <span class="c1"># batch size, channel size, and number of sample locations</span>
+    <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="n">f_q</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="c1"># calculate v * v+: BxSx1</span>
+    <span class="n">l_pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">f_k</span> <span class="o">*</span> <span class="n">f_q</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span>
+
+    <span class="c1"># calculate v * v-: BxSxS</span>
+    <span class="n">l_neg</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">f_q</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">f_k</span><span class="p">)</span>
+
+    <span class="c1"># The diagonal entries are not negatives. Remove them.</span>
+    <span class="n">identity_matrix</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">S</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+    <span class="n">l_neg</span><span class="o">.</span><span class="n">masked_fill_</span><span class="p">(</span><span class="n">identity_matrix</span><span class="p">,</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">))</span>
+
+    <span class="c1"># calculate logits: (B)x(S)x(S+1)</span>
+    <span class="n">logits</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">l_pos</span><span class="p">,</span> <span class="n">l_neg</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">tau</span>
+
+    <span class="c1"># return PatchNCE loss</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">targets</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">B</span> <span class="o">*</span> <span class="n">S</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cross_entropy_loss</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
+</code></pre></div>
+
+<h2>Example Results</h2>
+<h3>Unpaired Image-to-Image Translation</h3>
+<p><img src="imgs/results.gif" width="800px"/></p>
+<h3>Single Image Unpaired Translation</h3>
+<p><img src="imgs/singleimage.gif" width="800px"/></p>
+<h3>Russian Blue Cat to Grumpy Cat</h3>
+<p><img src="imgs/grumpycat.jpg" width="800px"/></p>
+<h3>Parisian Street to Burano's painted houses</h3>
+<p><img src="imgs/paris.jpg" width="800px"/></p>
+<h2>Prerequisites</h2>
+<ul>
+<li>Linux or macOS</li>
+<li>Python 3</li>
+<li>CPU or NVIDIA GPU + CUDA CuDNN</li>
+</ul>
+<h3>Update log</h3>
+<p>9/12/2020: Added single-image translation.</p>
+<h3>Getting started</h3>
+<ul>
+<li>Clone this repo:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/taesungp/contrastive-unpaired-translation<span class="w"> </span>CUT
+<span class="nb">cd</span><span class="w"> </span>CUT
+</code></pre></div>
+
+<ul>
+<li>Install PyTorch 1.1 and other dependencies (e.g., torchvision, visdom, dominate, gputil).</li>
+</ul>
+<p>For pip users, please type the command <code>pip install -r requirements.txt</code>.</p>
+<p>For Conda users,  you can create a new Conda environment using <code>conda env create -f environment.yml</code>.</p>
+<h3>CUT and FastCUT Training and Test</h3>
+<ul>
+<li>Download the <code>grumpifycat</code> dataset (Fig 8 of the paper. Russian Blue -&gt; Grumpy Cats)</li>
+</ul>
+<div class="highlight"><pre><span></span><code>bash<span class="w"> </span>./datasets/download_cut_dataset.sh<span class="w"> </span>grumpifycat
+</code></pre></div>
+
+<p>The dataset is downloaded and unzipped at <code>./datasets/grumpifycat/</code>.</p>
+<ul>
+<li>
+<p>To view training results and loss plots, run <code>python -m visdom.server</code> and click the URL http://localhost:8097.</p>
+</li>
+<li>
+<p>Train the CUT model:</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>train.py<span class="w"> </span>--dataroot<span class="w"> </span>./datasets/grumpifycat<span class="w"> </span>--name<span class="w"> </span>grumpycat_CUT<span class="w"> </span>--CUT_mode<span class="w"> </span>CUT
+</code></pre></div>
+
+<p>Or train the FastCUT model
+ ```bash
+python train.py --dataroot ./datasets/grumpifycat --name grumpycat_FastCUT --CUT_mode FastCUT</p>
+<div class="highlight"><pre><span></span><code>The checkpoints will be stored at `./checkpoints/grumpycat_*/web`.
+
+- Test the CUT model:
+```bash
+python test.py --dataroot ./datasets/grumpifycat --name grumpycat_CUT --CUT_mode CUT --phase train
+</code></pre></div>
+
+<p>The test results will be saved to a html file here: <code>./results/grumpifycat/latest_train/index.html</code>.</p>
+<h3>CUT, FastCUT, and CycleGAN</h3>
+<p><img src="imgs/horse2zebra_comparison.jpg" width="800px"/><br></p>
+<p>CUT is trained with the identity preservation loss and with <code>lambda_NCE=1</code>, while FastCUT is trained without the identity loss but with higher <code>lambda_NCE=10.0</code>. Compared to CycleGAN, CUT learns to perform more powerful distribution matching, while FastCUT is designed as a lighter (half the GPU memory, can fit a larger image), and faster (twice faster to train) alternative to CycleGAN. Please refer to the <a href="https://arxiv.org/abs/2007.15651">paper</a> for more details.</p>
+<p>In the above figure, we measure the percentage of pixels belonging to the horse/zebra bodies, using a pre-trained semantic segmentation model. We find a distribution mismatch between sizes of horses and zebras images -- zebras usually appear larger (36.8\% vs. 17.9\%). Our full method CUT has the flexibility to enlarge the horses, as a means of better matching of the training statistics than CycleGAN. FastCUT behaves more conservatively like CycleGAN.</p>
+<h3>Training using our launcher scripts</h3>
+<p>Please see <code>experiments/grumpifycat_launcher.py</code> that generates the above command line arguments. The launcher scripts are useful for configuring rather complicated command-line arguments of training and testing.</p>
+<p>Using the launcher, the command below generates the training command of CUT and FastCUT.</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>grumpifycat<span class="w"> </span>train<span class="w"> </span><span class="m">0</span><span class="w">   </span><span class="c1"># CUT</span>
+python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>grumpifycat<span class="w"> </span>train<span class="w"> </span><span class="m">1</span><span class="w">   </span><span class="c1"># FastCUT</span>
+</code></pre></div>
+
+<p>To test using the launcher,</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>grumpifycat<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="m">0</span><span class="w">   </span><span class="c1"># CUT</span>
+python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>grumpifycat<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="m">1</span><span class="w">   </span><span class="c1"># FastCUT</span>
+</code></pre></div>
+
+<p>Possible commands are run, run_test, launch, close, and so on. Please see <code>experiments/__main__.py</code> for all commands. Launcher is easy and quick to define and use. For example, the grumpifycat launcher is defined in a few lines:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">.tmux_launcher</span> <span class="kn">import</span> <span class="n">Options</span><span class="p">,</span> <span class="n">TmuxLauncher</span>
+
+
+<span class="k">class</span> <span class="nc">Launcher</span><span class="p">(</span><span class="n">TmuxLauncher</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">common_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">Options</span><span class="p">(</span>    <span class="c1"># Command 0</span>
+                <span class="n">dataroot</span><span class="o">=</span><span class="s2">&quot;./datasets/grumpifycat&quot;</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;grumpifycat_CUT&quot;</span><span class="p">,</span>
+                <span class="n">CUT_mode</span><span class="o">=</span><span class="s2">&quot;CUT&quot;</span>
+            <span class="p">),</span>
+
+            <span class="n">Options</span><span class="p">(</span>    <span class="c1"># Command 1</span>
+                <span class="n">dataroot</span><span class="o">=</span><span class="s2">&quot;./datasets/grumpifycat&quot;</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;grumpifycat_FastCUT&quot;</span><span class="p">,</span>
+                <span class="n">CUT_mode</span><span class="o">=</span><span class="s2">&quot;FastCUT&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">commands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;python train.py &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">opt</span><span class="p">)</span> <span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">common_options</span><span class="p">()]</span>
+
+    <span class="k">def</span> <span class="nf">test_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Russian Blue -&gt; Grumpy Cats dataset does not have test split.</span>
+        <span class="c1"># Therefore, let&#39;s set the test split to be the &quot;train&quot; set.</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;python test.py &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">phase</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">))</span> <span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">common_options</span><span class="p">()]</span>
+</code></pre></div>
+
+<h3>Apply a pre-trained CUT model and evaluate FID</h3>
+<p>To run the pretrained models, run the following.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Download and unzip the pretrained models. The weights should be located at</span>
+<span class="c1"># checkpoints/horse2zebra_cut_pretrained/latest_net_G.pth, for example.</span>
+wget<span class="w"> </span>http://efrosgans.eecs.berkeley.edu/CUT/pretrained_models.tar
+tar<span class="w"> </span>-xf<span class="w"> </span>pretrained_models.tar
+
+<span class="c1"># Generate outputs. The dataset paths might need to be adjusted.</span>
+<span class="c1"># To do this, modify the lines of experiments/pretrained_launcher.py</span>
+<span class="c1"># [id] corresponds to the respective commands defined in pretrained_launcher.py</span>
+<span class="c1"># 0 - CUT on Cityscapes</span>
+<span class="c1"># 1 - FastCUT on Cityscapes</span>
+<span class="c1"># 2 - CUT on Horse2Zebra</span>
+<span class="c1"># 3 - FastCUT on Horse2Zebra</span>
+<span class="c1"># 4 - CUT on Cat2Dog</span>
+<span class="c1"># 5 - FastCUT on Cat2Dog</span>
+python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>pretrained<span class="w"> </span>run_test<span class="w"> </span><span class="o">[</span>id<span class="o">]</span>
+
+<span class="c1"># Evaluate FID. To do this, first install pytorch-fid of https://github.com/mseitzer/pytorch-fid</span>
+<span class="c1"># pip install pytorch-fid</span>
+<span class="c1"># For example, to evaluate horse2zebra FID of CUT,</span>
+<span class="c1"># python -m pytorch_fid ./datasets/horse2zebra/testB/ results/horse2zebra_cut_pretrained/test_latest/images/fake_B/</span>
+<span class="c1"># To evaluate Cityscapes FID of FastCUT,</span>
+<span class="c1"># python -m pytorch_fid ./datasets/cityscapes/valA/ ~/projects/contrastive-unpaired-translation/results/cityscapes_fastcut_pretrained/test_latest/images/fake_B/</span>
+<span class="c1"># Note that a special dataset needs to be used for the Cityscapes model. Please read below. </span>
+python<span class="w"> </span>-m<span class="w"> </span>pytorch_fid<span class="w"> </span><span class="o">[</span>path<span class="w"> </span>to<span class="w"> </span>real<span class="w"> </span><span class="nb">test</span><span class="w"> </span>images<span class="o">]</span><span class="w"> </span><span class="o">[</span>path<span class="w"> </span>to<span class="w"> </span>generated<span class="w"> </span>images<span class="o">]</span>
+</code></pre></div>
+
+<p>Note: the Cityscapes pretrained model was trained and evaluated on a resized and JPEG-compressed version of the original Cityscapes dataset. To perform evaluation, please download <a href="http://efrosgans.eecs.berkeley.edu/CUT/datasets/cityscapes_val_for_CUT.tar">this</a> validation set and perform evaluation. </p>
+<h3>SinCUT Single Image Unpaired Training</h3>
+<p>To train SinCUT (single-image translation, shown in Fig 9, 13 and 14 of the paper), you need to</p>
+<ol>
+<li>set the <code>--model</code> option as <code>--model sincut</code>, which invokes the configuration and codes at <code>./models/sincut_model.py</code>, and</li>
+<li>specify the dataset directory of one image in each domain, such as the example dataset included in this repo at <code>./datasets/single_image_monet_etretat/</code>. </li>
+</ol>
+<p>For example, to train a model for the <a href="https://github.com/taesungp/contrastive-unpaired-translation/blob/master/imgs/singleimage.gif">Etretat cliff (first image of Figure 13)</a>, please use the following command.</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>train.py<span class="w"> </span>--model<span class="w"> </span>sincut<span class="w"> </span>--name<span class="w"> </span>singleimage_monet_etretat<span class="w"> </span>--dataroot<span class="w"> </span>./datasets/single_image_monet_etretat
+</code></pre></div>
+
+<p>or by using the experiment launcher script,</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>singleimage<span class="w"> </span>run<span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+
+<p>For single-image translation, we adopt network architectural components of <a href="https://github.com/NVlabs/stylegan2">StyleGAN2</a>, as well as the pixel identity preservation loss used in <a href="https://arxiv.org/abs/1611.02200">DTN</a> and <a href="https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/blob/master/models/cycle_gan_model.py#L160">CycleGAN</a>. In particular, we adopted the code of <a href="https://github.com/rosinality/stylegan2-pytorch">rosinality</a>, which exists at <code>models/stylegan_networks.py</code>.</p>
+<p>The training takes several hours. To generate the final image using the checkpoint,</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>test.py<span class="w"> </span>--model<span class="w"> </span>sincut<span class="w"> </span>--name<span class="w"> </span>singleimage_monet_etretat<span class="w"> </span>--dataroot<span class="w"> </span>./datasets/single_image_monet_etretat
+</code></pre></div>
+
+<p>or simply</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>singleimage<span class="w"> </span>run_test<span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+
+<h3><a href="./docs/datasets.md">Datasets</a></h3>
+<p>Download CUT/CycleGAN/pix2pix datasets. For example,</p>
+<div class="highlight"><pre><span></span><code>bash<span class="w"> </span>datasets/download_cut_datasets.sh<span class="w"> </span>horse2zebra
+</code></pre></div>
+
+<p>The Cat2Dog dataset is prepared from the AFHQ dataset. Please visit https://github.com/clovaai/stargan-v2 and download the AFHQ dataset by <code>bash download.sh afhq-dataset</code> of the github repo. Then reorganize directories as follows.</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>datasets/cat2dog
+ln<span class="w"> </span>-s<span class="w"> </span>datasets/cat2dog/trainA<span class="w"> </span><span class="o">[</span>path_to_afhq<span class="o">]</span>/train/cat
+ln<span class="w"> </span>-s<span class="w"> </span>datasets/cat2dog/trainB<span class="w"> </span><span class="o">[</span>path_to_afhq<span class="o">]</span>/train/dog
+ln<span class="w"> </span>-s<span class="w"> </span>datasets/cat2dog/testA<span class="w"> </span><span class="o">[</span>path_to_afhq<span class="o">]</span>/test/cat
+ln<span class="w"> </span>-s<span class="w"> </span>datasets/cat2dog/testB<span class="w"> </span><span class="o">[</span>path_to_afhq<span class="o">]</span>/test/dog
+</code></pre></div>
+
+<p>The Cityscapes dataset can be downloaded from https://cityscapes-dataset.com.
+After that, use the script <code>./datasets/prepare_cityscapes_dataset.py</code> to prepare the dataset. </p>
+<h4>Preprocessing of input images</h4>
+<p>The preprocessing of the input images, such as resizing or random cropping, is controlled by the option <code>--preprocess</code>, <code>--load_size</code>, and <code>--crop_size</code>. The usage follows the <a href="https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix">CycleGAN/pix2pix</a> repo. </p>
+<p>For example, the default setting <code>--preprocess resize_and_crop --load_size 286 --crop_size 256</code> resizes the input image to <code>286x286</code>, and then makes a random crop of size <code>256x256</code> as a way to perform data augmentation. There are other preprocessing options that can be specified, and they are specified in <a href="https://github.com/taesungp/contrastive-unpaired-translation/blob/master/data/base_dataset.py#L82">base_dataset.py</a>. Below are some example options. </p>
+<ul>
+<li><code>--preprocess none</code>: does not perform any preprocessing. Note that the image size is still scaled to be a closest multiple of 4, because the convolutional generator cannot maintain the same image size otherwise. </li>
+<li><code>--preprocess scale_width --load_size 768</code>: scales the width of the image to be of size 768.</li>
+<li><code>--preprocess scale_shortside_and_crop</code>: scales the image preserving aspect ratio so that the short side is <code>load_size</code>, and then performs random cropping of window size <code>crop_size</code>.</li>
+</ul>
+<p>More preprocessing options can be added by modifying <a href="https://github.com/taesungp/contrastive-unpaired-translation/blob/master/data/base_dataset.py#L82"><code>get_transform()</code></a> of <code>base_dataset.py</code>. </p>
+<h3>Citation</h3>
+<p>If you use this code for your research, please cite our <a href="https://arxiv.org/pdf/2007.15651">paper</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">@inproceedings</span><span class="err">{</span><span class="n">park2020cut</span><span class="p">,</span>
+<span class="w">  </span><span class="n">title</span><span class="o">=</span><span class="err">{</span><span class="n">Contrastive</span><span class="w"> </span><span class="n">Learning</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Unpaired</span><span class="w"> </span><span class="nc">Image</span><span class="o">-</span><span class="k">to</span><span class="o">-</span><span class="nc">Image</span><span class="w"> </span><span class="k">Translation</span><span class="err">}</span><span class="p">,</span>
+<span class="w">  </span><span class="n">author</span><span class="o">=</span><span class="err">{</span><span class="n">Taesung</span><span class="w"> </span><span class="n">Park</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Alexei</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="w"> </span><span class="n">Efros</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Richard</span><span class="w"> </span><span class="n">Zhang</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Jun</span><span class="o">-</span><span class="n">Yan</span><span class="w"> </span><span class="n">Zhu</span><span class="err">}</span><span class="p">,</span>
+<span class="w">  </span><span class="n">booktitle</span><span class="o">=</span><span class="err">{</span><span class="n">European</span><span class="w"> </span><span class="n">Conference</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">Computer</span><span class="w"> </span><span class="n">Vision</span><span class="err">}</span><span class="p">,</span>
+<span class="w">  </span><span class="nf">year</span><span class="o">=</span><span class="err">{</span><span class="mi">2020</span><span class="err">}</span>
+<span class="err">}</span>
+</code></pre></div>
+
+<p>If you use the original <a href="https://phillipi.github.io/pix2pix/">pix2pix</a> and <a href="https://junyanz.github.io/CycleGAN/">CycleGAN</a> model included in this repo, please cite the following papers</p>
+<div class="highlight"><pre><span></span><code><span class="nv">@inproceedings</span><span class="err">{</span><span class="n">CycleGAN2017</span><span class="p">,</span>
+<span class="w">  </span><span class="n">title</span><span class="o">=</span><span class="err">{</span><span class="n">Unpaired</span><span class="w"> </span><span class="nc">Image</span><span class="o">-</span><span class="k">to</span><span class="o">-</span><span class="nc">Image</span><span class="w"> </span><span class="k">Translation</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="k">Cycle</span><span class="o">-</span><span class="n">Consistent</span><span class="w"> </span><span class="n">Adversarial</span><span class="w"> </span><span class="n">Networks</span><span class="err">}</span><span class="p">,</span>
+<span class="w">  </span><span class="n">author</span><span class="o">=</span><span class="err">{</span><span class="n">Zhu</span><span class="p">,</span><span class="w"> </span><span class="n">Jun</span><span class="o">-</span><span class="n">Yan</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Park</span><span class="p">,</span><span class="w"> </span><span class="n">Taesung</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Isola</span><span class="p">,</span><span class="w"> </span><span class="n">Phillip</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Efros</span><span class="p">,</span><span class="w"> </span><span class="n">Alexei</span><span class="w"> </span><span class="n">A</span><span class="err">}</span><span class="p">,</span>
+<span class="w">  </span><span class="n">booktitle</span><span class="o">=</span><span class="err">{</span><span class="n">IEEE</span><span class="w"> </span><span class="n">International</span><span class="w"> </span><span class="n">Conference</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">Computer</span><span class="w"> </span><span class="n">Vision</span><span class="w"> </span><span class="p">(</span><span class="n">ICCV</span><span class="p">)</span><span class="err">}</span><span class="p">,</span>
+<span class="w">  </span><span class="nf">year</span><span class="o">=</span><span class="err">{</span><span class="mi">2017</span><span class="err">}</span>
+<span class="err">}</span>
+
+
+<span class="nv">@inproceedings</span><span class="err">{</span><span class="n">isola2017image</span><span class="p">,</span>
+<span class="w">  </span><span class="n">title</span><span class="o">=</span><span class="err">{</span><span class="nc">Image</span><span class="o">-</span><span class="k">to</span><span class="o">-</span><span class="nc">Image</span><span class="w"> </span><span class="k">Translation</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">Conditional</span><span class="w"> </span><span class="n">Adversarial</span><span class="w"> </span><span class="n">Networks</span><span class="err">}</span><span class="p">,</span>
+<span class="w">  </span><span class="n">author</span><span class="o">=</span><span class="err">{</span><span class="n">Isola</span><span class="p">,</span><span class="w"> </span><span class="n">Phillip</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Zhu</span><span class="p">,</span><span class="w"> </span><span class="n">Jun</span><span class="o">-</span><span class="n">Yan</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Zhou</span><span class="p">,</span><span class="w"> </span><span class="n">Tinghui</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Efros</span><span class="p">,</span><span class="w"> </span><span class="n">Alexei</span><span class="w"> </span><span class="n">A</span><span class="err">}</span><span class="p">,</span>
+<span class="w">  </span><span class="n">booktitle</span><span class="o">=</span><span class="err">{</span><span class="n">IEEE</span><span class="w"> </span><span class="n">Conference</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">Computer</span><span class="w"> </span><span class="n">Vision</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Pattern</span><span class="w"> </span><span class="n">Recognition</span><span class="w"> </span><span class="p">(</span><span class="n">CVPR</span><span class="p">)</span><span class="err">}</span><span class="p">,</span>
+<span class="w">  </span><span class="nf">year</span><span class="o">=</span><span class="err">{</span><span class="mi">2017</span><span class="err">}</span>
+<span class="err">}</span>
+</code></pre></div>
+
+<h3>Acknowledgments</h3>
+<p>We thank Allan Jabri and Phillip Isola for helpful discussion and feedback. Our code is developed based on <a href="https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix">pytorch-CycleGAN-and-pix2pix</a>. We also thank <a href="https://github.com/mseitzer/pytorch-fid">pytorch-fid</a> for FID computation,  <a href="https://github.com/fyu/drn">drn</a> for mIoU computation, and <a href="https://github.com/rosinality/stylegan2-pytorch/">stylegan2-pytorch</a> for the PyTorch implementation of StyleGAN2 used in our single-image translation setting.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                        Psyfer.io by Oliver Davies
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+
+</html>

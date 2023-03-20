@@ -11,7 +11,7 @@ username = 'otdavies'
 access_token = os.getenv('GH_TOKEN')
 
 # Set the name of the optional blog file in your repositories
-blog_filename = 'BLOG.md'
+blog_filename = 'README.md'
 
 # Set the path to the content folder in your blog project
 content_path = 'content'
@@ -50,7 +50,9 @@ for repo in repos:
             f.write(f"Title: {repo.name}\n")
             f.write(f"Date: {repo.created_at}\n")
             f.write(f"Modified: {repo.updated_at}\n")
-            f.write(f"Category: Blog\n")
+            # If the repo language is None, use "Other"
+            f.write(
+                f"Category: {repo.language if repo.language else 'Other'}\n")
             f.write(f"Thumbnail: {image_url}\n")
             # Get languages as tags
             f.write(f"Tags: {', '.join(repo.get_languages().keys())}\n")

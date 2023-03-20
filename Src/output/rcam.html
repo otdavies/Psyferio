@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>Rcam</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+<meta name="description" content="Rcam Vimeo - Compilation of social media video posts Rcam is an experimental project that uses a real time volumetric video capture system for..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <div><a class="site-title" href="/">Psyfer.io</a></div>
+                <nav>
+                        <ul>
+                                <!--  -->
+
+                                <li><a
+                                                href="/category/c.html">C#</a></li>
+                                <li><a
+                                                href="/category/dockerfile.html">Dockerfile</a></li>
+                                <li class="active" ><a
+                                                href="/category/other.html">Other</a></li>
+                                <li><a
+                                                href="/category/python.html">Python</a></li>
+                                <li><a
+                                                href="/category/rust.html">Rust</a></li>
+                                <li><a
+                                                href="/category/shaderlab.html">ShaderLab</a></li>
+                                <li><a
+                                                href="/category/svelte.html">Svelte</a></li>
+                        </ul>
+                </nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <!-- <h1 class="entry-title">
+        <a href="/rcam.html" rel="bookmark" title="Permalink to Rcam">Rcam</a>
+      </h1>
+ -->
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-10-23T04:01:47-07:00">
+                Published: Wed 23 October 2019
+        </abbr>
+		<br />
+        <abbr class="modified" title="2021-01-29T02:13:05-08:00">
+                Updated: Fri 29 January 2021
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/oliver-davies.html">Oliver Davies</a>
+        </address>
+<p>In <a href="/category/other.html">Other</a>.</p>
+<p>tags: <a href="/tag/shaderlab.html">ShaderLab</a> <a href="/tag/c.html">C#</a> <a href="/tag/hlsl.html">HLSL</a> </p>
+</footer><!-- /.post-info -->      <h1>Rcam</h1>
+<p><img alt="gif" src="https://i.imgur.com/ihhQwGw.gif">
+<img alt="gif" src="https://i.imgur.com/IsKzGCQ.gif">
+<img alt="gif" src="https://i.imgur.com/cXx6JJH.gif">
+<img alt="gif" src="https://i.imgur.com/tGuupN4.gif"></p>
+<p><a href="https://vimeo.com/346711967">Vimeo - Compilation of social media video posts</a></p>
+<p>Rcam is an experimental project that uses a real time volumetric video capture
+system for live performance visuals.</p>
+<p>Rcam consists of the following technologies:</p>
+<ul>
+<li><a href="https://unity3d.com">Unity</a></li>
+<li><a href="https://unity.com/visual-effect-graph">Visual effect graph</a></li>
+<li>High definition render pipeline</li>
+<li><a href="https://www.intelrealsense.com/">Intel RealSense</a></li>
+<li>D415 depth camera</li>
+<li>T265 tracker</li>
+<li>Backpack PC (<a href="http://www.mechrevo.com/en/html/VRshebei/Vest_PC/Vest_PC_I/2016/0708/94.html">MECHREVO Vest PC II</a>)</li>
+<li><a href="https://hexler.net/products/touchosc">TouchOSC</a></li>
+<li><a href="https://www.newtek.com/ndi/">NewTek NDI</a></li>
+</ul>
+<p>Volumetric data is captured in real time and visualized on the backpack PC
+carried by the camera operator. Rendered frames are send to a projector via
+ethernet link using NDI video transfer protocol.</p>
+<p>This system was used in a live performance with <a href="https://soundcloud.com/umi-o">umio</a> at <a href="https://channel20.peatix.com/">Channel 20</a>. Here is
+a <a href="https://vimeo.com/346711967">video compilation</a> of social media posts.</p>
+<h2>System requirements</h2>
+<ul>
+<li>Unity 2019.1</li>
+<li>Desktop system with HDRP support</li>
+<li>RealSense D415 and T265</li>
+<li>TouchOSC</li>
+</ul>
+<p>To control visuals, upload <code>Rcam.touchosc</code> to TouchOSC app using TouchOSC
+Editor. Please note that Windows Defender Firewall has to be turned off to
+receive OSC signals on a Windows system.</p>
+<p>Also you can try the effects in the Editor by manually enabling visual effects
+from the Inspector.</p>
+<h2>Frequently asked questions</h2>
+<h4>How do I mount T265 on D415? It doesn't have a camera screw thread.</h4>
+<p>I designed a custom bracket for this purpose, which is available on <a href="https://www.tinkercad.com/things/0FBAyD8ACOJ-realsense-t265d4xx-bracket">Tinkercad</a>.</p>
+<h4>Why T265 is required? Isn't D415 enough to capture depth?</h4>
+<p>If the camera is fixed at a single point, T265 tracker isn't needed. It's used
+to capture the movement of the camera into the 3D scene. It also used to
+compensate jitter caused by hand. In other words, it implements a software
+motion stabilizer.</p>
+<h2>Special thanks</h2>
+<p>Special thanks to <a href="https://twitter.com/z_zabaglione">@z_zabaglione</a> for lending me the backpack PC.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                        Psyfer.io by Oliver Davies
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+
+</html>

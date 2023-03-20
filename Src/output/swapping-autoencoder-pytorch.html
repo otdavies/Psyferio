@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>swapping-autoencoder-pytorch</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+<meta name="description" content="Swapping Autoencoder for Deep Image Manipulation Taesung Park, Jun-Yan Zhu, Oliver Wang, Jingwan Lu, Eli Shechtman, Alexei A. Efros, Richard Zhang..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <div><a class="site-title" href="/">Psyfer.io</a></div>
+                <nav>
+                        <ul>
+                                <!--  -->
+
+                                <li><a
+                                                href="/category/c.html">C#</a></li>
+                                <li><a
+                                                href="/category/dockerfile.html">Dockerfile</a></li>
+                                <li class="active" ><a
+                                                href="/category/other.html">Other</a></li>
+                                <li><a
+                                                href="/category/python.html">Python</a></li>
+                                <li><a
+                                                href="/category/rust.html">Rust</a></li>
+                                <li><a
+                                                href="/category/shaderlab.html">ShaderLab</a></li>
+                                <li><a
+                                                href="/category/svelte.html">Svelte</a></li>
+                        </ul>
+                </nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <!-- <h1 class="entry-title">
+        <a href="/swapping-autoencoder-pytorch.html" rel="bookmark" title="Permalink to swapping-autoencoder-pytorch">swapping-autoencoder-pytorch</a>
+      </h1>
+ -->
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2022-06-30T08:44:42-07:00">
+                Published: Thu 30 June 2022
+        </abbr>
+		<br />
+        <abbr class="modified" title="2022-06-28T11:39:04-07:00">
+                Updated: Tue 28 June 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/oliver-davies.html">Oliver Davies</a>
+        </address>
+<p>In <a href="/category/other.html">Other</a>.</p>
+<p>tags: <a href="/tag/python.html">Python</a> <a href="/tag/cuda.html">Cuda</a> <a href="/tag/c.html">C++</a> </p>
+</footer><!-- /.post-info -->      <h1>Swapping Autoencoder for Deep Image Manipulation</h1>
+<p><a href="http://taesung.me/">Taesung Park</a>, <a href="https://www.cs.cmu.edu/~junyanz/">Jun-Yan Zhu</a>, <a href="http://www.oliverwang.info/">Oliver Wang</a>, <a href="https://research.adobe.com/person/jingwan-lu/">Jingwan Lu</a>, <a href="https://research.adobe.com/person/eli-shechtman/">Eli Shechtman</a>, <a href="http://www.eecs.berkeley.edu/~efros/">Alexei A. Efros</a>, <a href="https://richzhang.github.io/">Richard Zhang</a></p>
+<p>UC Berkeley and Adobe Research</p>
+<p>NeurIPS 2020</p>
+<p><img alt="teaser" src="https://taesung.me/SwappingAutoencoder/index_files/teaser_v3.jpg"></p>
+<p float="left">
+  <img src="https://taesung.me/SwappingAutoencoder/index_files/church_style_swaps.gif" height="190" />
+  <img src="https://taesung.me/SwappingAutoencoder/index_files/tree_smaller.gif" height="190" />
+  <img src="https://taesung.me/SwappingAutoencoder/index_files/horseshoe_bend_evensmaller.gif" height="190" />
+</p>
+
+<h3><a href="https://taesung.me/SwappingAutoencoder/">Project page</a> |   <a href="https://arxiv.org/abs/2007.00653">Paper</a> | <a href="https://youtu.be/0elW11wRNpg">3 Min Video</a></h3>
+<h2>Overview</h2>
+<p><img src='imgs/overview.jpg' width="1000px"/></p>
+<p><strong>Swapping Autoencoder</strong> consists of autoencoding (top) and swapping (bottom) operation.
+<strong>Top</strong>: An encoder E embeds an input (Notre-Dame) into two codes. The structure code is a tensor with spatial dimensions; the texture code is a 2048-dimensional vector. Decoding with generator G should produce a realistic image (enforced by discriminator D matching the input (reconstruction loss).
+<strong>Bottom</strong>: Decoding with the texture code from a second image (Saint Basil's Cathedral) should look realistic (via D) and match the texture of the image, by training with a patch co-occurrence discriminator Dpatch that enforces the output and reference patches look indistinguishable.</p>
+<h2>Installation / Requirements</h2>
+<ul>
+<li>CUDA 10.1 or newer is required because it uses a custom CUDA kernel of <a href="https://github.com/NVlabs/stylegan2/">StyleGAN2</a>, ported by <a href="https://github.com/rosinality/stylegan2-pytorch">@rosinality</a></li>
+<li>The author used PyTorch 1.7.1 on Python 3.6</li>
+<li>Install dependencies with <code>pip install dominate torchgeometry func-timeout tqdm matplotlib opencv_python lmdb numpy GPUtil Pillow scikit-learn visdom ninja</code></li>
+</ul>
+<h2>Testing and Evaluation.</h2>
+<p>We provide the pretrained models and also several images that reproduce the figures of the paper. Please download and unzip them <a href="http://efrosgans.eecs.berkeley.edu/SwappingAutoencoder/swapping_autoencoder_models_and_test_images.zip">here (2.1GB)</a> (Note: this is a http (not https) address, and you may need to paste in the link URL directly in the address bar for some browsers like Chrome, or download the dataset using <code>wget</code>). The scripts assume that the checkpoints are at <code>./checkpoints/</code>, and the test images at <code>./testphotos/</code>, but they can be changed by modifying <code>--checkpoints_dir</code> and <code>--dataroot</code> options.</p>
+<p>UPDATE: The pretrained model for the AFHQ dataset was added. Please download the models and samples images <a href="http://efrosgans.eecs.berkeley.edu/SwappingAutoencoder/afhq_models_and_test_images.zip">here (256MB)</a> (Note: again, you may need to paste in the link URL directly in the address bar).</p>
+<h3>Swapping and Interpolation of the mountain model using sample images</h3>
+<p><img src='imgs/interpolation.png' width="1000px"/></p>
+<p>To run simple swapping and interpolation, specify the two input reference images, change <code>input_structure_image</code> and <code>input_texture_image</code> fields of
+<code>experiments/mountain_pretrained_launcher.py</code>, and run</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>mountain_pretrained<span class="w"> </span><span class="nb">test</span><span class="w"> </span>simple_swapping
+python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>mountain_pretrained<span class="w"> </span><span class="nb">test</span><span class="w"> </span>simple_interpolation
+</code></pre></div>
+
+<p>The provided script, <code>opt.tag("simple_swapping")</code> and <code>opt.tag("simple_interpolation")</code> in particular of <code>experiments/mountain_pretrained_launcher.py</code>, invokes a terminal command that looks similar to the following one.</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>test.py<span class="w"> </span>--evaluation_metrics<span class="w"> </span>simple_swapping<span class="w"> </span><span class="se">\</span>
+--preprocess<span class="w"> </span>scale_shortside<span class="w"> </span>--load_size<span class="w"> </span><span class="m">512</span><span class="w"> </span><span class="se">\</span>
+--name<span class="w"> </span>mountain_pretrained<span class="w">  </span><span class="se">\</span>
+--input_structure_image<span class="w"> </span><span class="o">[</span>path_to_sample_image<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+--input_texture_image<span class="w"> </span><span class="o">[</span>path_to_sample_image<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+--texture_mix_alpha<span class="w"> </span><span class="m">0</span>.0<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="m">0</span>.5<span class="w"> </span><span class="m">0</span>.75<span class="w"> </span><span class="m">1</span>.0
+</code></pre></div>
+
+<p>In other words, feel free to use this command if that feels more straightforward.</p>
+<p>The output images are saved at <code>./results/mountain_pretrained/simpleswapping/</code>.</p>
+<h3>Texture Swapping</h3>
+<p><img src='imgs/swapping.jpg' width="1000px"/>
+Our Swapping Autoencoder learns to disentangle texture from structure for image editing tasks such as texture swapping.  Each row shows the result of combining the structure code of the leftmost image with the texture code of the top image.</p>
+<p>To reproduce this image (Figure 4) as well as Figures 9 and 12 of the paper, run
+the following command:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Reads options from ./experiments/church_pretrained_launcher.py</span>
+python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>church_pretrained<span class="w"> </span><span class="nb">test</span><span class="w"> </span>swapping_grid
+
+<span class="c1"># Reads options from ./experiments/bedroom_pretrained_launcher.py</span>
+python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>bedroom_pretrained<span class="w"> </span><span class="nb">test</span><span class="w"> </span>swapping_grid
+
+<span class="c1"># Reads options from ./experiments/mountain_pretrained_launcher.py</span>
+python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>mountain_pretrained<span class="w"> </span><span class="nb">test</span><span class="w"> </span>swapping_grid
+
+<span class="c1"># Reads options from ./experiments/ffhq512_pretrained_launcher.py</span>
+python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>ffhq512_pretrained<span class="w"> </span><span class="nb">test</span><span class="w"> </span>swapping_grid
+</code></pre></div>
+
+<p>Make sure the <code>dataroot</code> and <code>checkpoints_dir</code> paths are correctly set in
+the respective <code>./experiments/xx_pretrained_launcher.py</code> script.</p>
+<h3>Quantitative Evaluations</h3>
+<p>To perform quantitative evaluation such as FID in Table 1, Fig 5, and Table 2, we first need to prepare image pairs of input structure and texture references images.</p>
+<p>The reference images are randomly selected from the val set of LSUN, FFHQ, and the Waterfalls dataset. The pairs of input structure and texture images should be located at <code>input_structure/</code> and <code>input_style/</code> directory, with the same file name. For example, <code>input_structure/001.png</code> and <code>input_style/001.png</code> will be loaded together for swapping.</p>
+<p>Replace the path to the test images at <code>dataroot="./testphotos/church/fig5_tab2/"</code> field of the script <code>experiments/church_pretrained_launcher.py</code>, and run</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>church_pretrained<span class="w"> </span><span class="nb">test</span><span class="w"> </span>swapping_for_eval
+python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>ffhq1024_pretrained<span class="w"> </span><span class="nb">test</span><span class="w"> </span>swapping_for_eval
+</code></pre></div>
+
+<p>The results can be viewed at <code>./results</code> (that can be changed using <code>--result_dir</code> option).</p>
+<p>The FID is then computed between the swapped images and the original structure images, using https://github.com/mseitzer/pytorch-fid.</p>
+<h2>Model Training.</h2>
+<h3>Datasets</h3>
+<ul>
+<li><em>LSUN Church and Bedroom</em> datasets can be downloaded <a href="https://github.com/fyu/lsun">here</a>. Once downloaded and unzipped, the directories should contain <code>[category]_[train/val]_lmdb/</code>.</li>
+<li><a href="https://github.com/NVlabs/ffhq-dataset"><em>FFHQ datasets</em></a> can be downloaded using this <a href="https://drive.google.com/file/d/1WvlAIvuochQn_L_f9p3OdFdTiSLlnnhv/view?usp=sharing">link</a>. This is the zip file of 70,000 images at 1024x1024 resolution. Unzip the files, and we will load the image files directly.</li>
+<li>The <em>Flickr Mountains</em> dataset and the <em>Flickr Waterfall</em> dataset are not sharable due to license issues. But the images were scraped from <a href="https://flickr.com/groups/62119907@N00/">Mountains Anywhere</a> and <a href="https://flickr.com/groups/52241685729@N01/">Waterfalls Around the World</a>, using the <a href="https://github.com/alexis-mignon/python-flickr-api">Python wrapper for the Flickr API</a>. Please contact <a href="http://taesung.me/">Taesung Park</a> with title "Flickr Dataset for Swapping Autoencoder" for more details.</li>
+<li><em>AFHQ dataset</em> can be downloaded <a href="https://github.com/clovaai/stargan-v2/blob/master/README.md#animal-faces-hq-dataset-afhq">here</a>. </li>
+</ul>
+<h3>Training Scripts</h3>
+<p>The training configurations are specified using the scripts in <code>experiments/*_launcher.py</code>. Use the following commands to launch various trainings.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Modify |dataroot| and |checkpoints_dir| at</span>
+<span class="c1"># experiments/[church,bedroom,ffhq,mountain]_launcher.py</span>
+python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>church<span class="w"> </span>train<span class="w"> </span>church_default
+python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>bedroom<span class="w"> </span>train<span class="w"> </span>bedroom_default
+python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>ffhq<span class="w"> </span>train<span class="w"> </span>ffhq512_default
+python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>ffhq<span class="w"> </span>train<span class="w"> </span>ffhq1024_default
+
+<span class="c1"># By default, the script uses GPUtil to look at available GPUs</span>
+<span class="c1"># on the machine and sets appropriate GPU IDs. To specify specific set of GPUs,</span>
+<span class="c1"># use the |--gpu| option. Be sure to also change |num_gpus| option in the corresponding script.</span>
+python<span class="w"> </span>-m<span class="w"> </span>experiments<span class="w"> </span>church<span class="w"> </span>train<span class="w"> </span>church_default<span class="w"> </span>--gpu<span class="w"> </span><span class="m">01234567</span>
+</code></pre></div>
+
+<p>The training progress can be monitored using <code>visdom</code> at the port number specified by <code>--display_port</code>. The default is https://localhost:2004. For reference, the training takes 14 days on LSUN Church 256px, using 4 V100 GPUs. </p>
+<p>Additionally, a few swapping grids are generated using random samples of the training set.
+They are saved as webpages at <code>[checkpoints_dir]/[expr_name]/snapshots/</code>.
+The frequency of the grid generation is controlled using <code>--evaluation_freq</code>.</p>
+<p>All configurable parameters are printed at the beginning of training. These configurations are spreaded throughout the codes in <code>def modify_commandline_options</code> of relevant classes, such as <code>models/swapping_autoencoder_model.py</code>, <code>util/iter_counter.py</code>, or <code>models/networks/encoder.py</code>. To change these configuration, simply modify the corresponding option in <code>opt.specify</code> of the training script.</p>
+<p>The code for parsing and configurations are at <code>experiments/__init__.py, experiments/__main__.py, experiments/tmux_launcher.py</code>.</p>
+<h3>Continuing training.</h3>
+<p>The training continues by default from the last checkpoint, because the <code>--continue_train</code> option is set True by default.
+To start from scratch, remove the checkpoint, or specify <code>continue_train=False</code> in the training script (e.g. <code>experiments/church_launcher.py</code>).</p>
+<h2>Code Structure (Main Functions)</h2>
+<ul>
+<li><code>models/swapping_autoencoder_model.py</code>: The core file that defines losses, produces visuals.</li>
+<li><code>optimizers/swapping_autoencoder_optimizer.py</code>: Defines the optimizers and alternating training of GAN.</li>
+<li><code>models/networks/</code>: contains the model architectures <code>generator.py</code>, <code>discriminator.py</code>, <code>encoder.py</code>, <code>patch_discrimiantor.py</code>, <code>stylegan2_layers.py</code>.</li>
+<li><code>options/__init__.py</code>: contains basic option flags. BUT many important flags are spread out over files, such as <code>swapping_autoencoder_model.py</code> or <code>generator.py</code>. When the program starts, these options are all parsed together. The best way to check the used option list is to run the training script, and look at the console output of the configured options.</li>
+<li><code>util/iter_counter.py</code>: contains iteration counting.</li>
+</ul>
+<h2>Change Log</h2>
+<ul>
+<li>4/14/2021: The configuration to train the pretrained model on the Mountains dataset had not been set correctly, and was updated accordingly. </li>
+<li>10/14/2021: The 256x256 pretrained model for the AFHQ dataset was added. Please use <code>experiments/afhq_pretrained_launcher.py</code>. </li>
+</ul>
+<h2>Bibtex</h2>
+<p>If you use this code for your research, please cite our paper:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">@inproceedings</span><span class="err">{</span><span class="n">park2020swapping</span><span class="p">,</span>
+<span class="w">  </span><span class="n">title</span><span class="o">=</span><span class="err">{</span><span class="n">Swapping</span><span class="w"> </span><span class="n">Autoencoder</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Deep</span><span class="w"> </span><span class="nc">Image</span><span class="w"> </span><span class="n">Manipulation</span><span class="err">}</span><span class="p">,</span>
+<span class="w">  </span><span class="n">author</span><span class="o">=</span><span class="err">{</span><span class="n">Park</span><span class="p">,</span><span class="w"> </span><span class="n">Taesung</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Zhu</span><span class="p">,</span><span class="w"> </span><span class="n">Jun</span><span class="o">-</span><span class="n">Yan</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Wang</span><span class="p">,</span><span class="w"> </span><span class="n">Oliver</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Lu</span><span class="p">,</span><span class="w"> </span><span class="n">Jingwan</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Shechtman</span><span class="p">,</span><span class="w"> </span><span class="n">Eli</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Efros</span><span class="p">,</span><span class="w"> </span><span class="n">Alexei</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Zhang</span><span class="p">,</span><span class="w"> </span><span class="n">Richard</span><span class="err">}</span><span class="p">,</span>
+<span class="w">  </span><span class="n">booktitle</span><span class="o">=</span><span class="err">{</span><span class="n">Advances</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">Neural</span><span class="w"> </span><span class="n">Information</span><span class="w"> </span><span class="n">Processing</span><span class="w"> </span><span class="n">Systems</span><span class="err">}</span><span class="p">,</span>
+<span class="w">  </span><span class="nf">year</span><span class="o">=</span><span class="err">{</span><span class="mi">2020</span><span class="err">}</span>
+<span class="err">}</span>
+</code></pre></div>
+
+<h2>Acknowledgment</h2>
+<p>The StyleGAN2 layers heavily borrows (or rather, directly copies!) the PyTorch implementation of <a href="https://github.com/rosinality/stylegan2-pytorch">@rosinality</a>. We thank Nicholas Kolkin for the helpful discussion on the automated content and style evaluation, Jeongo Seo and Yoseob Kim for advice on the user interface, and William T. Peebles, Tongzhou Wang, and Yu Sun for the discussion on disentanglement.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                        Psyfer.io by Oliver Davies
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+
+</html>

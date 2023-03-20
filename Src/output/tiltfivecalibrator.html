@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>TiltFiveCalibrator</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+<meta name="description" content="TiltFiveCalibrator A simple reference calibrator for perceived depth. Requires a wand for use of the Thumbstick and (1) button. Why does this..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <div><a class="site-title" href="/">Psyfer.io</a></div>
+                <nav>
+                        <ul>
+                                <!--  -->
+
+                                <li class="active" ><a
+                                                href="/category/c.html">C#</a></li>
+                                <li><a
+                                                href="/category/dockerfile.html">Dockerfile</a></li>
+                                <li><a
+                                                href="/category/other.html">Other</a></li>
+                                <li><a
+                                                href="/category/python.html">Python</a></li>
+                                <li><a
+                                                href="/category/rust.html">Rust</a></li>
+                                <li><a
+                                                href="/category/shaderlab.html">ShaderLab</a></li>
+                                <li><a
+                                                href="/category/svelte.html">Svelte</a></li>
+                        </ul>
+                </nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <!-- <h1 class="entry-title">
+        <a href="/tiltfivecalibrator.html" rel="bookmark" title="Permalink to TiltFiveCalibrator">TiltFiveCalibrator</a>
+      </h1>
+ -->
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2022-05-02T08:36:52-07:00">
+                Published: Mon 02 May 2022
+        </abbr>
+		<br />
+        <abbr class="modified" title="2022-08-29T08:56:59-07:00">
+                Updated: Mon 29 August 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/oliver-davies.html">Oliver Davies</a>
+        </address>
+<p>In <a href="/category/c.html">C#</a>.</p>
+<p>tags: <a href="/tag/c.html">C#</a> <a href="/tag/shaderlab.html">ShaderLab</a> <a href="/tag/hlsl.html">HLSL</a> </p>
+</footer><!-- /.post-info -->      <h1>TiltFiveCalibrator</h1>
+<p>A simple reference calibrator for <em>perceived depth</em>.
+Requires a wand for use of the Thumbstick and (1) button.</p>
+<h1>Why does this exist?</h1>
+<p>To help developers provide simple instructions / visuals to guide users through calibrating the Gameboard perceived depth. Hopefully this will be built into the SDK and solved permanently soon though.</p>
+<h1>What does this Calibrate?</h1>
+<p>This tool provides a way of calibrating <em>perceived depth</em> to roughly match the <em>parallax plane</em> that rests at the board surface. </p>
+<p>This does not calibrate the positional error of the tracking, the accuracy of the board edge alignment or anything besides <em>perceived depth</em>.</p>
+<h1>How does it change the perceived depth?</h1>
+<p>The stereo pair (left / right) for each eye is shifted inward or outward away from your nose. The amount it is shifted in UV space is defined by the very small number in the lower right hand of the calibration screen.</p>
+<h1>Images</h1>
+<p><img alt="PXL_20220502_085253489" src="https://user-images.githubusercontent.com/3145170/166209581-74589e16-8e4d-40ca-b5dc-be6702989736.jpg">
+<img alt="kLAqzFpYDA" src="https://user-images.githubusercontent.com/3145170/166209816-17d981ca-2cc1-45e4-a2e1-2c60feac158f.gif"></p>
+<h1>Glossary</h1>
+<p>What does <strong>perceived depth</strong> mean? <em>Perceived depth</em> is the depth that your brain focuses and converges on visually. This is the depth you would place your finger on an object that is virtual or real. Ideally the virtual and physical, while side by side, should line up perfectly. Relates to <a href="https://www.aao.org/eye-health/anatomy/depth-perception">Depth Perception</a></p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                        Psyfer.io by Oliver Davies
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+
+</html>

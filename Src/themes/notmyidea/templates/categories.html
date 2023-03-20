@@ -7,9 +7,13 @@
 <section id="content" class="body">
     <h1>Categories for {{ SITENAME }}</h1>
     <ul>
-    {% for category, articles in categories|sort %}
-        <li><a href="{{ SITEURL }}/{{ category.url }}">{{ category }}</a> ({{ articles|count }})</li>
-    {% endfor %}
+        Results for the category <strong>{{ category }}</strong>:
+        {% for category, articles in categories|sort %}
+        {% for article in articles %}
+        {{ article.url }}
+        <li><a href="../{{ article.url }}">{{ category }}</a> ({{ articles|count }})</li>
+        {% endfor %}
+        {% endfor %}
     </ul>
 </section>
 
