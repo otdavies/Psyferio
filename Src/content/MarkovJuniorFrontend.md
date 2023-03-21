@@ -1,4 +1,4 @@
-Title: MarkovJuniorFrontend
+Title: Markov Junior Frontend
 Date: 2022-06-09 23:49:47
 Modified: 2022-06-09 23:51:04
 Category: Svelte

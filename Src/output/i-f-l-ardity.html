@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+                var hamburgerMenu = document.querySelector(".hamburger-menu");
+                var bannerNav = document.querySelector("#banner nav");
+
+                hamburgerMenu.addEventListener("click", function () {
+                        bannerNav.classList.toggle("open");
+                });
+
+                hamburgerMenu.addEventListener("touch", function () {
+                        bannerNav.classList.toggle("open");
+                });
+        });
+</script>
+
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>I F L Ardity</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta name="description" content="Arduino + Unity communication made easy And not just Arduino: any hardware/software that communicates over serial (COM) ports ! WebSite URL:..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <div><a class="site-title" href="/">Psyfer.io</a></div>
+                <div class="hamburger-menu">
+                        <i class="fas fa-bars"></i>
+                </div>
+                <nav>
+                        <ul>
+                                <li class="active" ><a
+                                                href="/category/c.html">C#</a></li>
+                                <li><a
+                                                href="/category/dockerfile.html">Dockerfile</a></li>
+                                <li><a
+                                                href="/category/other.html">Other</a></li>
+                                <li><a
+                                                href="/category/python.html">Python</a></li>
+                                <li><a
+                                                href="/category/rust.html">Rust</a></li>
+                                <li><a
+                                                href="/category/shaderlab.html">ShaderLab</a></li>
+                                <li><a
+                                                href="/category/svelte.html">Svelte</a></li>
+                        </ul>
+                </nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <!-- <h1 class="entry-title">
+        <a href="/i-f-l-ardity.html" rel="bookmark" title="Permalink to I F L Ardity">I F L Ardity</a>
+      </h1>
+ -->
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-01-21T06:33:45-08:00">
+                Published: Sat 21 January 2023
+        </abbr>
+		<br />
+        <abbr class="modified" title="2023-01-21T07:40:59-08:00">
+                Updated: Sat 21 January 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/oliver-davies.html">Oliver Davies</a>
+        </address>
+<p>In <a href="/category/c.html">C#</a>.</p>
+<p>tags: <a href="/tag/c.html">C#</a> </p>
+</footer><!-- /.post-info -->      <div align="center">
+    <img src="docs/images/full-logo.png" 
+         alt="Ardity: Arduino + Unity"3
+         title="Ardity: Arduino + Unity">
+    <h1>Arduino + Unity communication made easy</h1>
+</div>
+
+<p>And not just Arduino: any hardware/software that communicates over serial (COM) ports !</p>
+<p>WebSite URL: https://ardity.dwilches.com</p>
+<p><strong><em>(Previously known as: SerialCommUnity)</em></strong></p>
+<h1>Instructions</h1>
+<p>There are three scenes that show how to read/write data from/to a serial device.
+There is a prefab that you need to add to your scene, this prefab will do all the thread management, queue synchronization and exception handling for you.</p>
+<p>If you need a program to test your Unity scene I have created the following Arduino program that sends a heartbeat message each 2 seconds.
+It also recognizes two input messages and reacts to them, this is for bidirectional communication for the scene "DemoSceneUserPoll_ReadWrite".
+So if you want to use that scene just run it and press the keys 'A' or 'Z' to see what you Arduino has to say about it.</p>
+<h1>Sample Arduino Program</h1>
+<p>This sample communicates with any of the scenes called: <code>DemoScene_AutoPoll*</code> or <code>DemoScene_UserPoll*</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">last_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+
+<span class="k">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="m">9600</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// Print a heartbeat</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">last_time</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">2000</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Arduino is alive!!&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">last_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Send some message when I receive an &#39;A&#39; or a &#39;Z&#39;.</span>
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">())</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="sc">&#39;A&#39;</span><span class="p">:</span>
+<span class="w">            </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;That&#39;s the first letter of the abecedarium.&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="sc">&#39;Z&#39;</span><span class="p">:</span>
+<span class="w">            </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;That&#39;s the last letter of the abecedarium.&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h1>Sample with Tear-Down function</h1>
+<p>This sample has a tear-down function (use it with the scene <code>DemoScene_SampleTearDown</code>),
+it will be executed when the Unity program stops. This sample expects you to be using an Arduino UNO,
+if not, change the number of the pin to which the LED is connected.</p>
+<div class="highlight"><pre><span></span><code><span class="n">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">last_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">ledPin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">13</span><span class="p">;</span>
+
+<span class="k">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="m">9600</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// Print a heartbeat</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">last_time</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">2000</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Arduino is alive!!&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">last_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Send some message when I receive an &#39;A&#39; or a &#39;Z&#39;.</span>
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">())</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="sc">&#39;1&#39;</span><span class="p">:</span>
+<span class="w">            </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">            </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Lights are ON&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="sc">&#39;2&#39;</span><span class="p">:</span>
+<span class="w">            </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">            </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Lights are OFF&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Execute tear-down functionality</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="sc">&#39;X&#39;</span><span class="p">:</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">                </span><span class="n">delay</span><span class="p">(</span><span class="m">100</span><span class="p">);</span>
+<span class="w">                </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">                </span><span class="n">delay</span><span class="p">(</span><span class="m">100</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// This message won&#39;t arrive at Unity, as it is already in the</span>
+<span class="w">            </span><span class="c1">// process of closing the port</span>
+<span class="w">            </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Tearing down some work inside Arduino&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h1>Sample with custom delimiter</h1>
+<div class="highlight"><pre><span></span><code><span class="c1">// This is the separator configured in Unity</span>
+<span class="cp">#define SEPARATOR 255</span>
+
+<span class="n">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">last_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">ledPin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">13</span><span class="p">;</span>
+
+<span class="kt">byte</span><span class="w"> </span><span class="n">responseMessage</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="m">65</span><span class="p">,</span><span class="w"> </span><span class="m">66</span><span class="p">,</span><span class="w"> </span><span class="m">67</span><span class="p">,</span><span class="w"> </span><span class="n">SEPARATOR</span><span class="w"> </span><span class="p">};</span>
+<span class="kt">byte</span><span class="w"> </span><span class="n">aliveMessage</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="m">65</span><span class="p">,</span><span class="w"> </span><span class="m">76</span><span class="p">,</span><span class="w"> </span><span class="m">73</span><span class="p">,</span><span class="w"> </span><span class="m">86</span><span class="p">,</span><span class="w"> </span><span class="m">69</span><span class="p">,</span><span class="w"> </span><span class="m">33</span><span class="p">,</span><span class="w"> </span><span class="n">SEPARATOR</span><span class="w"> </span><span class="p">};</span>
+
+<span class="k">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="m">9600</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">aliveMessage</span><span class="p">[</span><span class="m">8</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SEPARATOR</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// Print a heartbeat</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">last_time</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">2000</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">aliveMessage</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">aliveMessage</span><span class="p">));</span>
+<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">flush</span><span class="p">();</span>
+<span class="w">        </span><span class="n">last_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// React to &quot;commands&quot;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">responseMessage</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">responseMessage</span><span class="p">));</span>
+<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">flush</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h1>Documentation</h1>
+<p>Ardity is quite simple to use. You can find the setup guide in PDF format <a href="https://github.com/dwilches/Ardity/raw/master/UnityProject/Ardity%20-%20Setup%20Guide.pdf">here</a>.</p>
+<p>There is also a series of in-depth tutorials by the <a href="https://medium.com/interface-lab">Interface Lab</a> from the University <a href="https://shanghai.nyu.edu/">NYU Shanghai</a>, please take a look here:
+- <a href="https://medium.com/interface-lab/arduino-tutorial-series-connecting-to-unity-eedc48e77087">Connecting to Unity</a>
+- <a href="https://medium.com/interface-lab/working-with-many-sensors-9029556ad3c0">Working with many sensors</a>
+- <a href="https://medium.com/interface-lab/bidirectional-communication-a1c11ff62a25">Bidirectional communication</a></p>
+<h1>COM port names</h1>
+<p>To open a COM port from <code>Ardity</code> you need to use one of these naming conventions:
+* <code>COM1</code>, <code>COM2</code>, ... for COM1 through COM9
+* <code>\\.\COM10</code>, <code>\\.\COM11</code>, ... for COM10 and up</p>
+<h1>Can Ardity be used with Bluetooth devices?</h1>
+<p>Yes, it's possible.
+You need to configure your device to be seen in your operating system as a COM port.
+Instructions to do so vary from device to device and from OS to OS.
+Once you have it configured, use that COM port with Ardity, which will treat it as just another serial device.</p>
+<h1>Common Issues</h1>
+<h3>The type or namespace name 'Ports' does not exist in the namespace 'System.IO'</h3>
+<p>If you get this error:</p>
+<blockquote>
+<p>Assets/Ardity/Scripts/SerialThread.cs(9,17): error CS0234: The type or namespace name 'Ports' does not exist in the namespace 'System.IO'. Are you missing an assembly reference?</p>
+</blockquote>
+<p>Check the current "API Compatibility Level" of your Unity project. Go to <code>Edit -&gt; Project Settings -&gt; Player</code>, and under <code>Other Settings</code> find an option that reads "Api Compatibility Level" and change it to <code>.NET 4.0</code> (or <code>.NET 2.0</code> if you have a version older than Unity 2018).</p>
+<p>Also, some users have reported needing to manually add <code>System.IO.dll</code> to the project. If the above solution doesn't work for you, in Visual Studio go to <code>Project -&gt; Add Reference -&gt; Browse</code> and then select the file <code>System.IO.dll</code> from inside your .NET framework's folder. This file may be located at <code>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework.NETFramework\v4.5\Facades\System.IO.dll</code>.</p>
+<h3>Communication with some devices doesn't work out of the box</h3>
+<p>Some users have reported needing to enable RtsEnable and DtsEnable in order to get Ardity to work with their devices. So if communication is not working for you, try enabling these options in <a href="https://github.com/dwilches/Ardity/blob/master/UnityProject/Assets/Ardity/Scripts/Threads/AbstractSerialThread.cs#L198">AbstractSerialThread</a> just before the <code>serialPort.Open()</code> invocation:</p>
+<div class="highlight"><pre><span></span><code>serialPort.DtrEnable = true;
+serialPort.RtsEnable = true;
+</code></pre></div>
+
+<h3>If Ardity works in the Editor but not outside of it</h3>
+<p>Try changing the scripting backend from Mono to <a href="https://docs.unity3d.com/Manual/IL2CPP.html">IL2CPP</a>.</p>
+<h1>License</h1>
+<p>This work is released under the <a href="https://creativecommons.org/licenses/by/2.0/">Creative Commons Attributions</a> license.</p>
+<p>If you use this library please let me know, so I know my work has been useful to you :)</p>
+<p><img alt="CC Attribution" src="docs/images/CC-BY_icon.png?raw=true"></p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                        Psyfer.io by Oliver Davies
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+
+</html>

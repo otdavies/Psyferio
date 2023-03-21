@@ -14,6 +14,15 @@
                         bannerNav.classList.toggle("open");
                 });
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+                const animatedElements = document.querySelectorAll(".animated-element");
+
+                animatedElements.forEach((element) => {
+                        const randomDelay = -Math.random() * 5; // Adjust the maximum delay (in seconds) as needed
+                        element.style.animationDelay = `${randomDelay}s`;
+                });
+        });
 </script>
 
 <head>
@@ -53,62 +62,78 @@
                 </nav>
         </header><!-- /#banner -->
 <section id="post-grid">
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/iflardity.html" class="post-tile" style="background-image: url('docs/images/CC-BY_icon.png?raw=true')">
-        <div class="post-image" style="background-image: url('docs/images/CC-BY_icon.png?raw=true')"></div>
-        <div class="post-title">
-            <h3>IFLArdity</h3>
+    <div class="card-container">
+        <a href="/ifl-ardity.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">IFL Ardity</span>
+            </div>
+            <div class="card-image" style="background-image: url('docs/images/CC-BY_icon.png?raw=true')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/markovjuniorplushoudini.html" class="post-tile" style="background-image: url('None')">
-        <div class="post-image" style="background-image: url('None')"></div>
-        <div class="post-title">
-            <h3>MarkovJuniorPlusHoudini</h3>
+    </div>
+    <div class="card-container">
+        <a href="/markov-junior-plus-houdini.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Markov Junior Plus Houdini</span>
+            </div>
+            <div class="card-image" style="background-image: url('None')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/tiltfivecalibrator.html" class="post-tile" style="background-image: url('https://user-images.githubusercontent.com/3145170/166209581-74589e16-8e4d-40ca-b5dc-be6702989736.jpg')">
-        <div class="post-image" style="background-image: url('https://user-images.githubusercontent.com/3145170/166209581-74589e16-8e4d-40ca-b5dc-be6702989736.jpg')"></div>
-        <div class="post-title">
-            <h3>TiltFiveCalibrator</h3>
+    </div>
+    <div class="card-container">
+        <a href="/tilt-five-calibrator.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Tilt Five Calibrator</span>
+            </div>
+            <div class="card-image" style="background-image: url('https://user-images.githubusercontent.com/3145170/166209581-74589e16-8e4d-40ca-b5dc-be6702989736.jpg')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/sharedutilities.html" class="post-tile" style="background-image: url('None')">
-        <div class="post-image" style="background-image: url('None')"></div>
-        <div class="post-title">
-            <h3>SharedUtilities</h3>
+    </div>
+    <div class="card-container">
+        <a href="/shared-utilities.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Shared Utilities</span>
+            </div>
+            <div class="card-image" style="background-image: url('None')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/reprojector.html" class="post-tile" style="background-image: url('https://user-images.githubusercontent.com/3145170/149270177-0702566b-a5fc-4c52-8e6f-7d216b8242d4.png')">
-        <div class="post-image" style="background-image: url('https://user-images.githubusercontent.com/3145170/149270177-0702566b-a5fc-4c52-8e6f-7d216b8242d4.png')"></div>
-        <div class="post-title">
-            <h3>Reprojector</h3>
+    </div>
+    <div class="card-container">
+        <a href="/reprojector.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Reprojector</span>
+            </div>
+            <div class="card-image" style="background-image: url('https://user-images.githubusercontent.com/3145170/149270177-0702566b-a5fc-4c52-8e6f-7d216b8242d4.png')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/watersdf.html" class="post-tile" style="background-image: url('https://user-images.githubusercontent.com/3145170/152262416-b2a1ea0b-ef13-42e1-87e0-3bd30edfc1ed.gif')">
-        <div class="post-image" style="background-image: url('https://user-images.githubusercontent.com/3145170/152262416-b2a1ea0b-ef13-42e1-87e0-3bd30edfc1ed.gif')"></div>
-        <div class="post-title">
-            <h3>WaterSDF</h3>
+    </div>
+    <div class="card-container">
+        <a href="/watersdf.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Watersdf</span>
+            </div>
+            <div class="card-image" style="background-image: url('https://user-images.githubusercontent.com/3145170/152262416-b2a1ea0b-ef13-42e1-87e0-3bd30edfc1ed.gif')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/winterfresh2020.html" class="post-tile" style="background-image: url('References/backdrop.png')">
-        <div class="post-image" style="background-image: url('References/backdrop.png')"></div>
-        <div class="post-title">
-            <h3>WinterFresh2020</h3>
+    </div>
+    <div class="card-container">
+        <a href="/winter-fresh-2020.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Winter Fresh 2020</span>
+            </div>
+            <div class="card-image" style="background-image: url('References/backdrop.png')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/unfulfillmentservices.html" class="post-tile" style="background-image: url('None')">
-        <div class="post-image" style="background-image: url('None')"></div>
-        <div class="post-title">
-            <h3>UnfulfillmentServices</h3>
+    </div>
+    <div class="card-container">
+        <a href="/unfulfillment-services.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Unfulfillment Services</span>
+            </div>
+            <div class="card-image" style="background-image: url('None')"></div>
         </div>
-    </a>
+    </div>
 </section>
         <section id="extras" class="body">
         </section><!-- /#extras -->

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+                var hamburgerMenu = document.querySelector(".hamburger-menu");
+                var bannerNav = document.querySelector("#banner nav");
+
+                hamburgerMenu.addEventListener("click", function () {
+                        bannerNav.classList.toggle("open");
+                });
+
+                hamburgerMenu.addEventListener("touch", function () {
+                        bannerNav.classList.toggle("open");
+                });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+                const animatedElements = document.querySelectorAll(".animated-element");
+
+                animatedElements.forEach((element) => {
+                        const randomDelay = -Math.random() * 5; // Adjust the maximum delay (in seconds) as needed
+                        element.style.animationDelay = `${randomDelay}s`;
+                });
+        });
+</script>
+
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>Markov Junior Plus Houdini</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta name="description" content="MarkovJunior MarkovJunior is a probabilistic programming language where programs are combinations of rewrite rules and inference is performed via..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <div><a class="site-title" href="/">Psyfer.io</a></div>
+                <div class="hamburger-menu">
+                        <i class="fas fa-bars"></i>
+                </div>
+                <nav>
+                        <ul>
+                                <li class="active" ><a
+                                                href="/category/c.html">C#</a></li>
+                                <li><a
+                                                href="/category/dockerfile.html">Dockerfile</a></li>
+                                <li><a
+                                                href="/category/other.html">Other</a></li>
+                                <li><a
+                                                href="/category/python.html">Python</a></li>
+                                <li><a
+                                                href="/category/rust.html">Rust</a></li>
+                                <li><a
+                                                href="/category/shaderlab.html">ShaderLab</a></li>
+                                <li><a
+                                                href="/category/svelte.html">Svelte</a></li>
+                        </ul>
+                </nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <!-- <h1 class="entry-title">
+        <a href="/markov-junior-plus-houdini.html" rel="bookmark" title="Permalink to Markov Junior Plus Houdini">Markov Junior Plus Houdini</a>
+      </h1>
+ -->
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2022-06-02T23:47:01-07:00">
+                Published: Thu 02 June 2022
+        </abbr>
+		<br />
+        <abbr class="modified" title="2022-06-07T02:06:33-07:00">
+                Updated: Tue 07 June 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/oliver-davies.html">Oliver Davies</a>
+        </address>
+<p>In <a href="/category/c.html">C#</a>.</p>
+<p>tags: <a href="/tag/c.html">C#</a> </p>
+</footer><!-- /.post-info -->      <h1>MarkovJunior</h1>
+<p>MarkovJunior is a probabilistic programming language where programs are combinations of rewrite rules and inference is performed via constraint propagation. MarkovJunior is named after mathematician <a href="https://en.wikipedia.org/wiki/Andrey_Markov,_Jr.">Andrey Andreyevich Markov</a>, who defined and studied what is now called <a href="https://en.wikipedia.org/wiki/Markov_algorithm">Markov algorithms</a>.</p>
+<p align="center">
+<img src="images/top-iso.gif"/>
+<img src="images/top-mv.gif"/>
+</p>
+
+<p>In its basic form, a MarkovJunior program is an ordered list of rewrite rules. For example, <a href="models/MazeBacktracker.xml">MazeBacktracker</a> (animation on the left below) is a list of 2 rewrite rules:
+1. <code>RBB=GGR</code> or "replace red-black-black with green-green-red".
+2. <code>RGG=WWR</code> or "replace red-green-green with white-white-red".</p>
+<p>On each execution step MJ interpreter finds the first rule in the list that has a match on the grid, finds all matches for that rule and applies that rule for a random match. In the <a href="https://en.wikipedia.org/wiki/Maze_generation_algorithm#Depth-first_search">maze backtracker</a> example, interpreter first applies a bunch of <code>RBB=GGR</code> rules. But eventually the green self-avoiding walk gets stuck. At this point the first rule has no matches, so interpreter applies the second rule <code>RGG=WWR</code> until the walk gets unstuck. Then it can apply the first rule again, and so on. Interpreter stops when there are no matches for any rule.</p>
+<p align="center">
+<img src="images/MazeBacktracker.gif"/>
+<img src="images/multisokoban.gif"/>
+</p>
+
+<p>Probabilistic inference in MarkovJunior allows to impose constraints on the future state, and generate only those runs that lead to the constrained future. For example, inference in Sokoban rules <code>{RWB=BRW RB=BR}</code> makes a group of (red) agents organize (white) crates into specified shapes.</p>
+<p>Using these ideas, we construct <a href="models/">many probabilistic generators</a> of dungeons, architecture, puzzles and fun simulations.</p>
+<p align="center"><a href="images/top-1764.png"/><img src="images/top-882.png"/></a></p>
+
+<p>Additional materials:
+1. <a href="syntax.md">Xml syntax overview</a>.
+2. Higher resolution screenshots and more seeds: <a href="https://github.com/mxgmn/Blog/blob/master/ModernHouse.md">ModernHouse</a>, <a href="https://github.com/mxgmn/Blog/blob/master/SeaVilla.md">SeaVilla</a>, <a href="https://github.com/mxgmn/Blog/blob/master/Apartemazements.md">Apartemazements</a>, <a href="https://github.com/mxgmn/Blog/blob/master/CarmaTower.md">CarmaTower</a>, <a href="https://github.com/mxgmn/Blog/blob/master/Escheresque.md">Escheresque</a>, <a href="https://github.com/mxgmn/Blog/blob/master/PillarsOfEternity.md">PillarsOfEternity</a>, <a href="https://github.com/mxgmn/Blog/blob/master/RandomSurface.md">Surface</a>, <a href="https://twitter.com/ExUtumno/status/895688856304992256">Knots</a>.</p>
+<h2>Markov algorithms</h2>
+<p>A Markov algorithm over an alphabet <code>A</code> is an ordered list of rules. Each rule is a string of the form <code>x=y</code>, where <code>x</code> and <code>y</code> are words in <code>A</code>, and some rules may be marked as halt rules. Application of a Markov algorithm to a word <code>w</code> proceeds as follows:
+1. Find the first rule <code>x=y</code> where <code>x</code> is a substring of <code>w</code>. If there are no such rules, then halt.
+2. Replace the leftmost <code>x</code> in <code>w</code> by <code>y</code>.
+3. If the found rule was a halt rule, then halt. Otherwise, go to step 1.</p>
+<p>For example, consider this Markov algorithm in the alphabet <code>{0, 1, x}</code> (ε is the empty word):</p>
+<div class="highlight"><pre><span></span><code><span class="mf">1</span><span class="o">=</span><span class="mf">0</span><span class="n">x</span>
+<span class="n">x0</span><span class="o">=</span><span class="mf">0</span><span class="n">xx</span>
+<span class="mf">0</span><span class="o">=</span><span class="n">ε</span>
+</code></pre></div>
+
+<p>If we apply it to the string <code>110</code> we get this sequence of strings:</p>
+<div class="highlight"><pre><span></span><code><span class="mf">110</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mf">0</span><span class="n">x10</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mf">0</span><span class="n">x0x0</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mf">00</span><span class="n">xxx0</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mf">00</span><span class="n">xx0xx</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mf">00</span><span class="n">x0xxxx</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mf">000</span><span class="n">xxxxxx</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mf">00</span><span class="n">xxxxxx</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mf">0</span><span class="n">xxxxxx</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">xxxxxx</span>
+</code></pre></div>
+
+<p>In general, this algorithm converts a binary representation of a number into its unary representation.</p>
+<p>Markov's student <a href="https://lv.wikipedia.org/wiki/Vilnis_Detlovs">Vilnis Detlovs</a> <a href="http://www.mathnet.ru/php/archive.phtml?wshow=paper&amp;jrnid=tm&amp;paperid=1293">proved</a> that for any Turing machine there exists a Markov algorithm that computes the same function. In comparison, grammars are unordered sets of rewrite rules and L-systems are rewrite rules that are applied in parallel. For more interesting examples of Markov algorithms check <a href="http://www.mathnet.ru/links/1543dd6e347b444e6f3e108fafaf9f2a/tm1178.pdf">Markov's book</a> or see the greatest common divisor example in the <a href="https://github.com/mxgmn/test#comments">comment section</a> or <a href="https://en.wikipedia.org/wiki/Markov_algorithm#Description">multiplication example</a> on Wikipedia.</p>
+<p>How would one generalize Markov algorithms to multiple dimensions? First, in multiple dimensions there are no natural ways to insert a string into another string, so the lefts and rights of our rewrite rules should have the same size. Second, there are no natural ways to choose <em>the leftmost</em> match. Possible options are:
+* Choose a random match. This is what MJ's <code>(exists)</code> nodes do.
+* Choose all matches. There is a problem with this option however because different matches can overlap and have conflicts. Possible solutions are:
+    * Greedily choose a maximal subset of non-conflicting matches. This is what MJ's <code>{forall}</code> nodes do.
+    * Consider all matches in superposition. That is, instead of separate values, keep waves in each grid cell - boolean vectors that tell which spacetime patterns are forbidden and which are not. And this is how MJ performs inference.</p>
+<p>We lose Turing completeness because our new procedure is not deterministic, but practice shows that this formalism still allows to describe a huge range of interesting random processes.</p>
+<h2>Rewrite rules</h2>
+<p>The simplest MarkovJunior program is probably <code>(B=W)</code>. It contains just a single rule <code>B=W</code>. On each turn, this program converts a random black square into a white square.</p>
+<p align="center">
+<a href="models/Basic.xml"><img src="images/Basic.gif"/></a>
+<a href="models/Growth.xml"><img src="images/Growth.gif"/></a>
+<a href="models/MazeGrowth.xml"><img src="images/MazeGrowth.gif"/></a>
+<a href="models/MazeGrowth.xml"><img src="images/MazeGrowth.png"/></a><br/>
+(B=W) | (WB=WW) | (WBB=WAW) | (WBB=WAW)
+</p>
+
+<p><a href="models/Growth.xml">Growth</a> model <code>(WB=WW)</code> is more interesting. On each turn it replaces a black-white pair of adjacent cells <code>BW</code> with a white-white pair <code>WW</code>. In other words, on each turn it picks a random black cell adjacent to some white cell and color it into white. This model is almost identical to the <a href="http://digitalassets.lib.berkeley.edu/math/ucb/text/math_s4_v4_article-15.pdf">Eden growth model</a>: on each turn both models choose among the same set of black cells. They differ only in probability distributions: a uniform distribution over black cells adjacent to white cells is not the same as a uniform distribution over pairs of adjacent black and white cells.</p>
+<p>Model <code>(WBB=WAW)</code> generates a maze, with a single line of code! Compare it with an <a href="https://bl.ocks.org/mbostock/70a28267db0354261476">implementation</a> in a conventional language. Any MarkovJunior model can be run in any number of dimensions without changes. On the right you can see the end result of <a href="models/MazeGrowth.xml">MazeGrowth</a> in 3d, rendered in <a href="https://ephtracy.github.io/">MagicaVoxel</a>. By default, we use <a href="resources/palette.xml">PICO-8 palette</a>:</p>
+<p align="center"><img src="images/palette.png"/></p>
+
+<p>Model <code>(RBB=WWR)</code> is a <a href="https://en.wikipedia.org/wiki/Self-avoiding_walk">self-avoiding random walk</a>. Note that self-avoiding walks in 3d are longer on average than in 2d. In general, comparing the behaviors of similar random processes in different dimensions is a fascinating topic. A <a href="https://sites.math.washington.edu/~morrow/336_19/papers19/Legrand.pdf">classic result</a> of George Pólya says that a random walk in 2d returns to its initial position with probability one, while in 3d this is no longer the case.</p>
+<p align="center">
+<a href="models/RegularSAW.xml"><img src="images/RegularSAW.gif"/></a>
+<a href="models/LoopErasedWalk.xml"><img src="images/LoopErasedWalk.gif"/></a>
+<a href="models/Trail.xml"><img src="images/Trail.gif"/></a><br/>
+(RBB=WWR) | LoopErasedWalk | (RB=WR RW=WR)
+</p>
+
+<p>We can put several rules into one <strong>rulenode</strong>. For example, <code>(RBB=WWR RBW=GWP PWG=PBU UWW=BBU UWP=BBR)</code> is a <a href="https://en.wikipedia.org/wiki/Loop-erased_random_walk">loop-erased random walk</a>. Trail model <code>(RB=WR RW=WR)</code> generates <a href="https://blog.jrheard.com/procedural-dungeon-generation-drunkards-walk-in-clojurescript">decent connected caves</a>.</p>
+<p>Model <code>(RBB=WWR R*W=W*R)</code> is known as the <a href="http://weblog.jamisbuck.org/2011/1/17/maze-generation-aldous-broder-algorithm">Aldous-Broder maze generation algorithm</a>. The <strong>wildcard</strong> symbol <code>*</code> in the input means that <em>any</em> color is allowed to be in the square. The wildcard symbol in the output means that the color doesn't change after the application of the rule. Aldous-Broder algorithm takes much more turns on average to generate a maze than MazeGrowth, for example, but it has a nice property that MazeGrowth doesn't have: each maze has the same probability to be generated. In other words, MazeTrail is an unbiased maze generation algorithm, or it samples mazes (or spanning trees) with the uniform distribution. <a href="http://web.stanford.edu/~yuvalwig/math/teaching/UniformSpanningTrees.pdf">Wilson's algorithm</a> is a more efficient unbiased maze generation algorithm. Compare its <a href="images/Wilson.gif">MarkovJunior</a> <a href="models/Wilson.xml">implementation</a> with an <a href="https://bl.ocks.org/mbostock/11357811">implementation</a> in a conventional language!</p>
+<h2>Combining rulenodes</h2>
+<p>We can put several rulenodes into a <strong>sequence node</strong>, to be run one after the other. In the <a href="models/River.xml">River</a> model we first construct a stochastic <a href="models/Voronoi.xml">Voronoi</a> diagram with 2 sources, and use the boundary between the formed regions as a base for a river. Then we spawn a couple more Voronoi seeds to grow forests and simultaneously grow grass from the river. As a result, we get random river valleys!</p>
+<p align="center">
+<a href="models/River.xml"><img src="images/River.gif"/></a>
+<a href="models/Apartemazements.xml"><img src="images/Apartemazements.gif"/></a>
+</p>
+
+<p>In <a href="models/Apartemazements.xml">Apartemazements</a> we start with a WFC node and then do constructive postprocessing with rulenodes:
+1. Prepare constraints: mark bottom cells with a separate bottom color, mark the remaining border cells (sides and top) with a separate border color. Border cells should map to Empty, bottom cells should map to all tiles except Down.
+2. Run WFC <a href="resources/tilesets/Paths.xml">Paths</a> tileset to generate closed stairy cycles.
+3. Randomize light sources.
+4. Drop columns from corners of flat tiles.
+5. Retract double columns, columns that touch ground and columns that touch stairs, except columns growing from corners of the Turn tiles.
+6. Grow windows between neighboring columns.
+7. Merge windows into bigger rectangles. We do this in several steps:
+    1. Detect uneven patterns of windows when window corners touch window midpoints.
+    2. Mark these patterns and propagate the markings through the whole lengths of window sides.
+    3. Merge unmarked pairs of window sides.
+8. Turn the remaining 1x1 windows into walls.</p>
+<p>A more interesting way to combine nodes is to put them into a <strong>Markov node</strong>. Markov nodes substantially expand what we can do, because they allow to return to past nodes. When a Markov node is active, interpreter finds its first child node that matches and applies it. On the next turn, it finds the first matching node in the list again, and so on. The simplest example of the Markov node use is <a href="models/MazeBacktracker.xml">MazeBacktracker</a> explained in the top section.</p>
+<p align="center">
+<a href="models/NystromDungeon.xml"><img src="images/NystromDungeon.gif"/></a>
+<a href="models/Flowers.xml"><img src="images/Flowers.gif"/></a>
+</p>
+
+<p>One of my favorite examples that motivated the development of MarkovJunior is <a href="https://journal.stuffwithstuff.com/2014/12/21/rooms-and-mazes/">Bob Nystrom's dungeon generation algorithm</a>. It goes as follows:
+1. Draw a grid <code>{PBB=**P}</code>.
+2. Spawn a bunch of rooms <code>(room.png)</code>.
+3. Generate a maze on the rest of the grid. We can use any maze generation algorithm, but <a href="models/MazeBacktracker.xml">MazeBacktracker</a> is preferred because it produces fewer branching points.
+4. Make the resulting configuration of rooms and corridors connected. This can be elegantly done with a Markov node <code>({GWW=**G}(GBW=*WG))</code>.
+5. Make some additional connections <code>(GBG=*W* #5)</code>, so the resulting dungeon has cycles. Dungeons without cycles are pretty boring, since the player has to return through already explored zones.
+6. Retract dead ends <code>{BBB/BWB=BBB/BBB}</code>.</p>
+<p align="center">
+<a href="models/Circuit.xml"><img src="images/Circuit.gif"/></a>
+<a href="models/DungeonGrowth.xml"><img src="images/DungeonGrowth.gif"/></a>
+</p>
+
+<p>Like in REFAL, Markov nodes can be nested: once we go into a child node, we ignore outer nodes until the child branch completes.</p>
+<h2>Inference</h2>
+<p>Probabilistic inference in MarkovJunior allows to impose constraints on the future state, and generate only those runs that lead to the constrained future. In other words, inference connects 2 given states (or partially observed states) with a chain of rewrite rules.</p>
+<p>The simplest example of inference use is connecting 2 points with a path. In the self-avoiding walk model <code>(RBB=WWR)</code> we can <strong>observe</strong> a given square on the grid to become <code>R</code> red. Then the interpreter would generate only those walks that lead to the observed square. We can set the interpreter to follow the goal more strictly or less strictly by varying the <strong>temperature</strong> parameter. By default, temperature is set to zero.</p>
+<p align="center">
+<img src="images/coldest.gif"/>
+<img src="images/cold.gif"/>
+<img src="images/hot.gif"/>
+<img src="images/hottest.gif"/><br>
+Coldest | Cold | Hot | Hottest
+</p>
+
+<p>Another thing we can do is to observe <em>all</em> odd grid squares becoming white or red. Then the interpreter would generate self-avoiding walks that cover the entire grid.</p>
+<p align="center">
+<a href="models/CompleteSAW.xml"><img src="images/CompleteSAW.gif"/></a>
+<a href="models/SokobanLevel1.xml"><img src="images/SokobanLevel1.gif"/></a>
+</p>
+
+<p>We can engage inference for any rewrite rules. For example, inference for <a href="models/StairsPath.xml">stair-drawing rules</a> connects 2 points with a stairy path. Inference for rule <code>R**/**B=B**/**R</code> generates paths that a chess knight can take. Inference in the <a href="models/CrossCountry.xml">CrossCountry</a> model connects 2 points with a path taking terrain costs into account. Inference for the Sokoban ruleset <code>{RB=BR RWB=BRW}</code> solves Sokoban puzzles or even <a href="images/multisokoban.gif">multiagent Sokoban puzzles</a>!</p>
+<p align="center"><img src="images/StairsPath.gif"/></a></p>
+
+<p>Inference in MarkovJunior is done via unidirectional (fast) or bidirectional (slow, but more powerful) constraint propagation. Unidirectional constraint propagation for rewrite rules can be described equivalently in terms of <strong>rule propagation</strong> fields which generalize Dijkstra fields for arbitrary rewrite rules. Dijkstra fields is a popular technique in grid-based procedural generation (<a href="https://groups.google.com/forum/#!topic/rec.games.roguelike.development/6yNIuhSerpM">1</a>, <a href="http://www.roguebasin.com/index.php?title=The_Incredible_Power_of_Dijkstra_Maps">2</a>, <a href="http://www.roguebasin.com/index.php?title=Dijkstra_Maps_Visualized">3</a>). They in turn generalize <a href="https://iquilezles.org/www/articles/distfunctions/distfunctions.htm">distance fields</a> used in computer graphics.</p>
+<p>If constraint propagation completes it doesn't necessarily mean that the goal state is achievable. But if the propagation fails then we know for sure that the goal is not achievable. This allows to catch states where a crate is pushed to the wrong wall in Sokoban, or where the grid-covering walk splits the grid into 2 disconnected parts. In addition to this boolean heuristic, it's worth looking at the minimal number of turns required for constraint propagation to complete. This integer-valued heuristic is <a href="https://en.wikipedia.org/wiki/Admissible_heuristic">admissible</a>, and we use it in A* search to sample paths made of rewrite rules between 2 given states.</p>
+<h2>Open problems</h2>
+<ol>
+<li><strong>Program synthesis for procedural generation</strong>. William Chyr's talk <a href="https://youtu.be/ed2zmmcEryw?t=1298">"Level Design in Impossible Geometry"</a> is not at all about procedural generation, yet I find <a href="images/ps-for-procgen.jpg">one slide</a> to be very characteristic for pcg practice. William compares his earlier and later approaches to level design. The earlier one produced chaotic levels, while the later approach produced more structured, more intentional levels based on one central idea. Later levels weren't simpler, yet they were more memorable and easier for players to perceive. To me, the left level looks like it was generated procedurally! It has a very similar feel to my <a href="https://twitter.com/ExUtumno/status/971031987304763393">procedural voxel puzzles</a>. Can we make generators that produce levels that are more like the one on the right? This problem may seem AI-complete. But I'd argue it is very similar to classic genetic programming problems like <a href="https://pdfs.semanticscholar.org/555e/13cc2dd246e3d63ceb00590605f3ff59593d.pdf">Koza's lawnmower problem</a>. For example, take a simple procgen task of <a href="models/CompleteSAW.xml">generating Hamiltonian paths on the grid</a>. Even for small grid sizes like 29x29 this task is already computationally demanding. But do we really need to sample from all possible paths in practice? If we give this task to a human, they would probably draw a spiral or a zigzag curve - these are much more memorable and intentional designs than a random Hamiltonian path, plus they generalize to any grid sizes. To summarize, we can ask the system either to find a random Hamiltonian path or to find a short program that generates Hamiltonian paths. In the first case the result would look like the left level on the slide, and in the second case like the right level. Solving the latter program synthesis problem would create more memorable and intentional generators.</li>
+<li><strong>Model synthesis from examples</strong>. Markov algorithms seem to be a perfect environment for program/model synthesis: no variables, ifs or whiles, nodes can be easily moved around without breaking correctness, models are easy to make differentiable. Random MJ programs are often fun and can produce human-relatable results and behaviors.<ol>
+<li>Can we synthesize a MJ model from a result, or a set of results?</li>
+<li>Given a maze, is it possible to determine (or assign probabilities) whether it was generated by <a href="models/MazeGrowth.xml">MazeGrowth</a> or <a href="models/MazeBacktracker.xml">MazeBacktracker</a>?</li>
+<li>Solve the <a href="https://www.kaggle.com/c/abstraction-and-reasoning-challenge">Abstraction and Reasoning Challenge</a> by inferring MarkovJunior models. Adjoint problem: use insights from the ARC challenge to build a better DSL for procedural generation on a grid.</li>
+</ol>
+</li>
+<li><strong>Custom algorithms that run in the wave space</strong>. To unite the advantages of constructive and constrained-based procedural generation. Related: custom algorithms (MJ rewrite rules) with custom energy functions like Ising energy or ConvChain energy.</li>
+<li>Generalize the notion of a pattern.</li>
+<li>Investigate MJ-like processes on other (possibly nonregular) grids or arbitrary graphs.</li>
+<li>Experiment with interactive extensions of Markov algorithms. It's possible to turn any MJ model into a game by assigning specific rewrite rules or nodes to key presses.</li>
+<li>Push the state of the art in grid-based procedural generation. <a href="https://twitter.com/ExUtumno/status/1141354217774428160">ModernHouse</a> does not yet reach the structural variety of human-designed houses like <a href="https://www.thesimsresource.com/downloads/browse/category/sims2-lots/featured/1/search/modern%20house/">Sims 2 houses</a>. Use more subtle constraints.</li>
+</ol>
+<h2>Comments</h2>
+<p>Compared to Turing machines and lambda calculus, Markov algorithms is probably the shortest and simplest way to rigorously define what an algorithm is.</p>
+<p>Exercise: prove that the following Markov algorithm finds the greatest common divisor of 2 numbers written in a unary representation. For example, if we apply it to <code>111111*1111111111</code> we get <code>11</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="mf">1</span><span class="n">a</span><span class="o">=</span><span class="n">a1</span>
+<span class="mf">1</span><span class="o">*</span><span class="mf">1</span><span class="o">=</span><span class="n">a</span><span class="o">*</span>
+<span class="mf">1</span><span class="o">*=*</span><span class="n">b</span>
+<span class="n">b</span><span class="o">=</span><span class="mf">1</span>
+<span class="n">a</span><span class="o">=</span><span class="n">c</span>
+<span class="n">c</span><span class="o">=</span><span class="mf">1</span>
+<span class="o">*=</span><span class="n">ε</span><span class="w"> </span><span class="p">(</span><span class="n">halt</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Fast pattern matching. MarkovJunior interpreter samples matches uniformly, but it doesn't scan the whole grid every turn. To keep pattern matching fast, the interpreter remembers previously found matches and searches only around the places that got changed. When a rulenode is encountered for the first time, MJ interpreter uses a multidimensional version of the <a href="https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string-search_algorithm">Boyer–Moore algorithm</a>.</p>
+<p>Stochastic relaxation. Markov nodes have a very nice representations as limits of differentiable nodes. Consider an unordered set of rewrite rules where each rule <code>r</code> is assigned a weight <code>w(r)</code>. On each step the interpreter finds all matches for all rules and chooses a random match according to the Boltzmann distribution <code>p(r) ~ exp(-w(r)/t)</code>. Then in the freezing limit <code>t-&gt;0</code> we get a Markov node, ordered by weights. What's good about this construction, is that for any <code>t&gt;0</code> and for a typical score function, score's average on multiple runs would be a continuous (and smooth for practical purposes) function of weights. This means that one can find the optimal weights by gradient descent and then freeze the system to get the final discrete program.</p>
+<p>Read this <a href="https://www.jstor.org/stable/27641983">essay</a> by <a href="https://en.wikipedia.org/wiki/Boris_Kushner_(mathematician)">Boris Kushner</a> about A. A. Markov and his work in constructive mathematics.</p>
+<h2>Used work</h2>
+<p>Main used work:
+1. Andrey A. Markov, <a href="http://www.mathnet.ru/php/archive.phtml?wshow=paper&amp;jrnid=tm&amp;paperid=1117&amp;option_lang=eng">The Theory of Algorithms</a>, 1951. Markov used these ideas earlier in 1947 in his proof of the algorithmic undecidability of the word problem in semigroups. See also a later <a href="http://www.mathnet.ru/php/archive.phtml?wshow=paper&amp;jrnid=tm&amp;paperid=1178&amp;option_lang=eng">book</a> with a more detailed treatment. I would be grateful for links to English translations in open access.
+2. Guilherme S. Tows, <a href="https://zaratustra.itch.io/imagegram">Imagegram</a>, 2009. MarkovJunior takes forall-nodes from Imagegram.
+3. Valentin Turchin, <a href="http://fprog.ru/2011/issue7/practice-fp-7-screen.pdf">REFAL language</a>, 1968. MJ takes the idea of nested Markov nodes from REFAL.
+4. Brian Walker et al., <a href="https://groups.google.com/forum/#!topic/rec.games.roguelike.development/6yNIuhSerpM">The incredible power of Dijkstra maps</a>, 2010. A discussion in the the roguelike community that contains many techniques of using Dijkstra maps/distance fields for procedural generation and NPC AI. Later writeups: <a href="http://www.roguebasin.com/index.php?title=The_Incredible_Power_of_Dijkstra_Maps">1</a>, <a href="http://www.roguebasin.com/index.php?title=Dijkstra_Maps_Visualized">2</a>. We generalize Dijkstra maps to arbitrary rewrite rules.
+5. Pavlos S. Efraimidis, Paul Spirakis, <a href="https://utopia.duth.gr/~pefraimi/research/data/2007EncOfAlg.pdf">Weighted Random Sampling</a>, 2005.
+6. Work used in custom nodes: <a href="http://graphics.stanford.edu/~pmerrell/thesis.pdf">Model Synthesis</a>, <a href="https://github.com/mxgmn/WaveFunctionCollapse">Wave Function Collapse Algorithm</a>, <a href="https://github.com/mxgmn/ConvChain">ConvChain Algorithm</a>.
+7. Classic algorithms: <a href="https://en.wikipedia.org/wiki/Local_consistency">constraint propagation</a>, <a href="https://www.cs.ubc.ca/~mack/Publications/AI77.pdf">constraint solving algorithms</a>, <a href="https://en.wikipedia.org/wiki/Graph_traversal">graph traversal</a>, <a href="https://www.cs.auckland.ac.nz/courses/compsci709s2c/resources/Mike.d/astarNilsson.pdf">A* search</a>.</p>
+<p>Related work:
+1. Daniel Ritchie, <a href="https://dritchie.github.io/pdf/thesis.pdf">Probabilistic Programming for Procedural Modeling and Design</a>, 2016.
+2. Lingfeng Yang, <a href="https://stacks.stanford.edu/file/druid:kq822ym0815/et2si-reduced-opt-augmented.pdf">From Execution Traces to Specialized Inference</a>, 2015.</p>
+<p>Sources of examples:
+1. <a href="models/BasicKeys.xml">BasicKeys</a> and <a href="models/Keys.xml">Keys</a> are adaptations of graph grammars formulated by Joris Dormans, <a href="https://www.illc.uva.nl/Research/Publications/Dissertations/DS-2012-12.text.pdf">Engineering Emergence: Applied Theory for Game Design</a>, 2012. Which in turn are development of the earlier work by David Adams, <a href="https://pdfs.semanticscholar.org/2502/0f8d955aee07b7dd49a3ec23b1f2a8cf1d06.pdf">Automatic Generation of Dungeons for Computer Games</a>, 2002. I use a variation of these models to generate key-lock-bridge puzzles in <a href="models/SeaVilla.xml">SeaVilla</a>.
+1. <a href="models/CarmaTower.xml">CarmaTower</a> is a proceduralization of a <a href="https://twitter.com/Sir_carma/status/851883489628704768">voxel scene</a> by Antoine Lendrevie.
+1. The <a href="models/NystromDungeon.xml">NystromDungeon</a> model is a MarkovJunior port of <a href="https://journal.stuffwithstuff.com/2014/12/21/rooms-and-mazes/">Bob Nystrom's dungeon generator</a>.
+1. <a href="models/HamiltonianPath.xml">HamiltonianPath</a> algorithm is adapted from <a href="http://aip.scitation.org/doi/pdf/10.1063/1.443937">this</a> article. Compare it with an <a href="http://clisby.net/projects/hamiltonian_path/hamiltonian_path_v1.html">implementation</a> in a conventional language.
+1. Room shapes in <a href="models/DungeonGrowth.xml">DungeonGrowth</a> are taken from the <a href="https://old.reddit.com/r/proceduralgeneration/comments/3pa8a1/my_take_at_a_roguelike_level_generator_ft/">r/proceduralgeneration post</a>. Note that MJ interpreter automatically performs the optimizations described in the post.
+1. The <a href="models/Wilson.xml">Wilson</a> model is a rewrite rule formulation of the <a href="https://en.wikipedia.org/wiki/Loop-erased_random_walk#Uniform_spanning_tree">Wilson's algorithm</a>. Compare it with an <a href="https://bl.ocks.org/mbostock/11357811">implementation</a> in a conventional language.
+1. <a href="models/MazeGrowth.xml">MazeGrowth</a> model is also known as maze generation via random traversal. Compare it with an <a href="https://bl.ocks.org/mbostock/70a28267db0354261476">implementation</a> in a conventional language.
+1. <a href="models/Growth.xml">Growth</a> is closely related to the <a href="http://digitalassets.lib.berkeley.edu/math/ucb/text/math_s4_v4_article-15.pdf">Eden growth model</a>.
+1. <a href="models/BernoulliPercolation.xml">BernoulliPercolation</a> is a well studied model in a <a href="https://en.wikipedia.org/wiki/Percolation_theory">percolation theory</a>.
+1. <a href="models/NestedGrowth.xml">NestedGrowth</a> is taken from <a href="https://zaratustra.itch.io/imagegram">Imagegram</a>.
+1. <a href="models/SmoothTrail.xml">SmoothTrail</a> is adapted from <a href="https://twitter.com/128_mhz/status/953847394403205120">128_mhz's tweet</a>.
+1. <a href="models/SokobanLevel1.xml">SokobanLevel1</a> seems to be the first level from Hiroyuki Imabayashi's Sokoban puzzle. <a href="models/SokobanLevel2.xml">SokobanLevel2</a> is the <a href="https://www.sokobanonline.com/play/web-archive/razorflame/ionic-catalysts-xi/58022_ionic-catalysts-xi-452">level 452</a> from Ionic Catalysts XI set.
+1. <a href="models/RainbowGrowth.xml">RainbowGrowth</a> was <a href="https://github.com/mxgmn/MarkovJunior/discussions/25">proposed</a> by <a href="https://github.com/mure">mure</a>.</p>
+<p>Voxel scenes were rendered in <a href="https://ephtracy.github.io/">MagicaVoxel</a> by <a href="https://github.com/ephtracy">ephtracy</a>. Special thanks to <a href="https://github.com/unormal">Brian Bucklew</a> for demonstrating the power of Dijkstra fields to me in roguelike level generation and <a href="https://github.com/kchapelier">Kevin Chapelier</a> for a number of good suggestions. The font used in GUI is <a href="https://github.com/sunaku/tamzen-font">Tamzen</a>.</p>
+<h2>How to build</h2>
+<p>MarkovJunior interpreter is a console application that depends only on the standard library. Get <a href="https://dotnet.microsoft.com/download">.NET Core</a> for Windows, Linux or macOS and run</p>
+<div class="highlight"><pre><span></span><code>dotnet run --configuration Release MarkovJunior.csproj
+</code></pre></div>
+
+<p>Alternatively, download and run the latest <a href="https://github.com/mxgmn/MarkovJunior/releases">release</a> for Windows.</p>
+<p>Generated results are put into the <code>output</code> folder. Edit <code>models.xml</code> to change model parameters. Open <code>.vox</code> files with <a href="https://ephtracy.github.io/">MagicaVoxel</a>.</p>
+<h2>Funding</h2>
+<p>MarkovJunior development was <a href="https://github.com/users/mxgmn/sponsorship">funded</a> by
+1. <strong><a href="https://www.embark-studios.com/">Embark Studios</a></strong>
+2. <a href="https://twitter.com/OskSta">Oskar Stålberg</a>
+3. <a href="https://store.steampowered.com/app/333640/Caves_of_Qud/">Freehold Games</a>
+4. <a href="https://bobburrough.com/">Bob Burrough</a></p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                        Psyfer.io by Oliver Davies
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+
+</html>

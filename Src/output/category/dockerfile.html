@@ -14,6 +14,15 @@
                         bannerNav.classList.toggle("open");
                 });
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+                const animatedElements = document.querySelectorAll(".animated-element");
+
+                animatedElements.forEach((element) => {
+                        const randomDelay = -Math.random() * 5; // Adjust the maximum delay (in seconds) as needed
+                        element.style.animationDelay = `${randomDelay}s`;
+                });
+        });
 </script>
 
 <head>
@@ -53,13 +62,15 @@
                 </nav>
         </header><!-- /#banner -->
 <section id="post-grid">
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/stable-diffusion-webui-docker.html" class="post-tile" style="background-image: url('https://user-images.githubusercontent.com/24505302/189541957-cf78b352-a071-486d-8889-f26952779a61.jpg')">
-        <div class="post-image" style="background-image: url('https://user-images.githubusercontent.com/24505302/189541957-cf78b352-a071-486d-8889-f26952779a61.jpg')"></div>
-        <div class="post-title">
-            <h3>stable-diffusion-webui-docker</h3>
+    <div class="card-container">
+        <a href="/stable-diffusion-webui-docker.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Stable Diffusion Webui Docker</span>
+            </div>
+            <div class="card-image" style="background-image: url('https://user-images.githubusercontent.com/24505302/189541957-cf78b352-a071-486d-8889-f26952779a61.jpg')"></div>
         </div>
-    </a>
+    </div>
 </section>
         <section id="extras" class="body">
         </section><!-- /#extras -->

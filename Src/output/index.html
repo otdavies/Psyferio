@@ -14,6 +14,15 @@
                         bannerNav.classList.toggle("open");
                 });
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+                const animatedElements = document.querySelectorAll(".animated-element");
+
+                animatedElements.forEach((element) => {
+                        const randomDelay = -Math.random() * 5; // Adjust the maximum delay (in seconds) as needed
+                        element.style.animationDelay = `${randomDelay}s`;
+                });
+        });
 </script>
 
 <head>
@@ -53,76 +62,96 @@
                 </nav>
         </header><!-- /#banner -->
 <section id="post-grid">
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/iflardity.html" class="post-tile" style="background-image: url('docs/images/CC-BY_icon.png?raw=true')">
-        <div class="post-image" style="background-image: url('docs/images/CC-BY_icon.png?raw=true')"></div>
-        <div class="post-title">
-            <h3>IFLArdity</h3>
+    <div class="card-container">
+        <a href="/ifl-ardity.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">IFL Ardity</span>
+            </div>
+            <div class="card-image" style="background-image: url('docs/images/CC-BY_icon.png?raw=true')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/otdavies.html" class="post-tile" style="background-image: url('None')">
-        <div class="post-image" style="background-image: url('None')"></div>
-        <div class="post-title">
-            <h3>otdavies</h3>
+    </div>
+    <div class="card-container">
+        <a href="/otdavies.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Otdavies</span>
+            </div>
+            <div class="card-image" style="background-image: url('None')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/stable-diffusion-webui.html" class="post-tile" style="background-image: url('txt2img_Screenshot.png')">
-        <div class="post-image" style="background-image: url('txt2img_Screenshot.png')"></div>
-        <div class="post-title">
-            <h3>stable-diffusion-webui</h3>
+    </div>
+    <div class="card-container">
+        <a href="/stable-diffusion-webui.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Stable Diffusion Webui</span>
+            </div>
+            <div class="card-image" style="background-image: url('txt2img_Screenshot.png')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/stable-diffusion-webui-docker.html" class="post-tile" style="background-image: url('https://user-images.githubusercontent.com/24505302/189541957-cf78b352-a071-486d-8889-f26952779a61.jpg')">
-        <div class="post-image" style="background-image: url('https://user-images.githubusercontent.com/24505302/189541957-cf78b352-a071-486d-8889-f26952779a61.jpg')"></div>
-        <div class="post-title">
-            <h3>stable-diffusion-webui-docker</h3>
+    </div>
+    <div class="card-container">
+        <a href="/stable-diffusion-webui-docker.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Stable Diffusion Webui Docker</span>
+            </div>
+            <div class="card-image" style="background-image: url('https://user-images.githubusercontent.com/24505302/189541957-cf78b352-a071-486d-8889-f26952779a61.jpg')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/disco-diffusion-experiments.html" class="post-tile" style="background-image: url('None')">
-        <div class="post-image" style="background-image: url('None')"></div>
-        <div class="post-title">
-            <h3>disco-diffusion-experiments</h3>
+    </div>
+    <div class="card-container">
+        <a href="/disco-diffusion-experiments.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Disco Diffusion Experiments</span>
+            </div>
+            <div class="card-image" style="background-image: url('None')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/swapping-autoencoder-pytorch.html" class="post-tile" style="background-image: url('https://taesung.me/SwappingAutoencoder/index_files/teaser_v3.jpg')">
-        <div class="post-image" style="background-image: url('https://taesung.me/SwappingAutoencoder/index_files/teaser_v3.jpg')"></div>
-        <div class="post-title">
-            <h3>swapping-autoencoder-pytorch</h3>
+    </div>
+    <div class="card-container">
+        <a href="/swapping-autoencoder-pytorch.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Swapping Autoencoder Pytorch</span>
+            </div>
+            <div class="card-image" style="background-image: url('https://taesung.me/SwappingAutoencoder/index_files/teaser_v3.jpg')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/markovjuniorfrontend.html" class="post-tile" style="background-image: url('None')">
-        <div class="post-image" style="background-image: url('None')"></div>
-        <div class="post-title">
-            <h3>MarkovJuniorFrontend</h3>
+    </div>
+    <div class="card-container">
+        <a href="/markov-junior-frontend.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Markov Junior Frontend</span>
+            </div>
+            <div class="card-image" style="background-image: url('None')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/markovjuniorplushoudini.html" class="post-tile" style="background-image: url('None')">
-        <div class="post-image" style="background-image: url('None')"></div>
-        <div class="post-title">
-            <h3>MarkovJuniorPlusHoudini</h3>
+    </div>
+    <div class="card-container">
+        <a href="/markov-junior-plus-houdini.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Markov Junior Plus Houdini</span>
+            </div>
+            <div class="card-image" style="background-image: url('None')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/rusttracer.html" class="post-tile" style="background-image: url('None')">
-        <div class="post-image" style="background-image: url('None')"></div>
-        <div class="post-title">
-            <h3>RustTracer</h3>
+    </div>
+    <div class="card-container">
+        <a href="/rust-tracer.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Rust Tracer</span>
+            </div>
+            <div class="card-image" style="background-image: url('None')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/tiltfivecalibrator.html" class="post-tile" style="background-image: url('https://user-images.githubusercontent.com/3145170/166209581-74589e16-8e4d-40ca-b5dc-be6702989736.jpg')">
-        <div class="post-image" style="background-image: url('https://user-images.githubusercontent.com/3145170/166209581-74589e16-8e4d-40ca-b5dc-be6702989736.jpg')"></div>
-        <div class="post-title">
-            <h3>TiltFiveCalibrator</h3>
+    </div>
+    <div class="card-container">
+        <a href="/tilt-five-calibrator.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Tilt Five Calibrator</span>
+            </div>
+            <div class="card-image" style="background-image: url('https://user-images.githubusercontent.com/3145170/166209581-74589e16-8e4d-40ca-b5dc-be6702989736.jpg')"></div>
         </div>
-    </a>
+    </div>
 </section>
         <section id="extras" class="body">
         </section><!-- /#extras -->

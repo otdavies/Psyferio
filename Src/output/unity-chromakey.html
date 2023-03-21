@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+                var hamburgerMenu = document.querySelector(".hamburger-menu");
+                var bannerNav = document.querySelector("#banner nav");
+
+                hamburgerMenu.addEventListener("click", function () {
+                        bannerNav.classList.toggle("open");
+                });
+
+                hamburgerMenu.addEventListener("touch", function () {
+                        bannerNav.classList.toggle("open");
+                });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+                const animatedElements = document.querySelectorAll(".animated-element");
+
+                animatedElements.forEach((element) => {
+                        const randomDelay = -Math.random() * 5; // Adjust the maximum delay (in seconds) as needed
+                        element.style.animationDelay = `${randomDelay}s`;
+                });
+        });
+</script>
+
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>Unity Chromakey</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta name="description" content="UnityChromakey A simple, yet powerful chromakey / greenscreen solution for Unity. Designed to be used with virtual production. Usage This shader..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <div><a class="site-title" href="/">Psyfer.io</a></div>
+                <div class="hamburger-menu">
+                        <i class="fas fa-bars"></i>
+                </div>
+                <nav>
+                        <ul>
+                                <li><a
+                                                href="/category/c.html">C#</a></li>
+                                <li><a
+                                                href="/category/dockerfile.html">Dockerfile</a></li>
+                                <li><a
+                                                href="/category/other.html">Other</a></li>
+                                <li><a
+                                                href="/category/python.html">Python</a></li>
+                                <li><a
+                                                href="/category/rust.html">Rust</a></li>
+                                <li class="active" ><a
+                                                href="/category/shaderlab.html">ShaderLab</a></li>
+                                <li><a
+                                                href="/category/svelte.html">Svelte</a></li>
+                        </ul>
+                </nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <!-- <h1 class="entry-title">
+        <a href="/unity-chromakey.html" rel="bookmark" title="Permalink to Unity Chromakey">Unity Chromakey</a>
+      </h1>
+ -->
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-08-29T00:50:14-07:00">
+                Published: Sat 29 August 2020
+        </abbr>
+		<br />
+        <abbr class="modified" title="2023-03-17T23:31:58-07:00">
+                Updated: Fri 17 March 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/oliver-davies.html">Oliver Davies</a>
+        </address>
+<p>In <a href="/category/shaderlab.html">ShaderLab</a>.</p>
+<p>tags: <a href="/tag/shaderlab.html">ShaderLab</a> </p>
+</footer><!-- /.post-info -->      <h1>UnityChromakey</h1>
+<p>A simple, yet powerful chromakey / greenscreen solution for Unity. Designed to be used with virtual production.</p>
+<h2>Usage</h2>
+<p><strong>This shader works in HDRP &amp; URP</strong></p>
+<p>Once you've got the files in your project: Assign the chromakey shader to a material of your choice and attach that material to a quad / plane. Provide an image to the material or use a VideoPlayer to feed an image in. </p>
+<p><strong>Why this approach?</strong> It is the most verstile. Screenspace effects are complicated, clunky and difficult to modify. Screenspace effects also cannot be placed in worldspace easily. This shader is simple, only a few hundred lines and <em>is a single pass</em>. It is excellent for quickly blocking out greenscreen footage or even final composites.
+This repository is <em>not</em> an entire project. You don't need all my project cruft <em>yuck</em>. This is simply a few files you can toss into your project and <em>actually use</em>.</p>
+<h2>Features</h2>
+<ul>
+<li><strong>Standard Chromakeying:</strong> (<em>green screen only</em>). Modification would be required to work with a bluescreen (Would require Despill algorithm changes)</li>
+<li><strong>Simple edge feathering:</strong> This is a single-pixel blur approach, but enough for 99% of shots (when do you actually need a crazy 15 pixel deep blur?!?). I will probably expand the kernel to a larger box blur in the future.</li>
+<li><strong>Simple edge sharpening:</strong> (Sharpen up blurred edges to give a more anti-aliased feeling as opposed to just blur)</li>
+<li><strong>Despill correction:</strong> Getting rid of that pesky green light bleed</li>
+<li>Simple usage, only a single shader and a single-pass</li>
+<li>Example presets you can load onto the material (for the existing examples)</li>
+</ul>
+<h2>Examples</h2>
+<p><strong>Note:</strong> Have mercy on the GIF compression and the fact that this footage was downloaded from YouTube, so it already has compression artifacts within it. It would look <em>considerably</em> better with nice clean source footage.</p>
+<p><img alt="" src="Examples/Images/Shia.gif">
+<img alt="" src="Examples/Images/Shia2.gif">
+<img alt="" src="Examples/Images/Distant.gif"></p>
+<p><strong>Note:</strong> This is an example of Despill correction being toggled. Watch the edges for green.</p>
+<p><img alt="" src="Examples/Images/Despill.gif"></p>
+<p><strong>Note:</strong> This is <em>reflective</em> armor. Reflective. The nightmare for greenscreen. Looks pretty good to me!</p>
+<p><img alt="" src="Examples/Images/ReflectiveArmor.png"></p>
+<p>Here are the controls used to tune for the following images:</p>
+<p><img alt="" src="Examples/Images/Controls.png">
+<img alt="" src="Examples/Images/Armorguywithoutchroma.png">
+<img alt="" src="Examples/Images/Armorguywithchroma.png"></p>
+<p><strong>Note:</strong> This is me controlling the strength of the Despill correction.</p>
+<p><img alt="" src="Examples/Images/DespillWorstCaseExample.gif"></p>
+<p><strong>Example of really poor greenscreen situation + DSLR as webcam:</strong>
+<img alt="" src="Examples/Images/1080p30fps.gif"></p>
+<h2>Modification</h2>
+<p>You are free to modify and improve on this simple approach. I suggest creating a pull request with your changes!</p>
+<h2>Primary sources in the creation of this tool</h2>
+<p>http://gc-films.com/chromakey.html</p>
+<p>https://benmcewan.com/blog/2018/05/20/understanding-despill-algorithms/</p>
+<h2>Disclaimers</h2>
+<p>Example images are random and off the internet. They are not mine and I don't pretend they are.</p>
+<p>This shader hasn't been heavily optimized yet, but appears to perform quite well. It is untested on mobile platforms, but theoretically should work.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                        Psyfer.io by Oliver Davies
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+
+</html>

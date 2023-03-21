@@ -14,6 +14,15 @@
                         bannerNav.classList.toggle("open");
                 });
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+                const animatedElements = document.querySelectorAll(".animated-element");
+
+                animatedElements.forEach((element) => {
+                        const randomDelay = -Math.random() * 5; // Adjust the maximum delay (in seconds) as needed
+                        element.style.animationDelay = `${randomDelay}s`;
+                });
+        });
 </script>
 
 <head>
@@ -53,20 +62,24 @@
                 </nav>
         </header><!-- /#banner -->
 <section id="post-grid">
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/rusttracer.html" class="post-tile" style="background-image: url('None')">
-        <div class="post-image" style="background-image: url('None')"></div>
-        <div class="post-title">
-            <h3>RustTracer</h3>
+    <div class="card-container">
+        <a href="/rust-tracer.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Rust Tracer</span>
+            </div>
+            <div class="card-image" style="background-image: url('None')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/prosclystius.html" class="post-tile" style="background-image: url('./github/images/wfc_wip.png?raw=true "UI"')">
-        <div class="post-image" style="background-image: url('./github/images/wfc_wip.png?raw=true "UI"')"></div>
-        <div class="post-title">
-            <h3>Prosclystius</h3>
+    </div>
+    <div class="card-container">
+        <a href="/prosclystius.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Prosclystius</span>
+            </div>
+            <div class="card-image" style="background-image: url('./github/images/wfc_wip.png?raw=true "UI"')"></div>
         </div>
-    </a>
+    </div>
 </section>
         <section id="extras" class="body">
         </section><!-- /#extras -->

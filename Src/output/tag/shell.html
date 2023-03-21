@@ -14,6 +14,15 @@
                         bannerNav.classList.toggle("open");
                 });
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+                const animatedElements = document.querySelectorAll(".animated-element");
+
+                animatedElements.forEach((element) => {
+                        const randomDelay = -Math.random() * 5; // Adjust the maximum delay (in seconds) as needed
+                        element.style.animationDelay = `${randomDelay}s`;
+                });
+        });
 </script>
 
 <head>
@@ -53,41 +62,51 @@
                 </nav>
         </header><!-- /#banner -->
 <section id="post-grid">
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/stable-diffusion-webui.html" class="post-tile" style="background-image: url('txt2img_Screenshot.png')">
-        <div class="post-image" style="background-image: url('txt2img_Screenshot.png')"></div>
-        <div class="post-title">
-            <h3>stable-diffusion-webui</h3>
+    <div class="card-container">
+        <a href="/stable-diffusion-webui.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Stable Diffusion Webui</span>
+            </div>
+            <div class="card-image" style="background-image: url('txt2img_Screenshot.png')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/stable-diffusion-webui-docker.html" class="post-tile" style="background-image: url('https://user-images.githubusercontent.com/24505302/189541957-cf78b352-a071-486d-8889-f26952779a61.jpg')">
-        <div class="post-image" style="background-image: url('https://user-images.githubusercontent.com/24505302/189541957-cf78b352-a071-486d-8889-f26952779a61.jpg')"></div>
-        <div class="post-title">
-            <h3>stable-diffusion-webui-docker</h3>
+    </div>
+    <div class="card-container">
+        <a href="/stable-diffusion-webui-docker.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Stable Diffusion Webui Docker</span>
+            </div>
+            <div class="card-image" style="background-image: url('https://user-images.githubusercontent.com/24505302/189541957-cf78b352-a071-486d-8889-f26952779a61.jpg')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/data-efficient-gans.html" class="post-tile" style="background-image: url('https://colab.research.google.com/gist/zsyzzsoft/5fbb71b9bf9a3217576bebae5de46fc2/data-efficient-gans.ipynb')">
-        <div class="post-image" style="background-image: url('https://colab.research.google.com/gist/zsyzzsoft/5fbb71b9bf9a3217576bebae5de46fc2/data-efficient-gans.ipynb')"></div>
-        <div class="post-title">
-            <h3>data-efficient-gans</h3>
+    </div>
+    <div class="card-container">
+        <a href="/data-efficient-gans.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Data Efficient Gans</span>
+            </div>
+            <div class="card-image" style="background-image: url('https://colab.research.google.com/gist/zsyzzsoft/5fbb71b9bf9a3217576bebae5de46fc2/data-efficient-gans.ipynb')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/contrastive-unpaired-translation.html" class="post-tile" style="background-image: url('None')">
-        <div class="post-image" style="background-image: url('None')"></div>
-        <div class="post-title">
-            <h3>contrastive-unpaired-translation</h3>
+    </div>
+    <div class="card-container">
+        <a href="/contrastive-unpaired-translation.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Contrastive Unpaired Translation</span>
+            </div>
+            <div class="card-image" style="background-image: url('None')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/omnidome.html" class="post-tile" style="background-image: url('None')">
-        <div class="post-image" style="background-image: url('None')"></div>
-        <div class="post-title">
-            <h3>omnidome</h3>
+    </div>
+    <div class="card-container">
+        <a href="/omnidome.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Omnidome</span>
+            </div>
+            <div class="card-image" style="background-image: url('None')"></div>
         </div>
-    </a>
+    </div>
 </section>
         <section id="extras" class="body">
         </section><!-- /#extras -->

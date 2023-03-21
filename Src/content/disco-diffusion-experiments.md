@@ -1,4 +1,4 @@
-Title: disco-diffusion-experiments
+Title: Disco Diffusion Experiments
 Date: 2022-07-16 23:19:07
 Modified: 2022-07-16 20:26:56
 Category: Other

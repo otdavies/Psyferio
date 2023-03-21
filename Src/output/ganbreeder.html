@@ -14,13 +14,22 @@
                         bannerNav.classList.toggle("open");
                 });
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+                const animatedElements = document.querySelectorAll(".animated-element");
+
+                animatedElements.forEach((element) => {
+                        const randomDelay = -Math.random() * 5; // Adjust the maximum delay (in seconds) as needed
+                        element.style.animationDelay = `${randomDelay}s`;
+                });
+        });
 </script>
 
 <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content="Pelican" />
-        <title>ganbreeder</title>
+        <title>Ganbreeder</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
@@ -57,7 +66,7 @@
   <article>
     <header>
       <!-- <h1 class="entry-title">
-        <a href="/ganbreeder.html" rel="bookmark" title="Permalink to ganbreeder">ganbreeder</a>
+        <a href="/ganbreeder.html" rel="bookmark" title="Permalink to Ganbreeder">Ganbreeder</a>
       </h1>
  -->
     </header>

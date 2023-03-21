@@ -14,6 +14,15 @@
                         bannerNav.classList.toggle("open");
                 });
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+                const animatedElements = document.querySelectorAll(".animated-element");
+
+                animatedElements.forEach((element) => {
+                        const randomDelay = -Math.random() * 5; // Adjust the maximum delay (in seconds) as needed
+                        element.style.animationDelay = `${randomDelay}s`;
+                });
+        });
 </script>
 
 <head>
@@ -53,27 +62,33 @@
                 </nav>
         </header><!-- /#banner -->
 <section id="post-grid">
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/markovjuniorfrontend.html" class="post-tile" style="background-image: url('None')">
-        <div class="post-image" style="background-image: url('None')"></div>
-        <div class="post-title">
-            <h3>MarkovJuniorFrontend</h3>
+    <div class="card-container">
+        <a href="/markov-junior-frontend.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Markov Junior Frontend</span>
+            </div>
+            <div class="card-image" style="background-image: url('None')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/beautiful-jekyll.html" class="post-tile" style="background-image: url('https://beautifuljekyll.com/plans/')">
-        <div class="post-image" style="background-image: url('https://beautifuljekyll.com/plans/')"></div>
-        <div class="post-title">
-            <h3>beautiful-jekyll</h3>
+    </div>
+    <div class="card-container">
+        <a href="/beautiful-jekyll.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Beautiful Jekyll</span>
+            </div>
+            <div class="card-image" style="background-image: url('https://beautifuljekyll.com/plans/')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/ganbreeder.html" class="post-tile" style="background-image: url('None')">
-        <div class="post-image" style="background-image: url('None')"></div>
-        <div class="post-title">
-            <h3>ganbreeder</h3>
+    </div>
+    <div class="card-container">
+        <a href="/ganbreeder.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Ganbreeder</span>
+            </div>
+            <div class="card-image" style="background-image: url('None')"></div>
         </div>
-    </a>
+    </div>
 </section>
         <section id="extras" class="body">
         </section><!-- /#extras -->

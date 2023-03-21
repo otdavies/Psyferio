@@ -14,6 +14,15 @@
                         bannerNav.classList.toggle("open");
                 });
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+                const animatedElements = document.querySelectorAll(".animated-element");
+
+                animatedElements.forEach((element) => {
+                        const randomDelay = -Math.random() * 5; // Adjust the maximum delay (in seconds) as needed
+                        element.style.animationDelay = `${randomDelay}s`;
+                });
+        });
 </script>
 
 <head>
@@ -53,34 +62,42 @@
                 </nav>
         </header><!-- /#banner -->
 <section id="post-grid">
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/neopixel-emulator.html" class="post-tile" style="background-image: url('None')">
-        <div class="post-image" style="background-image: url('None')"></div>
-        <div class="post-title">
-            <h3>NeoPixel-Emulator</h3>
+    <div class="card-container">
+        <a href="/neo-pixel-emulator.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Neo Pixel Emulator</span>
+            </div>
+            <div class="card-image" style="background-image: url('None')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/ganbreeder.html" class="post-tile" style="background-image: url('None')">
-        <div class="post-image" style="background-image: url('None')"></div>
-        <div class="post-title">
-            <h3>ganbreeder</h3>
+    </div>
+    <div class="card-container">
+        <a href="/ganbreeder.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Ganbreeder</span>
+            </div>
+            <div class="card-image" style="background-image: url('None')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/shaderman.html" class="post-tile" style="background-image: url('https://user-images.githubusercontent.com/16706911/33229710-44a67f1e-d1e9-11e7-9ed2-f338625b6c5d.jpg')">
-        <div class="post-image" style="background-image: url('https://user-images.githubusercontent.com/16706911/33229710-44a67f1e-d1e9-11e7-9ed2-f338625b6c5d.jpg')"></div>
-        <div class="post-title">
-            <h3>ShaderMan</h3>
+    </div>
+    <div class="card-container">
+        <a href="/shader-man.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Shader Man</span>
+            </div>
+            <div class="card-image" style="background-image: url('https://user-images.githubusercontent.com/16706911/33229710-44a67f1e-d1e9-11e7-9ed2-f338625b6c5d.jpg')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/rcam.html" class="post-tile" style="background-image: url('https://i.imgur.com/ihhQwGw.gif')">
-        <div class="post-image" style="background-image: url('https://i.imgur.com/ihhQwGw.gif')"></div>
-        <div class="post-title">
-            <h3>Rcam</h3>
+    </div>
+    <div class="card-container">
+        <a href="/rcam.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Rcam</span>
+            </div>
+            <div class="card-image" style="background-image: url('https://i.imgur.com/ihhQwGw.gif')"></div>
         </div>
-    </a>
+    </div>
 </section>
         <section id="extras" class="body">
         </section><!-- /#extras -->

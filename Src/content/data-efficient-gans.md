@@ -1,4 +1,4 @@
-Title: data-efficient-gans
+Title: Data Efficient Gans
 Date: 2022-03-12 08:30:46
 Modified: 2021-03-29 21:21:09
 Category: Other

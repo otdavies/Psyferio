@@ -14,6 +14,15 @@
                         bannerNav.classList.toggle("open");
                 });
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+                const animatedElements = document.querySelectorAll(".animated-element");
+
+                animatedElements.forEach((element) => {
+                        const randomDelay = -Math.random() * 5; // Adjust the maximum delay (in seconds) as needed
+                        element.style.animationDelay = `${randomDelay}s`;
+                });
+        });
 </script>
 
 <head>
@@ -53,27 +62,33 @@
                 </nav>
         </header><!-- /#banner -->
 <section id="post-grid">
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/tiltfivecalibrator.html" class="post-tile" style="background-image: url('https://user-images.githubusercontent.com/3145170/166209581-74589e16-8e4d-40ca-b5dc-be6702989736.jpg')">
-        <div class="post-image" style="background-image: url('https://user-images.githubusercontent.com/3145170/166209581-74589e16-8e4d-40ca-b5dc-be6702989736.jpg')"></div>
-        <div class="post-title">
-            <h3>TiltFiveCalibrator</h3>
+    <div class="card-container">
+        <a href="/tilt-five-calibrator.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Tilt Five Calibrator</span>
+            </div>
+            <div class="card-image" style="background-image: url('https://user-images.githubusercontent.com/3145170/166209581-74589e16-8e4d-40ca-b5dc-be6702989736.jpg')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/rcam.html" class="post-tile" style="background-image: url('https://i.imgur.com/ihhQwGw.gif')">
-        <div class="post-image" style="background-image: url('https://i.imgur.com/ihhQwGw.gif')"></div>
-        <div class="post-title">
-            <h3>Rcam</h3>
+    </div>
+    <div class="card-container">
+        <a href="/rcam.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Rcam</span>
+            </div>
+            <div class="card-image" style="background-image: url('https://i.imgur.com/ihhQwGw.gif')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/unfulfillmentservices.html" class="post-tile" style="background-image: url('None')">
-        <div class="post-image" style="background-image: url('None')"></div>
-        <div class="post-title">
-            <h3>UnfulfillmentServices</h3>
+    </div>
+    <div class="card-container">
+        <a href="/unfulfillment-services.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Unfulfillment Services</span>
+            </div>
+            <div class="card-image" style="background-image: url('None')"></div>
         </div>
-    </a>
+    </div>
 </section>
         <section id="extras" class="body">
         </section><!-- /#extras -->

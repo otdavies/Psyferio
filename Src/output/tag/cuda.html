@@ -14,6 +14,15 @@
                         bannerNav.classList.toggle("open");
                 });
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+                const animatedElements = document.querySelectorAll(".animated-element");
+
+                animatedElements.forEach((element) => {
+                        const randomDelay = -Math.random() * 5; // Adjust the maximum delay (in seconds) as needed
+                        element.style.animationDelay = `${randomDelay}s`;
+                });
+        });
 </script>
 
 <head>
@@ -53,20 +62,24 @@
                 </nav>
         </header><!-- /#banner -->
 <section id="post-grid">
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/swapping-autoencoder-pytorch.html" class="post-tile" style="background-image: url('https://taesung.me/SwappingAutoencoder/index_files/teaser_v3.jpg')">
-        <div class="post-image" style="background-image: url('https://taesung.me/SwappingAutoencoder/index_files/teaser_v3.jpg')"></div>
-        <div class="post-title">
-            <h3>swapping-autoencoder-pytorch</h3>
+    <div class="card-container">
+        <a href="/swapping-autoencoder-pytorch.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Swapping Autoencoder Pytorch</span>
+            </div>
+            <div class="card-image" style="background-image: url('https://taesung.me/SwappingAutoencoder/index_files/teaser_v3.jpg')"></div>
         </div>
-    </a>
- <!-- For Jekyll, use 'site.posts' instead of 'posts' -->
-    <a href="/data-efficient-gans.html" class="post-tile" style="background-image: url('https://colab.research.google.com/gist/zsyzzsoft/5fbb71b9bf9a3217576bebae5de46fc2/data-efficient-gans.ipynb')">
-        <div class="post-image" style="background-image: url('https://colab.research.google.com/gist/zsyzzsoft/5fbb71b9bf9a3217576bebae5de46fc2/data-efficient-gans.ipynb')"></div>
-        <div class="post-title">
-            <h3>data-efficient-gans</h3>
+    </div>
+    <div class="card-container">
+        <a href="/data-efficient-gans.html"></a>
+        <div class="card animated-element">
+            <div class="top-bar">
+                <span class="card-name">Data Efficient Gans</span>
+            </div>
+            <div class="card-image" style="background-image: url('https://colab.research.google.com/gist/zsyzzsoft/5fbb71b9bf9a3217576bebae5de46fc2/data-efficient-gans.ipynb')"></div>
         </div>
-    </a>
+    </div>
 </section>
         <section id="extras" class="body">
         </section><!-- /#extras -->
