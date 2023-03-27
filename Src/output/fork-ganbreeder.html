@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+                var hamburgerMenu = document.querySelector(".hamburger-menu");
+                var bannerNav = document.querySelector("#banner nav");
+
+                hamburgerMenu.addEventListener("click", function () {
+                        bannerNav.classList.toggle("open");
+                });
+
+                hamburgerMenu.addEventListener("touch", function () {
+                        bannerNav.classList.toggle("open");
+                });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+                const animatedElements = document.querySelectorAll(".animated-element");
+
+                animatedElements.forEach((element) => {
+                        const randomDelay = -Math.random() * 5; // Adjust the maximum delay (in seconds) as needed
+                        element.style.animationDelay = `${randomDelay}s`;
+                });
+        });
+</script>
+
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>Fork: Ganbreeder</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta name="description" content="Ganbreeder Ganbreeder is a collaborative art tool for discovering images. Images are 'bred' by having children, mixing with other images and being..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <div><a class="site-title" href="/">Psyfer.io</a></div>
+                <div class="hamburger-menu">
+                        <i class="fas fa-bars"></i>
+                </div>
+                <nav>
+                        <ul>
+                                <li><a
+                                                href="/category/c.html">C#</a></li>
+                                <li><a
+                                                href="/category/dockerfile.html">Dockerfile</a></li>
+                                <li class="active" ><a
+                                                href="/category/other.html">Other</a></li>
+                                <li><a
+                                                href="/category/python.html">Python</a></li>
+                                <li><a
+                                                href="/category/rust.html">Rust</a></li>
+                                <li><a
+                                                href="/category/shaderlab.html">ShaderLab</a></li>
+                                <li><a
+                                                href="/category/svelte.html">Svelte</a></li>
+                        </ul>
+                </nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <!-- <h1 class="entry-title">
+        <a href="/fork-ganbreeder.html" rel="bookmark" title="Permalink to Fork: Ganbreeder">Fork: Ganbreeder</a>
+      </h1>
+ -->
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-02-11T04:03:20-08:00">
+                Published: Tue 11 February 2020
+        </abbr>
+		<br />
+        <abbr class="modified" title="2020-02-11T04:03:22-08:00">
+                Updated: Tue 11 February 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/oliver-davies.html">Oliver Davies</a>
+        </address>
+<p>In <a href="/category/other.html">Other</a>.</p>
+<p>tags: <a href="/tag/javascript.html">JavaScript</a> <a href="/tag/html.html">HTML</a> <a href="/tag/python.html">Python</a> <a href="/tag/css.html">CSS</a> <a href="/tag/dockerfile.html">Dockerfile</a> </p>
+</footer><!-- /.post-info -->      <h1>Ganbreeder</h1>
+<p><a href="https://ganbreeder.app">Ganbreeder</a> is a collaborative art tool for discovering images. Images are 'bred' by having children, mixing with other images and being shared via their URL. This is an experiment in using breeding + sharing as methods of exploring high complexity spaces. GAN's are simply the engine enabling this. Ganbreeder is very similar to, and named after, Picbreeder. It is also inspired by an earlier project of mine <a href="http://www.joelsimon.net/facebook-graffiti.html">Facebook Graffiti</a> which demonstrated the creative capacity of crowds.Ganbreeder uses <a href="https://tfhub.dev/deepmind/biggan-128/2">these</a> models.</p>
+<p>This code was made in a weekend and hasn't been cleaned up or documented yet. There are also improvements to make to scalability.</p>
+<p>Pull request are more than welcome :)</p>
+<h2>How to use</h2>
+<h3>Prerequisites</h3>
+<ul>
+<li>Install Python 3 + pip (for the GAN server)</li>
+<li>Install NodeJS + npm (for the frontend)</li>
+<li>Install a PostgreSQL server</li>
+</ul>
+<h3>Launch the GAN server</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>gan_server
+<span class="c1"># Install dependencies</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<span class="c1"># And go...</span>
+python<span class="w"> </span>server.py
+</code></pre></div>
+
+<p>Your GAN server is available at http://localhost:5000/</p>
+<h3>Configure the frontend</h3>
+<p>For quick hacking, if you have Docker at your disposal, you can spawn a PostgreSQL database like so:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">5432</span>:5432<span class="w"> </span>--name<span class="w"> </span>ganbreederpostgres<span class="w"> </span>-e<span class="w"> </span><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>ganbreederpostgres<span class="w"> </span>-d<span class="w"> </span>postgres
+</code></pre></div>
+
+<p>With that simple scenario, the database and user would be <code>postgres</code> and the password would be <code>ganbreederpostgres</code></p>
+<p>Copy the file <code>server/example_secrets.js</code> to <code>secrets.js</code> and modify it to fit your environment.</p>
+<h3>Launch the frontend</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>server
+npm<span class="w"> </span>install
+<span class="c1"># Create the database structure</span>
+node_modules/knex/bin/cli.js<span class="w"> </span>migrate:latest
+<span class="c1"># Generate the first images</span>
+node<span class="w"> </span>make_randoms.js
+<span class="c1"># Generate a cache of image keys for the front page (do it every time you want to update the front page)</span>
+node<span class="w"> </span>updatecache.js
+<span class="c1"># And go...</span>
+node<span class="w"> </span>server.js
+</code></pre></div>
+
+<p>Your frontend is available at http://localhost:8888/</p>
+<h3>docker-compose setup</h3>
+<p>Make sure that <a href="https://docs.docker.com/install/">docker</a> and <a href="https://docs.docker.com/compose/install/">docker-compose</a> are installed.</p>
+<p>Start the containers:</p>
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up
+</code></pre></div>
+
+<p>Your frontend is available at http://localhost:8888/, backend at http://localhost:5000/.
+Initial backend setup can take few minutes.</p>
+<p>If this is the first time you are running the project you might want to generate some random images:</p>
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>server<span class="w"> </span>node<span class="w"> </span>make_randoms.js
+</code></pre></div>
+
+<p>Restart only frontend server (to avoid backend initialization wait):</p>
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>server
+</code></pre></div>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                        Psyfer.io by Oliver Davies
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+
+</html>

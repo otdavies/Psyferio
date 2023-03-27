@@ -1,4 +1,4 @@
-Title: Stable Diffusion Webui
+Title: Fork: Stable Diffusion Webui
 Date: 2022-11-30 04:39:12
 Modified: 2022-11-30 04:37:59
 Category: Other

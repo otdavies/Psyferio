@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+                var hamburgerMenu = document.querySelector(".hamburger-menu");
+                var bannerNav = document.querySelector("#banner nav");
+
+                hamburgerMenu.addEventListener("click", function () {
+                        bannerNav.classList.toggle("open");
+                });
+
+                hamburgerMenu.addEventListener("touch", function () {
+                        bannerNav.classList.toggle("open");
+                });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+                const animatedElements = document.querySelectorAll(".animated-element");
+
+                animatedElements.forEach((element) => {
+                        const randomDelay = -Math.random() * 5; // Adjust the maximum delay (in seconds) as needed
+                        element.style.animationDelay = `${randomDelay}s`;
+                });
+        });
+</script>
+
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>Fork: Beautiful Jekyll</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta name="description" content="Beautiful Jekyll By Dean Attali · Demo Beautiful Jekyll is a ready-to-use template to help you create a beautiful website quickly. Perfect for..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <div><a class="site-title" href="/">Psyfer.io</a></div>
+                <div class="hamburger-menu">
+                        <i class="fas fa-bars"></i>
+                </div>
+                <nav>
+                        <ul>
+                                <li><a
+                                                href="/category/c.html">C#</a></li>
+                                <li><a
+                                                href="/category/dockerfile.html">Dockerfile</a></li>
+                                <li class="active" ><a
+                                                href="/category/other.html">Other</a></li>
+                                <li><a
+                                                href="/category/python.html">Python</a></li>
+                                <li><a
+                                                href="/category/rust.html">Rust</a></li>
+                                <li><a
+                                                href="/category/shaderlab.html">ShaderLab</a></li>
+                                <li><a
+                                                href="/category/svelte.html">Svelte</a></li>
+                        </ul>
+                </nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <!-- <h1 class="entry-title">
+        <a href="/fork-beautiful-jekyll.html" rel="bookmark" title="Permalink to Fork: Beautiful Jekyll">Fork: Beautiful Jekyll</a>
+      </h1>
+ -->
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2021-08-06T04:06:59-07:00">
+                Published: Fri 06 August 2021
+        </abbr>
+		<br />
+        <abbr class="modified" title="2021-10-18T07:13:21-07:00">
+                Updated: Mon 18 October 2021
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/oliver-davies.html">Oliver Davies</a>
+        </address>
+<p>In <a href="/category/other.html">Other</a>.</p>
+<p>tags: <a href="/tag/html.html">HTML</a> <a href="/tag/css.html">CSS</a> <a href="/tag/javascript.html">JavaScript</a> <a href="/tag/ruby.html">Ruby</a> </p>
+</footer><!-- /.post-info -->      <p><a href="https://beautifuljekyll.com/plans/"><img alt="" src="https://i.imgur.com/zNBkzj1.png"></a></p>
+<h1>Beautiful Jekyll</h1>
+<p><a href="https://xscode.com/daattali/beautiful-jekyll"><img alt="xscode" src="https://img.shields.io/badge/Available%20on-xs%3Acode-blue?style=?style=plastic&amp;logo=appveyor&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF////////VXz1bAAAAAJ0Uk5T/wDltzBKAAAAlUlEQVR42uzXSwqAMAwE0Mn9L+3Ggtgkk35QwcnSJo9S+yGwM9DCooCbgn4YrJ4CIPUcQF7/XSBbx2TEz4sAZ2q1RAECBAiYBlCtvwN+KiYAlG7UDGj59MViT9hOwEqAhYCtAsUZvL6I6W8c2wcbd+LIWSCHSTeSAAECngN4xxIDSK9f4B9t377Wd7H5Nt7/Xz8eAgwAvesLRjYYPuUAAAAASUVORK5CYII="></a>
+<a href="https://badge.fury.io/rb/beautiful-jekyll-theme"><img alt="Gem Version" src="https://badge.fury.io/rb/beautiful-jekyll-theme.svg"></a></p>
+<blockquote>
+<p>By <a href="https://deanattali.com">Dean Attali</a> &middot; <a href="https://beautifuljekyll.com/">Demo</a></p>
+</blockquote>
+<p><strong>Beautiful Jekyll</strong> is a ready-to-use template to help you create a beautiful website quickly. Perfect for personal sites, blogs, or simple project websites.  <a href="https://beautifuljekyll.com">Check out a demo</a> of what you'll get after just two minutes.  You can also look at <a href="https://deanattali.com">my personal website</a> or <a href="https://attalitech.com">my consulting website</a> to see it in use, or see <a href="http://beautifuljekyll.com/examples">examples of websites</a> other people created using this theme.</p>
+<p><strong>If you enjoy Beautiful Jekyll, please consider <a href="https://github.com/sponsors/daattali">supporting me</a> for over 5 years of development (and to unlock rewards!) ❤</strong></p>
+<h2>Table of contents</h2>
+<ul>
+<li><a href="#features">Features</a></li>
+<li><a href="#sponsors">Sponsors 🏆</a></li>
+<li><a href="#build-your-website-in-3-steps"><strong>Build your website in 3 steps</strong></a></li>
+<li><a href="#plans">Plans</a></li>
+<li><a href="#add-your-own-content">Add your own content</a></li>
+<li><a href="#customizing-parameters-for-each-page">Customizing parameters for each page</a></li>
+<li><a href="#supported-parameters">Supported parameters</a></li>
+<li><a href="#featured-users-success-stories">Featured users (success stories!)</a></li>
+<li><a href="#faq-and-support">FAQ and support</a></li>
+<li><a href="#credits">Credits and contributions</a></li>
+</ul>
+<h1>Features</h1>
+<p><strong>Check out <a href="https://beautifuljekyll.com/updates/"><em>What's New?</em></a> to see the latest features.</strong></p>
+<ul>
+<li><strong>SIMPLE</strong>: The primary goal of Beautiful Jekyll is to allow literally <em>anyone</em> to create a website in a few minutes.</li>
+<li><strong>Modern</strong>: Uses the latest best practices and technologies to achieve nearly perfect scores on Google Chrome's Audit.</li>
+<li><strong>Mobile-first</strong>: Designed to look great on both large-screen and small-screen (mobile) devices.</li>
+<li><strong>Highly customizable</strong>: Many personalization settings such as changing the background colour/image, adding a logo.</li>
+<li><strong>Flexible usage</strong>: Use Beautiful Jekyll directly on GitHub or via a Ruby gem - choose the best <a href="#build-your-website-in-3-steps">development method</a> for you.</li>
+<li><strong>Battle-tested</strong>: By using Beautiful Jekyll, you'll be joining 50,000+ users enjoying this theme since 2015.</li>
+<li><strong>SEO and social media support</strong>: Customize how your site looks on Google and when shared on social media.</li>
+<li><strong>Comments support</strong>: Add comments to any page using either <a href="https://disqus.com/">Disqus</a>, <a href="https://developers.facebook.com/docs/plugins/comments">Facebook comments</a>, <a href="https://utteranc.es/">Utterances</a>, or <a href="https://staticman.net">Staticman</a>.</li>
+<li><strong>Tags</strong>: Any blog post can be tagged with keywords, and an index page is automatically generated.</li>
+<li><strong>Analytics</strong>: Easily integrate Google Analytics, or other analytics platforms, to track visits to your website.</li>
+<li><strong>Search</strong>: Let users easily find any page using a Search button in the navigation bar.</li>
+<li><strong>Photos support</strong>: Any page can have a full-width cover photo and thumbnail.</li>
+<li><strong>RSS</strong>: An RSS feed is automatically created, so you can even host a podcast easily with Beautiful Jekyll.</li>
+</ul>
+<h2 id="sponsors">Sponsors 🏆</h2>
+
+<p>Developing and maintaining Beautiful Jekyll takes a lot of time and effort - thank you to anyone who helps fund this effort!</p>
+<ul>
+<li><a href="https://mja00.dev/">Matt Artist</a></li>
+<li><a href="https://hyperiongray.com">_hyp3ri0n</a></li>
+</ul>
+<p><a href="https://github.com/sponsors/daattali/sponsorships?tier_id=39856">Become a sponsor for Beautiful Jekyll and unlock special rewards!</a></p>
+<h1>Build your website in 3 steps</h1>
+<p>There's a very easy way to use this theme, and there's a hard way. For most people (including myself!), the easy route is recommended. If you're an advanced user and want to tinker with the hard way (using ruby gems), then <a href="https://github.com/daattali/beautiful-jekyll#the-hard-way-using-ruby-gems">skip the easy way</a> if you know what you're doing.</p>
+<h2>The easy way (recommended!)</h2>
+<p>Getting started is <em>literally</em> as easy as 1-2-3 :smile:</p>
+<p>Scroll down to see the steps involved, but here is a 40-second video just as a reference as you work through the steps. If you don't already have a <a href="https://github.com/join">GitHub account</a>, you'll need to sign up.</p>
+<p><img alt="Installation steps" src="assets/img/install-steps.gif"></p>
+<h3>1. Fork this project</h3>
+<p>Fork this project by clicking the <strong><em>Fork</em></strong> button at the top right corner of this page. Forking means that you now copied this entire project and all the files into your account.</p>
+<h3>2. Rename the project to <code>&lt;yourusername&gt;.github.io</code></h3>
+<p>Click on <strong><em>Settings</em></strong> at the top (the cog icon) and on that page you'll have an option to rename the project (<em>Repository name</em>). This will create a website with the <strong>Beautiful Jekyll</strong> template that will be available at <code>https://&lt;yourusername&gt;.github.io</code> within a couple minutes (check out the <a href="https://beautifuljekyll.com/faq/#custom-domain">FAQ</a> if you want to use a different project name). If after a few minutes your website is still not ready, try making any edit to any file, just to force GitHub to re-build your site.</p>
+<h3>3. Customize your website settings</h3>
+<p>Edit the <code>_config.yml</code> file to change any settings you want. To edit the file, click on it to view the file and then click on the pencil icon to edit it (watch the video tutorial above if you're confused).  The settings in the file are self-explanatory and there are comments inside the file to help you understand what each setting does. Any line that begins with a hashtag (<code>#</code>) is a comment, and the other lines are actual settings.</p>
+<p>Note that in the video above only one setting in the <code>_config.yml</code> file is edited. <strong>You should actually go through the rest of the settings as well. Don't be lazy, go through all the settings!</strong></p>
+<h3>4. Congratulations! You have a website!</h3>
+<p>After you save your changes to the <code>_config.yml</code> file (by clicking on <em>Commit changes</em> as the video tutorial shows), your website should be ready in a minute or two at <code>https://&lt;yourusername&gt;.github.io</code>. Every time you make a change to any file, your website will get rebuilt and should be updated in about a minute or so. Your website will be initialized with several sample blog posts and a couple other pages.</p>
+<p>Note that this was the easy way to <em>create</em> your website, but it does come at a cost: when Beautiful Jekyll gains new features in the future, <em>updating</em> your website to include all the latest features is cumbersome. See the <a href="https://beautifuljekyll.com/faq/#updating">FAQ</a> for help with upgrading in the future.</p>
+<h2>The hard way (using ruby gems)</h2>
+<p>If you followed the easy method above, then you already have your site and you can skip this section! If you want to use Beautiful Jekyll as a ruby gem instead, follow the <a href="https://beautifuljekyll.com/getstarted/#install-steps-hard">advanced installation instructions</a>. This is harder to set up initially, but it makes it super easy to keep your site up to date with Beautiful Jekyll when more features are added in the future.</p>
+<h1>Plans</h1>
+<p>Beautiful Jekyll is, and always will be, free. But if you want to remove the Beautiful Jekyll ad from your website, use a Dark Mode skin, unlock other special rewards, or simply support the development efforts, <a href="https://beautifuljekyll.com/plans">check out the different plans</a>.</p>
+<h1>Add your own content</h1>
+<p>To add pages to your site, you can either write a markdown file (<code>.md</code>) or you can write an HTML file. It's much easier to write markdown than HTML, so that's the recommended approach (<a href="https://markdowntutorial.com/">here's a great tutorial</a> if you need to learn markdown in 5 minutes).</p>
+<p>To see an example of a markdown file, click on any file that ends in <code>.md</code>, for example <a href="./aboutme.md"><code>aboutme.md</code></a>. On that page you can see some nicely formatted text (there's a word in bold, a link, a few bullet points), and if you click on the pencil icon to edit the file, you'll see the markdown code that generated the pretty text. Very easy!</p>
+<p>In contrast, look at <a href="./tags.html"><code>tags.html</code></a>. That's how your write HTML - not as pretty. So stick with markdown if you don't know HTML.</p>
+<p>Any markdown or HTML file that you create will be available on your website under <code>https://&lt;yourusername&gt;.github.io/&lt;pagename&gt;</code>. For example, if you create a file <code>about.md</code> (or <code>about.html</code>) then it'll exist at <code>https://&lt;yourusername&gt;.github.io/about</code>.</p>
+<p>Files you create inside the <a href="./_posts"><code>_posts</code></a> directory will be treated as blog entries. You can look at the existing files there to get an idea of how to write blog posts. Note the format of the blog post files - they must follow the naming convention of <code>YEAR-MONTH-DAY-title.md</code>. After you successfully add your own post, you can delete the existing files inside <a href="./_posts"><code>_posts</code></a> to remove the sample posts, as those are just demo posts to help you learn.</p>
+<h1>Customizing parameters for each page</h1>
+<p><strong>One last important thing</strong>: In order to have your new pages use this template and not just be plain HTML pages, <strong>you must add <a href="https://jekyllrb.com/docs/front-matter/">YAML front matter</a> to the top of each page</strong>:</p>
+<div class="highlight"><pre><span></span><code>---
+---
+</code></pre></div>
+
+<p>This is where you'll be able to give each page some extra parameters (such as a title, a subtitle, an image, etc - <a href="#supported-parameters">below is a list of all parameters</a>). Add any parameters you want between these two dashed lines, for example:</p>
+<div class="highlight"><pre><span></span><code>---
+title: Contact me
+subtitle: Here you&#39;ll find all the ways to get in touch with me
+---
+</code></pre></div>
+
+<p>If you don't want to use any parameters on a page, you still need to use the two dashed lines. If you don't, then your file will be shown as-is without the Beautiful Jekyll template.</p>
+<p>You can look at the top of <a href="https://raw.githubusercontent.com/daattali/beautiful-jekyll/master/aboutme.md"><code>aboutme.md</code></a> as an example.</p>
+<p><strong>Important takeaway: ALWAYS add the YAML front matter, which is two lines of three dashes, to EVERY page. If you have any parameters, they go between the two lines.</strong></p>
+<h1>Supported parameters</h1>
+<p>Below is a list of the parameters that Beautiful Jekyll supports (any of these can be added to the YAML front matter of any page). Remember to also look in the <code>_config.yml</code> file to see additional site-wide settings.</p>
+<h2>Main parameters</h2>
+<p>These are the basic YAML parameters that you are most likely to use on most pages.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td>Page or blog post title</td>
+</tr>
+<tr>
+<td>subtitle</td>
+<td>Short description of page or blog post that goes under the title</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>List of tags to categorize the post. Separate the tags with commas and place them inside square brackets. Example: <code>[personal, analysis, finance]</code></td>
+</tr>
+<tr>
+<td>cover-img</td>
+<td>Include a large full-width image at the top of the page. You can either provide the path to a single image (eg. <code>"/path/to/img"</code>) , or a list of images to cycle through (eg. <code>["/path/img1", "/path/img2"]</code>). If you want to add a caption to an image, then you must use the list notation (use <code>[]</code> even if you have only one image), and each image should be provided as <code>"/path/to/img" : "Caption of image"</code>.</td>
+</tr>
+<tr>
+<td>thumbnail-img</td>
+<td>For blog posts, if you want to add a thumbnail that will show up in the feed, use <code>thumbnail-img: /path/to/image</code>. If no thumbnail is provided, then <code>cover-img</code> will be used as the thumbnail. You can use <code>thumbnail-img: ""</code> to disable a thumbnail.</td>
+</tr>
+<tr>
+<td>comments</td>
+<td>If you want do add comments to a specific page, use <code>comments: true</code>. Comments only work if you enable one of the comments providers (Facebook, disqus, staticman, utterances) in <code>_config.yml</code> file. Comments are automatically enabled on blog posts but not on other pages; to turn comments off for a specific post, use <code>comments: false</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2>Parameters for SEO and social media sharing</h2>
+<p>These parameters let you control what information shows up when a page is shown in a search engine (such as Google) or gets shared on social media (such as Twitter/Facebook).</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>share-title</td>
+<td>A title for the page. If not provided, then <code>title</code> will be used, and if that's missing then the site title (from <code>_config.yml</code>) is used.</td>
+</tr>
+<tr>
+<td>share-description</td>
+<td>A brief description of the page. If not provided, then <code>subtitle</code> will be used, and if that's missing then an excerpt from the page content is used.</td>
+</tr>
+<tr>
+<td>share-img</td>
+<td>The image to show. If not provided, then <code>cover-img</code> or <code>thumbnail-img</code> will be used if one of them is provided.</td>
+</tr>
+</tbody>
+</table>
+<h2>Less commonly used parameters</h2>
+<p>These are parameters that you may not use often, but can come in handy sometimes.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>readtime</td>
+<td>If you want a post to show how many minutes it will take to read it, use <code>readtime: true</code>.</td>
+</tr>
+<tr>
+<td>show-avatar</td>
+<td>If you have an avatar configured in the <code>_config.yml</code> but you want to turn it off on a specific page, use <code>show-avatar: false</code>.</td>
+</tr>
+<tr>
+<td>social-share</td>
+<td>By default, every blog post has buttons to share the page on social media. If you want to turn this feature off, use <code>social-share: false</code>.</td>
+</tr>
+<tr>
+<td>nav-short</td>
+<td>By default, the navigation bar gets shorter after scrolling down the page. If you want the navigation bar to always be short on a certain page, use <code>nav-short: true</code></td>
+</tr>
+<tr>
+<td>gh-repo</td>
+<td>If you want to show GitHub buttons at the top of a post, this sets the GitHub repo name (eg. <code>daattali/beautiful-jekyll</code>). You must also use the <code>gh-badge</code> parameter to specify what buttons to show.</td>
+</tr>
+<tr>
+<td>gh-badge</td>
+<td>Select which GitHub buttons to display. Available options are: [star, watch, fork, follow]. You must also use the <code>gh-repo</code> parameter to specify the GitHub repo.</td>
+</tr>
+<tr>
+<td>last-updated</td>
+<td>If you want to show that a blog post was updated after it was originally released, you can specify an "Updated on" date.</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>What type of page this is (default is <code>post</code> for blog posts and <code>page</code> for other pages). See <em>Page types</em> section below for more information.</td>
+</tr>
+</tbody>
+</table>
+<h2>Advanced parameters</h2>
+<p>These are advanced parameters that are only useful for people who need very fine control over their website.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>footer-extra</td>
+<td>If you want to include extra content below the social media icons in the footer, create an HTML file in the <code>_includes/</code> folder (for example <code>_includes/myinfo.html</code>) and set <code>footer-extra</code> to the name of the file (for example <code>footer-extra: myinfo.html</code>). Accepts a single file or a list of files.</td>
+</tr>
+<tr>
+<td>before-content</td>
+<td>Similar to <code>footer-extra</code>, but used for including HTML before the main content of the page (below the title).</td>
+</tr>
+<tr>
+<td>after-content</td>
+<td>Similar to <code>footer-extra</code>, but used for including HTML after the main content of the page (above the footer).</td>
+</tr>
+<tr>
+<td>head-extra</td>
+<td>Similar to <code>footer-extra</code>, but used if you have any HTML code that needs to be included in the <code>&lt;head&gt;</code> tag of the page.</td>
+</tr>
+<tr>
+<td>language</td>
+<td>HTML language code to be set on the page's &lt;html&gt; element.</td>
+</tr>
+<tr>
+<td>full-width</td>
+<td>By default, page content is constrained to a standard width. Use <code>full-width: true</code> to allow the content to span the entire width of the window.</td>
+</tr>
+<tr>
+<td>js</td>
+<td>List of local JavaScript files to include in the page (eg. <code>/assets/js/mypage.js</code>)</td>
+</tr>
+<tr>
+<td>ext-js</td>
+<td>List of external JavaScript files to include in the page (eg. <code>//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js</code>). External JavaScript files that support <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">Subresource Integrity (SRI)</a> can be specified using the <code>href</code> and <code>sri</code> parameters eg.<br/><code>href: "//code.jquery.com/jquery-3.1.1.min.js"</code><br/><code>sri: "sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="</code></td>
+</tr>
+<tr>
+<td>css</td>
+<td>List of local CSS files to include in the page</td>
+</tr>
+<tr>
+<td>ext-css</td>
+<td>List of external CSS files to include in the page. External CSS files using SRI (see <code>ext-js</code> parameter) are also supported.</td>
+</tr>
+</tbody>
+</table>
+<h2>Page types</h2>
+<ul>
+<li><strong>post</strong> - To write a blog post, add a markdown or HTML file in the <code>_posts</code> folder. As long as you give it YAML front matter (the two lines of three dashes), it will automatically be rendered like a blog post. Look at the existing blog post files to see examples of how to use YAML parameters in blog posts.</li>
+<li><strong>page</strong> - Any page outside the <code>_posts</code> folder that uses YAML front matter will have a very similar style to blog posts.</li>
+<li><strong>home</strong> - The home layout is meant to act as the homepage of your blog posts - it will display all your blog posts, sorted from newest to oldest. A file using the <code>home</code> layout must be named <code>index.html</code> (not <code>index.md</code> or anything else!).</li>
+<li><strong>minimal</strong> - If you want to create a page with minimal styling (ie. without the bulky navigation bar and footer), assign <code>layout: minimal</code> to the YAML front matter.</li>
+<li>If you want to completely bypass the template engine and just write your own HTML page, simply omit the YAML front matter. Only do this if you know how to write HTML!</li>
+</ul>
+<h1>Featured users (success stories!)</h1>
+<p>Visit the <a href="http://beautifuljekyll.com/examples">Official website</a> to see sample websites using Beautiful Jekyll.</p>
+<p>If you'd like to showcase yourself and join this list, <a href="https://github.com/sponsors/daattali/sponsorships?&amp;tier_id=7362">upgrading to the Individual plan</a> will give you that publicity plus some other rewards!</p>
+<h1>FAQ and support</h1>
+<p>Visit the <a href="https://beautifuljekyll.com/faq">official FAQ page</a> for answers to commonly asked questions.</p>
+<p>Beautiful Jekyll is used by 50,000+ people with wildly varying degrees of web skills, so it's impossible to answer all the questions that may arise. For any question that's not specifically related to Beautiful Jekyll and is more about Jekyll or web development in general, the answer can often be found on Google, in the <a href="https://jekyllrb.com/">Jekyll documentation</a>, or on the <a href="https://talk.jekyllrb.com/">Jekyll support forum</a>.</p>
+<p>To receive support, select one of the <a href="https://beautifuljekyll.com/plans">different plans</a> Beautiful Jekyll offers. You can also use the <a href="https://github.com/daattali/beautiful-jekyll/discussions">Discussions</a> area to try to get help from the community.</p>
+<h1>Contributions</h1>
+<p>Thank you to <a href="https://github.com/daattali/beautiful-jekyll/graphs/contributors">all past contributors</a>. If you find any problems or would like to contribute in any way, feel free to create a pull request/open an issue/send me a message.</p>
+<p>You can also contribute by becoming an <a href="https://github.com/sponsors/daattali/sponsorships?tier_id=39856">official sponsor</a> to help keep Beautiful Jekyll well-maintained.</p>
+<h1>Credits</h1>
+<p>This template was not made <em>entirely</em> from scratch. I'd like to give special thanks to <a href="https://github.com/barryclark/jekyll-now">Jekyll Now</a> and <a href="https://github.com/IronSummitMedia/startbootstrap-clean-blog">Bootstrap Clean Blog</a>, from whom I've taken several ideas initially.</p>
+<p>I'd also like to thank <a href="https://drjekyllthemes.github.io/">Dr. Jekyll's Themes</a>, <a href="http://jekyllthemes.org/">Jekyll Themes</a>, and another <a href="http://jekyllrc.github.io/jekyllthemes/">Jekyll Themes</a> for featuring Beautiful Jekyll in their Jekyll theme directories.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                        Psyfer.io by Oliver Davies
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+
+</html>

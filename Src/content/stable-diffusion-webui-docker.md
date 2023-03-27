@@ -1,4 +1,4 @@
-Title: Stable Diffusion Webui Docker
+Title: Fork: Stable Diffusion Webui Docker
 Date: 2022-10-11 10:34:13
 Modified: 2023-01-27 10:48:46
 Category: Dockerfile

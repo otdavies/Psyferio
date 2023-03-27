@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+                var hamburgerMenu = document.querySelector(".hamburger-menu");
+                var bannerNav = document.querySelector("#banner nav");
+
+                hamburgerMenu.addEventListener("click", function () {
+                        bannerNav.classList.toggle("open");
+                });
+
+                hamburgerMenu.addEventListener("touch", function () {
+                        bannerNav.classList.toggle("open");
+                });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+                const animatedElements = document.querySelectorAll(".animated-element");
+
+                animatedElements.forEach((element) => {
+                        const randomDelay = -Math.random() * 5; // Adjust the maximum delay (in seconds) as needed
+                        element.style.animationDelay = `${randomDelay}s`;
+                });
+        });
+</script>
+
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>Fork: Stable Diffusion Webui</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta name="description" content="Stable Diffusion web UI A browser interface based on Gradio library for Stable Diffusion. Check the custom scripts wiki page for extra scripts..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <div><a class="site-title" href="/">Psyfer.io</a></div>
+                <div class="hamburger-menu">
+                        <i class="fas fa-bars"></i>
+                </div>
+                <nav>
+                        <ul>
+                                <li><a
+                                                href="/category/c.html">C#</a></li>
+                                <li><a
+                                                href="/category/dockerfile.html">Dockerfile</a></li>
+                                <li class="active" ><a
+                                                href="/category/other.html">Other</a></li>
+                                <li><a
+                                                href="/category/python.html">Python</a></li>
+                                <li><a
+                                                href="/category/rust.html">Rust</a></li>
+                                <li><a
+                                                href="/category/shaderlab.html">ShaderLab</a></li>
+                                <li><a
+                                                href="/category/svelte.html">Svelte</a></li>
+                        </ul>
+                </nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <!-- <h1 class="entry-title">
+        <a href="/fork-stable-diffusion-webui.html" rel="bookmark" title="Permalink to Fork: Stable Diffusion Webui">Fork: Stable Diffusion Webui</a>
+      </h1>
+ -->
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2022-11-30T04:39:12-08:00">
+                Published: Wed 30 November 2022
+        </abbr>
+		<br />
+        <abbr class="modified" title="2022-11-30T04:37:59-08:00">
+                Updated: Wed 30 November 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/oliver-davies.html">Oliver Davies</a>
+        </address>
+<p>In <a href="/category/other.html">Other</a>.</p>
+<p>tags: <a href="/tag/python.html">Python</a> <a href="/tag/javascript.html">JavaScript</a> <a href="/tag/css.html">CSS</a> <a href="/tag/shell.html">Shell</a> <a href="/tag/batchfile.html">Batchfile</a> </p>
+</footer><!-- /.post-info -->      <h1>Stable Diffusion web UI</h1>
+<p>A browser interface based on Gradio library for Stable Diffusion.</p>
+<p><img alt="" src="txt2img_Screenshot.png"></p>
+<p>Check the <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Custom-Scripts">custom scripts</a> wiki page for extra scripts developed by users.</p>
+<h2>Features</h2>
+<p><a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features">Detailed feature showcase with images</a>:</p>
+<ul>
+<li>
+<p>Original txt2img and img2img modes</p>
+</li>
+<li>
+<p>One click install and run script (but you still must install python and git)</p>
+</li>
+<li>
+<p>Outpainting</p>
+</li>
+<li>
+<p>Inpainting</p>
+</li>
+<li>
+<p>Color Sketch</p>
+</li>
+<li>
+<p>Prompt Matrix</p>
+</li>
+<li>
+<p>Stable Diffusion Upscale</p>
+</li>
+<li>
+<p>Attention, specify parts of text that the model should pay more attention to</p>
+<ul>
+<li>
+<p>a man in a ((tuxedo)) - will pay more attention to tuxedo</p>
+</li>
+<li>
+<p>a man in a (tuxedo:1.21) - alternative syntax</p>
+</li>
+<li>
+<p>select text and press ctrl+up or ctrl+down to automatically adjust attention to selected text (code contributed by anonymous user)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Loopback, run img2img processing multiple times</p>
+</li>
+<li>
+<p>X/Y plot, a way to draw a 2 dimensional plot of images with different parameters</p>
+</li>
+<li>
+<p>Textual Inversion</p>
+<ul>
+<li>
+<p>have as many embeddings as you want and use any names you like for them</p>
+</li>
+<li>
+<p>use multiple embeddings with different numbers of vectors per token</p>
+</li>
+<li>
+<p>works with half precision floating point numbers</p>
+</li>
+<li>
+<p>train embeddings on 8GB (also reports of 6GB working)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Extras tab with:</p>
+<ul>
+<li>
+<p>GFPGAN, neural network that fixes faces</p>
+</li>
+<li>
+<p>CodeFormer, face restoration tool as an alternative to GFPGAN</p>
+</li>
+<li>
+<p>RealESRGAN, neural network upscaler</p>
+</li>
+<li>
+<p>ESRGAN, neural network upscaler with a lot of third party models</p>
+</li>
+<li>
+<p>SwinIR and Swin2SR(<a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/pull/2092">see here</a>), neural network upscalers</p>
+</li>
+<li>
+<p>LDSR, Latent diffusion super resolution upscaling</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Resizing aspect ratio options</p>
+</li>
+<li>
+<p>Sampling method selection</p>
+<ul>
+<li>
+<p>Adjust sampler eta values (noise multiplier)</p>
+</li>
+<li>
+<p>More advanced noise setting options</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Interrupt processing at any time</p>
+</li>
+<li>
+<p>4GB video card support (also reports of 2GB working)</p>
+</li>
+<li>
+<p>Correct seeds for batches</p>
+</li>
+<li>
+<p>Live prompt token length validation</p>
+</li>
+<li>
+<p>Generation parameters</p>
+<ul>
+<li>
+<p>parameters you used to generate images are saved with that image</p>
+</li>
+<li>
+<p>in PNG chunks for PNG, in EXIF for JPEG</p>
+</li>
+<li>
+<p>can drag the image to PNG info tab to restore generation parameters and automatically copy them into UI</p>
+</li>
+<li>
+<p>can be disabled in settings</p>
+</li>
+<li>
+<p>drag and drop an image/text-parameters to promptbox</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Read Generation Parameters Button, loads parameters in promptbox to UI</p>
+</li>
+<li>
+<p>Settings page</p>
+</li>
+<li>
+<p>Running arbitrary python code from UI (must run with --allow-code to enable)</p>
+</li>
+<li>
+<p>Mouseover hints for most UI elements</p>
+</li>
+<li>
+<p>Possible to change defaults/mix/max/step values for UI elements via text config</p>
+</li>
+<li>
+<p>Random artist button</p>
+</li>
+<li>
+<p>Tiling support, a checkbox to create images that can be tiled like textures</p>
+</li>
+<li>
+<p>Progress bar and live image generation preview</p>
+</li>
+<li>
+<p>Negative prompt, an extra text field that allows you to list what you don't want to see in generated image</p>
+</li>
+<li>
+<p>Styles, a way to save part of prompt and easily apply them via dropdown later</p>
+</li>
+<li>
+<p>Variations, a way to generate same image but with tiny differences</p>
+</li>
+<li>
+<p>Seed resizing, a way to generate same image but at slightly different resolution</p>
+</li>
+<li>
+<p>CLIP interrogator, a button that tries to guess prompt from an image</p>
+</li>
+<li>
+<p>Prompt Editing, a way to change prompt mid-generation, say to start making a watermelon and switch to anime girl midway</p>
+</li>
+<li>
+<p>Batch Processing, process a group of files using img2img</p>
+</li>
+<li>
+<p>Img2img Alternative, reverse Euler method of cross attention control</p>
+</li>
+<li>
+<p>Highres Fix, a convenience option to produce high resolution pictures in one click without usual distortions</p>
+</li>
+<li>
+<p>Reloading checkpoints on the fly</p>
+</li>
+<li>
+<p>Checkpoint Merger, a tab that allows you to merge up to 3 checkpoints into one</p>
+</li>
+<li>
+<p><a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Custom-Scripts">Custom scripts</a> with many extensions from community</p>
+</li>
+<li>
+<p><a href="https://energy-based-model.github.io/Compositional-Visual-Generation-with-Composable-Diffusion-Models/">Composable-Diffusion</a>, a way to use multiple prompts at once</p>
+<ul>
+<li>
+<p>separate prompts using uppercase <code>AND</code></p>
+</li>
+<li>
+<p>also supports weights for prompts: <code>a cat :1.2 AND a dog AND a penguin :2.2</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>No token limit for prompts (original stable diffusion lets you use up to 75 tokens)</p>
+</li>
+<li>
+<p>DeepDanbooru integration, creates danbooru style tags for anime prompts</p>
+</li>
+<li>
+<p><a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Xformers">xformers</a>, major speed increase for select cards: (add --xformers to commandline args)</p>
+</li>
+<li>
+<p>via extension: <a href="https://github.com/yfszzx/stable-diffusion-webui-images-browser">History tab</a>: view, direct and delete images conveniently within the UI</p>
+</li>
+<li>
+<p>Generate forever option</p>
+</li>
+<li>
+<p>Training tab</p>
+<ul>
+<li>
+<p>hypernetworks and embeddings options</p>
+</li>
+<li>
+<p>Preprocessing images: cropping, mirroring, autotagging using BLIP or deepdanbooru (for anime)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Clip skip</p>
+</li>
+<li>
+<p>Use Hypernetworks</p>
+</li>
+<li>
+<p>Use VAEs</p>
+</li>
+<li>
+<p>Estimated completion time in progress bar</p>
+</li>
+<li>
+<p>API</p>
+</li>
+<li>
+<p>Support for dedicated <a href="https://github.com/runwayml/stable-diffusion#inpainting-with-stable-diffusion">inpainting model</a> by RunwayML. </p>
+</li>
+<li>
+<p>via extension: <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui-aesthetic-gradients">Aesthetic Gradients</a>, a way to generate images with a specific aesthetic by using clip images embds (implementation of <a href="https://github.com/vicgalle/stable-diffusion-aesthetic-gradients">https://github.com/vicgalle/stable-diffusion-aesthetic-gradients</a>)</p>
+</li>
+<li>
+<p><a href="https://github.com/Stability-AI/stablediffusion">Stable Diffusion 2.0</a> support - see <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#stable-diffusion-20">wiki</a> for instructions</p>
+</li>
+</ul>
+<h2>Installation and Running</h2>
+<p>Make sure the required <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Dependencies">dependencies</a> are met and follow the instructions available for both <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-NVidia-GPUs">NVidia</a> (recommended) and <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-AMD-GPUs">AMD</a> GPUs.</p>
+<p>Alternatively, use online services (like Google Colab):</p>
+<ul>
+<li><a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Online-Services">List of Online Services</a></li>
+</ul>
+<h3>Automatic Installation on Windows</h3>
+<ol>
+<li>
+<p>Install <a href="https://www.python.org/downloads/windows/">Python 3.10.6</a>, checking "Add Python to PATH"</p>
+</li>
+<li>
+<p>Install <a href="https://git-scm.com/download/win">git</a>.</p>
+</li>
+<li>
+<p>Download the stable-diffusion-webui repository, for example by running <code>git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git</code>.</p>
+</li>
+<li>
+<p>Place <code>model.ckpt</code> in the <code>models</code> directory (see <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Dependencies">dependencies</a> for where to get it).</p>
+</li>
+<li>
+<p><em><em>(Optional)</em></em> Place <code>GFPGANv1.4.pth</code> in the base directory, alongside <code>webui.py</code> (see <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Dependencies">dependencies</a> for where to get it).</p>
+</li>
+<li>
+<p>Run <code>webui-user.bat</code> from Windows Explorer as normal, non-administrator, user.</p>
+</li>
+</ol>
+<h3>Automatic Installation on Linux</h3>
+<ol>
+<li>Install the dependencies:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="c1"># Debian-based:</span>
+
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>wget<span class="w"> </span>git<span class="w"> </span>python3<span class="w"> </span>python3-venv
+
+<span class="c1"># Red Hat-based:</span>
+
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>wget<span class="w"> </span>git<span class="w"> </span>python3
+
+<span class="c1"># Arch-based:</span>
+
+sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>wget<span class="w"> </span>git<span class="w"> </span>python3
+</code></pre></div>
+
+<ol>
+<li>To install in <code>/home/$(whoami)/stable-diffusion-webui/</code>, run:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>bash<span class="w"> </span>&lt;<span class="o">(</span>wget<span class="w"> </span>-qO-<span class="w"> </span>https://raw.githubusercontent.com/AUTOMATIC1111/stable-diffusion-webui/master/webui.sh<span class="o">)</span>
+</code></pre></div>
+
+<h3>Installation on Apple Silicon</h3>
+<p>Find the instructions <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Installation-on-Apple-Silicon">here</a>.</p>
+<h2>Contributing</h2>
+<p>Here's how to add code to this repo: <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Contributing">Contributing</a></p>
+<h2>Documentation</h2>
+<p>The documentation was moved from this README over to the project's <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki">wiki</a>.</p>
+<h2>Credits</h2>
+<ul>
+<li>
+<p>Stable Diffusion - https://github.com/CompVis/stable-diffusion, https://github.com/CompVis/taming-transformers</p>
+</li>
+<li>
+<p>k-diffusion - https://github.com/crowsonkb/k-diffusion.git</p>
+</li>
+<li>
+<p>GFPGAN - https://github.com/TencentARC/GFPGAN.git</p>
+</li>
+<li>
+<p>CodeFormer - https://github.com/sczhou/CodeFormer</p>
+</li>
+<li>
+<p>ESRGAN - https://github.com/xinntao/ESRGAN</p>
+</li>
+<li>
+<p>SwinIR - https://github.com/JingyunLiang/SwinIR</p>
+</li>
+<li>
+<p>Swin2SR - https://github.com/mv-lab/swin2sr</p>
+</li>
+<li>
+<p>LDSR - https://github.com/Hafiidz/latent-diffusion</p>
+</li>
+<li>
+<p>Ideas for optimizations - https://github.com/basujindal/stable-diffusion</p>
+</li>
+<li>
+<p>Cross Attention layer optimization - Doggettx - https://github.com/Doggettx/stable-diffusion, original idea for prompt editing.</p>
+</li>
+<li>
+<p>Cross Attention layer optimization - InvokeAI, lstein - https://github.com/invoke-ai/InvokeAI (originally http://github.com/lstein/stable-diffusion)</p>
+</li>
+<li>
+<p>Textual Inversion - Rinon Gal - https://github.com/rinongal/textual_inversion (we're not using his code, but we are using his ideas).</p>
+</li>
+<li>
+<p>Idea for SD upscale - https://github.com/jquesnelle/txt2imghd</p>
+</li>
+<li>
+<p>Noise generation for outpainting mk2 - https://github.com/parlance-zz/g-diffuser-bot</p>
+</li>
+<li>
+<p>CLIP interrogator idea and borrowing some code - https://github.com/pharmapsychotic/clip-interrogator</p>
+</li>
+<li>
+<p>Idea for Composable Diffusion - https://github.com/energy-based-model/Compositional-Visual-Generation-with-Composable-Diffusion-Models-PyTorch</p>
+</li>
+<li>
+<p>xformers - https://github.com/facebookresearch/xformers</p>
+</li>
+<li>
+<p>DeepDanbooru - interrogator for anime diffusers https://github.com/KichangKim/DeepDanbooru</p>
+</li>
+<li>
+<p>Security advice - RyotaK</p>
+</li>
+<li>
+<p>Initial Gradio script - posted on 4chan by an Anonymous user. Thank you Anonymous user.</p>
+</li>
+<li>
+<p>(You)</p>
+</li>
+</ul>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                        Psyfer.io by Oliver Davies
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+                var hamburgerMenu = document.querySelector(".hamburger-menu");
+                var bannerNav = document.querySelector("#banner nav");
+
+                hamburgerMenu.addEventListener("click", function () {
+                        bannerNav.classList.toggle("open");
+                });
+
+                hamburgerMenu.addEventListener("touch", function () {
+                        bannerNav.classList.toggle("open");
+                });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+                const animatedElements = document.querySelectorAll(".animated-element");
+
+                animatedElements.forEach((element) => {
+                        const randomDelay = -Math.random() * 5; // Adjust the maximum delay (in seconds) as needed
+                        element.style.animationDelay = `${randomDelay}s`;
+                });
+        });
+</script>
+
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>Fork: Shader Man</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta name="description" content="ShaderMan ShaderToy to ShaderLab Converter If you’ve tried dabbling with shaders at all, you’ve probably come across ShaderToy – an online shader..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <div><a class="site-title" href="/">Psyfer.io</a></div>
+                <div class="hamburger-menu">
+                        <i class="fas fa-bars"></i>
+                </div>
+                <nav>
+                        <ul>
+                                <li><a
+                                                href="/category/c.html">C#</a></li>
+                                <li><a
+                                                href="/category/dockerfile.html">Dockerfile</a></li>
+                                <li class="active" ><a
+                                                href="/category/other.html">Other</a></li>
+                                <li><a
+                                                href="/category/python.html">Python</a></li>
+                                <li><a
+                                                href="/category/rust.html">Rust</a></li>
+                                <li><a
+                                                href="/category/shaderlab.html">ShaderLab</a></li>
+                                <li><a
+                                                href="/category/svelte.html">Svelte</a></li>
+                        </ul>
+                </nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <!-- <h1 class="entry-title">
+        <a href="/fork-shader-man.html" rel="bookmark" title="Permalink to Fork: Shader Man">Fork: Shader Man</a>
+      </h1>
+ -->
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-11-02T23:37:55-07:00">
+                Published: Sat 02 November 2019
+        </abbr>
+		<br />
+        <abbr class="modified" title="2019-11-02T23:37:57-07:00">
+                Updated: Sat 02 November 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/oliver-davies.html">Oliver Davies</a>
+        </address>
+<p>In <a href="/category/other.html">Other</a>.</p>
+<p>tags: <a href="/tag/glsl.html">GLSL</a> <a href="/tag/shaderlab.html">ShaderLab</a> <a href="/tag/c.html">C#</a> </p>
+</footer><!-- /.post-info -->      <p>ShaderMan</p>
+<p>ShaderToy to ShaderLab Converter</p>
+<p>If you’ve tried dabbling with shaders at all, you’ve probably come across ShaderToy – an online shader showcase with some pretty amazing examples of what’s possible in a few lines of shader code, inspired greatly by classic demoscene coding. Here’s just two examples: https://www.shadertoy.com/view/4dl3zn</p>
+<p>It’s an amazing resource, not only for inspiration but for learning how to create shaders, since every example comes with full source code which you can edit and immediately test online in your browser, alter parameters, supply different inputs etc.</p>
+<p>The shaders exhibited on ShaderToy are exclusively written in GLSL, and run in your browser using WebGL.I write an automatic conversion tool to turn a GLSL shader into an HLSL shader that help you fast convert ShaderToy to ShaderLab unity.</p>
+<p>Microsoft have published a very useful reference guide <a href="https://docs.microsoft.com/en-us/previous-versions/windows/apps/dn166865(v=win.10)">here</a> which details many of the general differences between GLSL and HLSL. Unity also have a useful page <a href="https://docs.unity3d.com/Manual/SL-PlatformDifferences.html">here</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">Replace</span><span class="w"> </span><span class="n">iGlobalTime</span><span class="w"> </span><span class="n">shader</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="p">(</span><span class="err">“</span><span class="n">shader</span><span class="w"> </span><span class="n">playback</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">seconds</span><span class="err">”</span><span class="p">)</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">_Time</span><span class="o">.</span><span class="n">y</span>
+<span class="w">    </span><span class="n">Replace</span><span class="w"> </span><span class="n">iResolution</span><span class="o">.</span><span class="n">xy</span><span class="w"> </span><span class="p">(</span><span class="err">“</span><span class="n">viewport</span><span class="w"> </span><span class="n">resolution</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">pixels</span><span class="err">”</span><span class="p">)</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">_ScreenParams</span><span class="o">.</span><span class="n">xy</span>
+<span class="w">    </span><span class="n">Replace</span><span class="w"> </span><span class="n">vec2</span><span class="w"> </span><span class="n">types</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">float2</span><span class="p">,</span><span class="w"> </span><span class="n">mat2</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">float2x2</span><span class="w"> </span><span class="n">etc</span><span class="o">.</span>
+<span class="w">    </span><span class="n">Replace</span><span class="w"> </span><span class="n">vec3</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">shortcut</span><span class="w"> </span><span class="n">constructors</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">all</span><span class="w"> </span><span class="n">elements</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">explicit</span><span class="w"> </span><span class="n">float3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Replace</span><span class="w"> </span><span class="n">Texture2D</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Tex2D</span>
+<span class="w">    </span><span class="n">Replace</span><span class="w"> </span><span class="nb">atan</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="nb">atan2</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Note</span><span class="w"> </span><span class="n">parameter</span><span class="w"> </span><span class="n">ordering</span><span class="o">!</span>
+<span class="w">    </span><span class="n">Replace</span><span class="w"> </span><span class="n">mix</span><span class="p">()</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="nb">lerp</span><span class="p">()</span>
+<span class="w">    </span><span class="n">Replace</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">mul</span><span class="p">()</span>
+<span class="w">    </span><span class="n">Remove</span><span class="w"> </span><span class="n">third</span><span class="w"> </span><span class="p">(</span><span class="n">bias</span><span class="p">)</span><span class="w"> </span><span class="n">parameter</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">Texture2D</span><span class="w"> </span><span class="n">lookups</span>
+<span class="w">    </span><span class="n">mainImage</span><span class="p">(</span><span class="n">out</span><span class="w"> </span><span class="n">vec4</span><span class="w"> </span><span class="n">fragColor</span><span class="p">,</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">vec2</span><span class="w"> </span><span class="n">fragCoord</span><span class="p">)</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">fragment</span><span class="w"> </span><span class="n">shader</span><span class="w"> </span><span class="n">function</span><span class="p">,</span><span class="w"> </span><span class="n">equivalent</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">float4</span><span class="w"> </span><span class="n">mainImage</span><span class="p">(</span><span class="n">float2</span><span class="w"> </span><span class="n">fragCoord</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">SV_POSITION</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">SV_Target</span>
+<span class="w">    </span><span class="n">UV</span><span class="w"> </span><span class="n">coordinates</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">GLSL</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">top</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">increase</span><span class="w"> </span><span class="n">downwards</span><span class="p">,</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">HLSL</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">bottom</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">increases</span><span class="w"> </span><span class="n">upwards</span><span class="p">,</span><span class="w"> </span><span class="n">so</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="n">need</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="n">uv</span><span class="o">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">–</span><span class="w"> </span><span class="n">uv</span><span class="o">.</span><span class="n">y</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">point</span><span class="o">.</span>
+</code></pre></div>
+
+<p>Note that ShaderToys don’t have a vertex shader function – they are effectively full-screen pixel shaders which calculate the value at each UV coordinate in screenspace. As such, they are most suitable for use in a full-screen image effect (or, you can just apply them to a plane/quad if you want) in which the UVs range from 0-1.</p>
+<p>But calculating pixel shaders for each pixel in a 1024×768 resolution (or higher) is <em>expensive</em>. One solution if you want to achieve anything like a game-playable framerate is to render the effect to a fixed-size rendertexture, and then scale that up to fill the screen. Here’s a simple generic script to do that:</p>
+<h1>Demo</h1>
+<h1>https://www.youtube.com/watch?v=ZncPTfT8wLg</h1>
+<hr>
+<h1>How to use:</h1>
+<h1>1.copy your lovely shader from www.shadertoy.com</h1>
+<p><img alt="ShaderToy" src="https://user-images.githubusercontent.com/16706911/33229710-44a67f1e-d1e9-11e7-9ed2-f338625b6c5d.jpg"></p>
+<h1>2.Open ShaderMan from Tools\ShaderMan</h1>
+<p>before opening shaderman be sure that there is codegenerator.cs in scene otherwise ShaderMan throws NullReferenceException.</p>
+<h1>3.Choose Name for you shader:</h1>
+<p><img alt="Step" src="https://user-images.githubusercontent.com/16706911/33229605-db538f5e-d1e6-11e7-8563-a48a7df3ae60.png"></p>
+<h1>4.Import your shader from shaderToy.com</h1>
+<p><img alt="Step" src="https://user-images.githubusercontent.com/16706911/33229653-1350acc4-d1e8-11e7-85d1-3f4613eed690.png"></p>
+<h1>5.Click On Convert And Enjoy :D</h1>
+<p><img alt="Final Step" src="https://user-images.githubusercontent.com/16706911/33229663-366dc5ac-d1e8-11e7-81ec-4539a025f111.png"></p>
+<hr>
+<h1>Video Tutorial is Available</h1>
+<p><img alt="capturedwadad" src="https://user-images.githubusercontent.com/16706911/43994219-9bafa39e-9dae-11e8-9560-c759c01dbb6d.PNG"></p>
+<p>https://www.youtube.com/watch?v=MCER5P8Xz3w&amp;lc=z22ysdkqln2texqj004t1aokgkzlpvkn3rdybfw1wtugrk0h00410</p>
+<hr>
+<h1>Musual</h1>
+<p>Music Visualization Shader</p>
+<p><img alt="Musual" src="https://user-images.githubusercontent.com/16706911/40903967-693154a8-67ee-11e8-8c09-6d59b9a463b8.PNG"></p>
+<h1>https://github.com/smkplus/Musual</h1>
+<h1>https://youtu.be/ppSjyvxR8uI</h1>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                        Psyfer.io by Oliver Davies
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+
+</html>

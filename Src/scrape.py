@@ -76,7 +76,11 @@ def scrape():
             file_path = os.path.join(content_path, file_name)
 
             with open(file_path, 'w', encoding='utf-8') as f:
-                f.write(f"Title: {split_variable_name(repo.name)}\n")
+                # Check if the repo is a fork
+                if repo.fork:
+                    f.write(f"Title: Fork: {split_variable_name(repo.name)}\n")
+                else:
+                    f.write(f"Title: {split_variable_name(repo.name)}\n")
                 f.write(f"Date: {repo.created_at}\n")
                 f.write(f"Modified: {repo.updated_at}\n")
                 # If the repo language is None, use "Other"

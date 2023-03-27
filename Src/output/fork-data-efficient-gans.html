@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+                var hamburgerMenu = document.querySelector(".hamburger-menu");
+                var bannerNav = document.querySelector("#banner nav");
+
+                hamburgerMenu.addEventListener("click", function () {
+                        bannerNav.classList.toggle("open");
+                });
+
+                hamburgerMenu.addEventListener("touch", function () {
+                        bannerNav.classList.toggle("open");
+                });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+                const animatedElements = document.querySelectorAll(".animated-element");
+
+                animatedElements.forEach((element) => {
+                        const randomDelay = -Math.random() * 5; // Adjust the maximum delay (in seconds) as needed
+                        element.style.animationDelay = `${randomDelay}s`;
+                });
+        });
+</script>
+
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>Fork: Data Efficient Gans</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta name="description" content="Data-Efficient GANs with DiffAugment project | paper | datasets | video | slides Generated using only 100 images of Obama, grumpy cats, pandas,..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <div><a class="site-title" href="/">Psyfer.io</a></div>
+                <div class="hamburger-menu">
+                        <i class="fas fa-bars"></i>
+                </div>
+                <nav>
+                        <ul>
+                                <li><a
+                                                href="/category/c.html">C#</a></li>
+                                <li><a
+                                                href="/category/dockerfile.html">Dockerfile</a></li>
+                                <li class="active" ><a
+                                                href="/category/other.html">Other</a></li>
+                                <li><a
+                                                href="/category/python.html">Python</a></li>
+                                <li><a
+                                                href="/category/rust.html">Rust</a></li>
+                                <li><a
+                                                href="/category/shaderlab.html">ShaderLab</a></li>
+                                <li><a
+                                                href="/category/svelte.html">Svelte</a></li>
+                        </ul>
+                </nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <!-- <h1 class="entry-title">
+        <a href="/fork-data-efficient-gans.html" rel="bookmark" title="Permalink to Fork: Data Efficient Gans">Fork: Data Efficient Gans</a>
+      </h1>
+ -->
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2022-03-12T08:30:46-08:00">
+                Published: Sat 12 March 2022
+        </abbr>
+		<br />
+        <abbr class="modified" title="2021-03-29T21:21:09-07:00">
+                Updated: Mon 29 March 2021
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/oliver-davies.html">Oliver Davies</a>
+        </address>
+<p>In <a href="/category/other.html">Other</a>.</p>
+<p>tags: <a href="/tag/python.html">Python</a> <a href="/tag/cuda.html">Cuda</a> <a href="/tag/shell.html">Shell</a> <a href="/tag/c.html">C++</a> <a href="/tag/dockerfile.html">Dockerfile</a> </p>
+</footer><!-- /.post-info -->      <h1>Data-Efficient GANs with DiffAugment</h1>
+<h3><a href="https://data-efficient-gans.mit.edu/">project</a> | <a href="https://arxiv.org/pdf/2006.10738">paper</a> | <a href="https://hanlab.mit.edu/projects/data-efficient-gans/datasets/">datasets</a> | <a href="https://www.youtube.com/watch?v=SsqcjS6SVM0">video</a> | <a href="https://hanlab.mit.edu/projects/data-efficient-gans/slides.pdf">slides</a></h3>
+<p><img src="imgs/interp.gif"/></p>
+<p><em>Generated using only 100 images of Obama, grumpy cats, pandas, the Bridge of Sighs, the Medici Fountain, the Temple of Heaven, without pre-training.</em></p>
+<p><strong>[NEW!]</strong> PyTorch training with <a href="https://github.com/mit-han-lab/data-efficient-gans/tree/master/DiffAugment-stylegan2-pytorch">DiffAugment-stylegan2-pytorch</a> is now available!</p>
+<p><strong>[NEW!]</strong> Our <a href="https://colab.research.google.com/gist/zsyzzsoft/5fbb71b9bf9a3217576bebae5de46fc2/data-efficient-gans.ipynb">Colab tutorial</a> is released! <a href="https://colab.research.google.com/gist/zsyzzsoft/5fbb71b9bf9a3217576bebae5de46fc2/data-efficient-gans.ipynb"><img alt="" src="https://colab.research.google.com/assets/colab-badge.svg"></a></p>
+<p><strong>[NEW!]</strong> FFHQ training is supported! See the <a href="https://github.com/mit-han-lab/data-efficient-gans/tree/master/DiffAugment-stylegan2#FFHQ">DiffAugment-stylegan2</a> README.</p>
+<p><strong>[NEW!]</strong> Time to generate 100-shot interpolation videos with <a href="https://github.com/mit-han-lab/data-efficient-gans/tree/master/DiffAugment-stylegan2/generate_gif.py">generate_gif.py</a>!</p>
+<p><strong>[NEW!]</strong> Our <a href="https://github.com/mit-han-lab/data-efficient-gans/tree/master/DiffAugment-biggan-imagenet">DiffAugment-biggan-imagenet</a> repo (for TPU training) is released!</p>
+<p><strong>[NEW!]</strong> Our <a href="https://github.com/mit-han-lab/data-efficient-gans/tree/master/DiffAugment-biggan-cifar">DiffAugment-biggan-cifar</a> PyTorch repo is released!</p>
+<p>This repository contains our implementation of Differentiable Augmentation (DiffAugment) in both PyTorch and TensorFlow. It can be used to significantly improve the data efficiency for GAN training. We have provided <a href="https://github.com/mit-han-lab/data-efficient-gans/tree/master/DiffAugment-stylegan2">DiffAugment-stylegan2</a> (TensorFlow) and <a href="https://github.com/mit-han-lab/data-efficient-gans/tree/master/DiffAugment-stylegan2-pytorch">DiffAugment-stylegan2-pytorch</a>, <a href="https://github.com/mit-han-lab/data-efficient-gans/tree/master/DiffAugment-biggan-cifar">DiffAugment-biggan-cifar</a> (PyTorch) for GPU training, and <a href="https://github.com/mit-han-lab/data-efficient-gans/tree/master/DiffAugment-biggan-imagenet">DiffAugment-biggan-imagenet</a> (TensorFlow) for TPU training.</p>
+<p><img src="imgs/low-shot-comparison.jpg" width="1000px"/></p>
+<p><em>Low-shot generation without pre-training. With DiffAugment, our model can generate high-fidelity images using only 100 Obama portraits, grumpy cats, or pandas from our collected 100-shot datasets, 160 cats or 389 dogs from the AnimalFace dataset at 256×256 resolution.</em></p>
+<p><img src="imgs/cifar10-results.jpg" width="1000px"/></p>
+<p><em>Unconditional generation results on CIFAR-10. StyleGAN2’s performance drastically degrades given less training data. With DiffAugment, we are able to roughly match its FID and outperform its Inception Score (IS) using only </em><em>20%</em><em> training data.</em></p>
+<p>Differentiable Augmentation for Data-Efficient GAN Training<br></p>
+<p><a href="https://scholar.google.com/citations?user=gLCdw70AAAAJ">Shengyu Zhao</a>, <a href="http://zhijianliu.com/">Zhijian Liu</a>, <a href="http://linji.me/">Ji Lin</a>, <a href="https://www.cs.cmu.edu/~junyanz/">Jun-Yan Zhu</a>, and <a href="https://songhan.mit.edu/">Song Han</a><br></p>
+<p>MIT, Tsinghua University, Adobe Research, CMU<br></p>
+<p><a href="https://arxiv.org/pdf/2006.10738.pdf">arXiv</a></p>
+<h2>Overview</h2>
+<p><img src="imgs/method.jpg" width="1000px"/></p>
+<p><em>Overview of DiffAugment for updating D (left) and G (right). DiffAugment applies the augmentation T to both the real sample x and the generated output G(z). When we update G, gradients need to be back-propagated through T (iii), which requires T to be differentiable w.r.t. the input.</em></p>
+<h2>Training and Generation with 100 Images <a href="https://colab.research.google.com/gist/zsyzzsoft/5fbb71b9bf9a3217576bebae5de46fc2/data-efficient-gans.ipynb"><img alt="" src="https://colab.research.google.com/assets/colab-badge.svg"></a></h2>
+<p>To generate an interpolation video using our pre-trained models:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>DiffAugment-stylegan2
+
+python<span class="w"> </span>generate_gif.py<span class="w"> </span>-r<span class="w"> </span>mit-han-lab:DiffAugment-stylegan2-100-shot-obama.pkl<span class="w"> </span>-o<span class="w"> </span>obama.gif
+</code></pre></div>
+
+<p>or to train a new model:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>run_low_shot.py<span class="w"> </span>--dataset<span class="o">=</span><span class="m">100</span>-shot-obama<span class="w"> </span>--num-gpus<span class="o">=</span><span class="m">4</span>
+</code></pre></div>
+
+<p>You may also try out <code>100-shot-grumpy_cat</code>, <code>100-shot-panda</code>, <code>100-shot-bridge_of_sighs</code>, <code>100-shot-medici_fountain</code>, <code>100-shot-temple_of_heaven</code>, <code>100-shot-wuzhen</code>, or the folder containing your own training images. Please refer to the <a href="https://github.com/mit-han-lab/data-efficient-gans/tree/master/DiffAugment-stylegan2#100-shot-generation">DiffAugment-stylegan2</a> README for the dependencies and details.</p>
+<p><strong>[NEW!]</strong> PyTorch training is now available:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>DiffAugment-stylegan2-pytorch
+
+python<span class="w"> </span>train.py<span class="w"> </span>--outdir<span class="o">=</span>training-runs<span class="w"> </span>--data<span class="o">=</span>https://hanlab.mit.edu/projects/data-efficient-gans/datasets/100-shot-obama.zip<span class="w"> </span>--gpus<span class="o">=</span><span class="m">1</span>
+</code></pre></div>
+
+<h2>DiffAugment for StyleGAN2</h2>
+<p>To run <em>StyleGAN2 + DiffAugment</em> for unconditional generation on the 100-shot datasets, CIFAR, FFHQ, or LSUN, please refer to the <a href="https://github.com/mit-han-lab/data-efficient-gans/tree/master/DiffAugment-stylegan2">DiffAugment-stylegan2</a> README or <a href="https://github.com/mit-han-lab/data-efficient-gans/tree/master/DiffAugment-stylegan2-pytorch">DiffAugment-stylegan2-pytorch</a> for the PyTorch version.</p>
+<h2>DiffAugment for BigGAN</h2>
+<p>Please refer to the <a href="https://github.com/mit-han-lab/data-efficient-gans/tree/master/DiffAugment-biggan-cifar">DiffAugment-biggan-cifar</a> README to run <em>BigGAN + DiffAugment</em> for conditional generation on CIFAR (using GPUs), and the <a href="https://github.com/mit-han-lab/data-efficient-gans/tree/master/DiffAugment-biggan-imagenet">DiffAugment-biggan-imagenet</a> README to run on ImageNet (using TPUs).</p>
+<h2>Using DiffAugment for Your Own Training</h2>
+<p>To help you use DiffAugment in your own codebase, we provide portable DiffAugment operations of both TensorFlow and PyTorch versions in <a href="https://github.com/mit-han-lab/data-efficient-gans/blob/master/DiffAugment_tf.py">DiffAugment_tf.py</a> and <a href="https://github.com/mit-han-lab/data-efficient-gans/blob/master/DiffAugment_pytorch.py">DiffAugment_pytorch.py</a>. Generally, DiffAugment can be easily adopted in any model by substituting every <em>D(x)</em> with <em>D(T(x))</em>, where <em>x</em> can be real images or fake images, <em>D</em> is the discriminator, and <em>T</em> is the DiffAugment operation. For example,</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">DiffAugment_pytorch</span> <span class="kn">import</span> <span class="n">DiffAugment</span>
+
+<span class="c1"># from DiffAugment_tf import DiffAugment</span>
+
+<span class="n">policy</span> <span class="o">=</span> <span class="s1">&#39;color,translation,cutout&#39;</span> <span class="c1"># If your dataset is as small as ours (e.g.,</span>
+
+<span class="c1"># hundreds of images), we recommend using the strongest Color + Translation + Cutout.</span>
+
+<span class="c1"># For large datasets, try using a subset of transformations in [&#39;color&#39;, &#39;translation&#39;, &#39;cutout&#39;].</span>
+
+<span class="c1"># Welcome to discover more DiffAugment transformations!</span>
+
+
+
+<span class="o">...</span>
+
+<span class="c1"># Training loop: update D</span>
+
+<span class="n">reals</span> <span class="o">=</span> <span class="n">sample_real_images</span><span class="p">()</span> <span class="c1"># a batch of real images</span>
+
+<span class="n">z</span> <span class="o">=</span> <span class="n">sample_latent_vectors</span><span class="p">()</span>
+
+<span class="n">fakes</span> <span class="o">=</span> <span class="n">Generator</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="c1"># a batch of fake images</span>
+
+<span class="n">real_scores</span> <span class="o">=</span> <span class="n">Discriminator</span><span class="p">(</span><span class="n">DiffAugment</span><span class="p">(</span><span class="n">reals</span><span class="p">,</span> <span class="n">policy</span><span class="o">=</span><span class="n">policy</span><span class="p">))</span>
+
+<span class="n">fake_scores</span> <span class="o">=</span> <span class="n">Discriminator</span><span class="p">(</span><span class="n">DiffAugment</span><span class="p">(</span><span class="n">fakes</span><span class="p">,</span> <span class="n">policy</span><span class="o">=</span><span class="n">policy</span><span class="p">))</span>
+
+<span class="c1"># Calculating D&#39;s loss based on real_scores and fake_scores...</span>
+
+<span class="o">...</span>
+
+
+
+<span class="o">...</span>
+
+<span class="c1"># Training loop: update G</span>
+
+<span class="n">z</span> <span class="o">=</span> <span class="n">sample_latent_vectors</span><span class="p">()</span>
+
+<span class="n">fakes</span> <span class="o">=</span> <span class="n">Generator</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="c1"># a batch of fake images</span>
+
+<span class="n">fake_scores</span> <span class="o">=</span> <span class="n">Discriminator</span><span class="p">(</span><span class="n">DiffAugment</span><span class="p">(</span><span class="n">fakes</span><span class="p">,</span> <span class="n">policy</span><span class="o">=</span><span class="n">policy</span><span class="p">))</span>
+
+<span class="c1"># Calculating G&#39;s loss based on fake_scores...</span>
+
+<span class="o">...</span>
+</code></pre></div>
+
+<p>We have implemented Color, Translation, and Cutout DiffAugment as visualized below:</p>
+<p><img src="imgs/augmentations.jpg" width="800px"/></p>
+<h2>Citation</h2>
+<p>If you find this code helpful, please cite our paper:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">@inproceedings</span><span class="err">{</span><span class="n">zhao2020diffaugment</span><span class="p">,</span>
+
+<span class="w">  </span><span class="n">title</span><span class="o">=</span><span class="err">{</span><span class="n">Differentiable</span><span class="w"> </span><span class="n">Augmentation</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">Data</span><span class="o">-</span><span class="n">Efficient</span><span class="w"> </span><span class="n">GAN</span><span class="w"> </span><span class="n">Training</span><span class="err">}</span><span class="p">,</span>
+
+<span class="w">  </span><span class="n">author</span><span class="o">=</span><span class="err">{</span><span class="n">Zhao</span><span class="p">,</span><span class="w"> </span><span class="n">Shengyu</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Liu</span><span class="p">,</span><span class="w"> </span><span class="n">Zhijian</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Lin</span><span class="p">,</span><span class="w"> </span><span class="n">Ji</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Zhu</span><span class="p">,</span><span class="w"> </span><span class="n">Jun</span><span class="o">-</span><span class="n">Yan</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Han</span><span class="p">,</span><span class="w"> </span><span class="n">Song</span><span class="err">}</span><span class="p">,</span>
+
+<span class="w">  </span><span class="n">booktitle</span><span class="o">=</span><span class="err">{</span><span class="n">Conference</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">Neural</span><span class="w"> </span><span class="n">Information</span><span class="w"> </span><span class="n">Processing</span><span class="w"> </span><span class="n">Systems</span><span class="w"> </span><span class="p">(</span><span class="n">NeurIPS</span><span class="p">)</span><span class="err">}</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nf">year</span><span class="o">=</span><span class="err">{</span><span class="mi">2020</span><span class="err">}</span>
+
+<span class="err">}</span>
+</code></pre></div>
+
+<h2>Acknowledgements</h2>
+<p>We thank NSF Career Award #1943349, MIT-IBM Watson AI Lab, Google, Adobe, and Sony for supporting this research.  Research supported with Cloud TPUs from Google's TensorFlow Research Cloud (TFRC). We thank William S. Peebles and Yijun Li for helpful comments.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                        Psyfer.io by Oliver Davies
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+
+</html>
